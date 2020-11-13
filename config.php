@@ -1,6 +1,17 @@
 <?php
-/* Database credentials. Assuming you are running MySQL
-server with default setting (user 'root' with no password) */
+
+/**
+ * MyClass Class Doc Comment
+ *
+ * @category Class
+ * @package  MyPackage
+ * @author   Elmer Huitz <2014110553@ub.edu.bz>
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ * @link     http://www.hashbangcode.com/
+ *
+ */
+
+
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'elmerhui_elmer');
 define('DB_PASSWORD', 'letmein123');

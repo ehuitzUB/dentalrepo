@@ -14,7 +14,7 @@
 
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'elmerhui_elmer');
-define('DB_PASSWORD', 'letmein123');
+define('DB_PASSWORD', 'belize123');
 define('DB_NAME', 'elmerhui_dentaldatabase');
  
 /* Attempt to connect to MySQL database */

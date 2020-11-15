@@ -1,31 +1,72 @@
-/* Remove the navbar's default margin-bottom and rounded borders */ 
-.navbar {
-    margin-bottom: 0;
-    border-radius: 0;
-  }
-  
-  /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-  .row.content {height: 450px}
-  
-  /* Set gray background color and 100% height */
-  .sidenav {
-    padding-top: 20px;
-    background-color: #f1f1f1;
-    height: 100%;
-  }
-  
-  /* Set black background color, white text and some padding */
-  footer {
-    background-color: #555;
-    color: white;
-    padding: 15px;
-  }
-  
-  /* On small screens, set height to 'auto' for sidenav and grid */
-  @media screen and (max-width: 767px) {
-    .sidenav {
-      height: auto;
-      padding: 15px;
+
+
+
+.row-header
+{
+    margin:0px auto;
+    padding:0px;
+}
+.row-content {
+    margin:0px auto;
+    padding: 50px 0px 50px 0px;
+    border-bottom: 1px ridge;
+    min-height:400px;
+/* The min-height property defines the minimum height of an element.  If the content is smaller than the  
+     minimum height, the minimum height will be applied.  If the content is larger than the minimum height,     
+     the min-height property has no effect.
+*/
+}
+.footer{
+    background-color: #D1C4E9;
+    margin:0px auto;
+    padding: 20px 0px 20px 0px;
+}
+
+.jumbotron {
+    padding:70px 30px 70px 30px;
+    margin:0px auto;
+    background: #9575CD ;
+    color: floralwhite;
+}
+address{
+    font-size:80%;
+    margin:0px;
+    color:#0f0f0f;
+/* by assigning auto to the left and right margins of an element, they take up the available horizontal space in the element's container equally – and thus the element gets centered.
+*/
+}
+
+@media (max-width: 1024px){
+    .container {
+      max-width: 100%;
     }
-    .row.content {height:auto;} 
   }
+
+  body{
+    padding:50px 0px 0px 0px;
+    z-index:0;
+    }
+    .navbar-dark {
+    background-color: #512DA8;
+    }
+
+    .tab-content {
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+    }
+    
+    .carousel {
+        background:#512DA8;
+    }
+    .carousel-item {
+      height: 300px;
+    }
+    .carousel-item img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-height: 300px;
+    }
+    

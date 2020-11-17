@@ -1,4 +1,4 @@
- <?php
+<?php
 // Include config file
 require_once "config.php";
  
@@ -79,6 +79,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             if(mysqli_stmt_execute($stmt)){
                 // Redirect to login page
                 header("location: login.php");
+                exit();
             } else{
                 echo "Something went wrong. Please try again later.";
             }
@@ -92,7 +93,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($link);
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

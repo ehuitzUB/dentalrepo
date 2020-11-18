@@ -1,6 +1,7 @@
-
-
-
+body{
+    padding:50px 0px 0px 0px;
+    z-index:0;
+    }
 .row-header
 {
     margin:0px auto;
@@ -17,7 +18,8 @@
 */
 }
 .footer{
-    background-color: #D1C4E9;
+    background-color: #070707;
+    color: white;
     margin:0px auto;
     padding: 20px 0px 20px 0px;
 }

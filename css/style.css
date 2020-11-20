@@ -1,10 +1,7 @@
-.navbar-light{
-    background
-}
 body{
-    padding:50px 0px 0px 0px;
+    padding: 50px 0px 0px 0px;
     z-index:0;
-    }
+}
 .row-header
 {
     margin:0px auto;
@@ -47,31 +44,52 @@ address{
     }
   }
 
-  body{
-    padding:50px 0px 0px 0px;
-    z-index:0;
-    }
-    .navbar-dark {
-    background-color: #512DA8;
-    }
+.navbar-dark {
+background-color: #512DA8;
+}
 
-    .tab-content {
-        border-left: 1px solid #ddd;
-        border-right: 1px solid #ddd;
-        border-bottom: 1px solid #ddd;
-        padding: 10px;
-    }
-    
-    .carousel {
-        background:#512DA8;
-    }
-    .carousel-item {
-      height: 300px;
-    }
-    .carousel-item img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        min-height: 300px;
-    }
-    
+.tab-content {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+
+.carousel {
+    background:#512DA8;
+}
+.carousel-item {
+    height: 300px;
+}
+.carousel-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 300px;
+}
+/* Dashboard styles */
+.appointment-header{
+    background-color: #394462;
+    color: white;
+}
+.appointment-header a{
+    text-decoration: none;
+    /*font-size: small;*/
+}
+.appointment-body{
+    background-color: white;
+}
+.gray{
+    background-color: #ebedf2;
+}
+.text-white{
+    color: white;
+}
+.btn-light-dark{
+    background-color: #394462;
+    font-size: small;
+    color: white;
+}
+.button-panel{
+    margin: 10px;
+}

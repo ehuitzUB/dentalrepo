@@ -65,11 +65,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["accountType"]=$account;    
                             // Redirect user to welcome page                       
                             If($_SESSION["accountType"]==1){
-                                header("location: /adminFiles/doctorDashboard.php");
+                                header("location: dashboardDoctor.php");
                                 exit();
                             }
                             If($_SESSION["accountType"]==1){
-                                header("location: /adminFiles/doctorDashboard.php");
+                                header("location: dashboardClient.php");
                                 exit();
                             }
                             switch ($account) {

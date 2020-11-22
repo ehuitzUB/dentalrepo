@@ -74,7 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             }
                             switch ($account) {
                                 case 1:
-                                    header("location: /adminFiles/doctorDashboard.php");
+                                    header("location: dashboardDoctor.php");
                                     exit();
                                     break;
                                 case 2:
@@ -82,7 +82,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     exit();
                                     break;
                                 case 3:
-                                    header("location: /patientFiles/patientDashboard.php");
+                                    header("location: dashboardClient.php");
                                     exit();
                                     break;
                             }

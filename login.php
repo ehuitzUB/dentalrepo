@@ -64,14 +64,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["username"] = $username; 
                             $_SESSION["accountType"]=$account;    
                             // Redirect user to welcome page                       
-                            If($_SESSION["accountType"]==1){
-                                header("location: dashboardDoctor.php");
-                                exit();
-                            }
-                            If($_SESSION["accountType"]==1){
-                                header("location: dashboardClient.php");
-                                exit();
-                            }
                             switch ($account) {
                                 case 1:
                                     header("location: dashboardDoctor.php");

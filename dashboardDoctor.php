@@ -1,3 +1,15 @@
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,7 +47,7 @@
                     </li>
                 </ul>
                 <span class="navbar-text">
-                    <a data-toggle="modal" data-target="#loginModal" class="text-white"> <span class="fa fa-sign-in"></span> Login </a>
+                <a class="text-white" href="logout.php"> <span class="fa fa-sign-out"></span> Logout </a>
                 </span>
           
             </div>
@@ -46,7 +58,7 @@
         <!--welcome header bar-->
         <div class="row" style="background-color: red; margin: 0 0 10px 0;">
             <div class="col-md-4 col-sm-4">
-                <h5>Welcome, <span>{USER_NAME}</span></h5>
+                <h5>Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?></h5>
             </div>
             <div class="col-md-1  col-sm-1 offset-md-5 text-center">
                 <p class="d-inline"><span></span> Events</p>

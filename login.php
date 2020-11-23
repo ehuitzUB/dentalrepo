@@ -59,7 +59,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             session_start();
                             
                             // Store data in session variables
-                            //$_SESSION["loggedin"] = true;
+                            $_SESSION["loggedin"] = true;
                             $_SESSION["loginID"] = $id;
                             $_SESSION["username"] = $username; 
                             $_SESSION["accountType"]=$account;    

@@ -1,20 +1,10 @@
-<?php
-// Initialize the session
-session_start();
- 
-// Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
-    exit;
-}
-?>
-
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Twinkling Smiles | Dashboard</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
     </head>
@@ -46,7 +36,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     </li>
                 </ul>
                 <span class="navbar-text">
-                    <a class="text-white" href="logout.php"> <span class="fa fa-sign-out"></span> Logout </a>
+                    <a class="text-white" > <span class="fa fa-sign-out"></span> Logout </a>
                 </span>
           
             </div>
@@ -62,9 +52,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
             <div class="col-md-1  col-sm-1 offset-md-5 text-center">
                 <p class="d-inline"><span></span> Events</p>
-            </div>
-            <div class="col-md-1 col-sm-1 text-center">
-                <p class="d-inline"><span class=""></span> Messages</p>
             </div>
         </div>
         <div class="container">

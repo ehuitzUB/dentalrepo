@@ -70,7 +70,7 @@ h5 {
 	Global Styles
 -------------------------------------------------------------------------------*/
 a {
-	color: #e84545;
+	color:floralwhite;
 }
 a:hover, a:focus {
 	text-decoration: none;
@@ -380,7 +380,7 @@ ul li {
 	$intro
 ========================================================================== */
 .intro {
-	background-color: #348fc4;
+	background-color: #01a97c;
 	/* color: #000; */
 }
 .intro h3 {

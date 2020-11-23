@@ -14,7 +14,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Twinkling Smiles | Dashboard</title>
+        <title>Twinkling Smiles | Appointments</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/main.css">
@@ -30,10 +30,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             </a>
             <div class="collapse navbar-collapse" id="Navbar">
                 <ul class="navbar-nav mr-auto" >
-                    <li class="nav-item active text-black">
+                    <li class="nav-item  text-black">
                         <a class="nav-link " href="./dashboardDoctor.php"><span class="fa fa-home fa-lg"></span>Home</a>
                     </li>
-                    <li class="nav-item text-black">
+                    <li class="nav-item active text-black">
                         <a class="nav-link " href="./appointmentsDoctor.php"><span class="fa fa-calendar"></span>Appointments</a>
                     </li>
                     <li class="nav-item text-black">
@@ -61,14 +61,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <!--welcome header bar-->
         <div class="row" >
             <div class="col-md-4 col-sm-4">
-                <h5>Welcome Dr. <?php echo htmlspecialchars($_SESSION["username"]); ?></h5>
+                <h5>Appointments</h5>
             </div>
-            <div class="col-md-1  col-sm-1 offset-md-5 text-center">
-                <p class="d-inline"><span></span> Events</p>
-            </div>
-            <div class="col-md-1  col-sm-1 offset-md-5>
-                <p class="d-inline"><span></span> Settings</p>
-            </div>
+            
         </div>
         <div class="container">
             <div class="row">
@@ -77,10 +72,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 <div class="col-md-7 col-sm-8" style="margin: 0 0 10px 0;">
                     <div class="row">
                         <div class="col-10 appointment-header intro">
-                            <p class="d-inline">Today's Appointment(s)</p>
+                            <p class="d-inline">All Appointments</p>
                         </div>
                         <div class="col-2 appointment-header intro">
-                            <a href="#">[View all]</a>
+                            <a href="#">[Search]</a>
                         </div>
                         <div class="col-12 appointment-body">
                             <div class="row">
@@ -132,7 +127,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 <div class="col-md-4 col-sm-3 offset-md-1 appointment-body">
                     <div class="row">
                         <div class="col-12 appointment-header intro">
-                            <p class="d-inline">Today's Completed Appointment(s)</p>
+                            <p class="d-inline">Create an Appointment</p>
                         </div>
                     </div>
                 </div>

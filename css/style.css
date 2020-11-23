@@ -70,7 +70,7 @@ background-color: #512DA8;
 /* Dashboard styles */
 .appointment-header{
     background-color: #394462;
-    color: white;
+    color: black;
 }
 .appointment-header a{
     text-decoration: none;
@@ -83,7 +83,11 @@ background-color: #512DA8;
     background-color: #ebedf2;
 }
 .text-white{
-    color: white;
+    color: black;
+}
+
+.text-black{
+    color: black;
 }
 .btn-light-dark{
     background-color: #394462;
@@ -93,3 +97,4 @@ background-color: #512DA8;
 .button-panel{
     margin: 10px;
 }
+

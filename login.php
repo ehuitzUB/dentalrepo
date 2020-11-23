@@ -4,13 +4,29 @@ session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
+    //header("location: welcome.php");
+    switch ($_SESSION["accountType"]) {
+        case 1:
+            header("location: dashboardDoctor.php");
+            exit();
+            break;
+        case 2:
+            header("location: welcome.php");
+            exit();
+            break;
+        case 3:
+            header("location: dashboardClient.php");
+            exit();
+            break;
+    }
+
+
     exit;
 }
  
 // Include config file
 require_once "config.php";
- 
+
 // Define variables and initialize with empty values
 $username = $password = "";
 $username_err = $password_err = "";
@@ -64,6 +80,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["username"] = $username; 
                             $_SESSION["accountType"]=$account;    
                             // Redirect user to welcome page                       
+                            
+                            
                             switch ($account) {
                                 case 1:
                                     header("location: dashboardDoctor.php");

@@ -1,150 +1,145 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-    
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/style.css">
-    </head>
-    <body>
-        <nav class="navbar navbar-light navbar-expand-sm fixed-top appointment-header">
-            <div class="container">     
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <a class="navbar-brand mr-auto" href="#">
-                    <img src="images/logo.png" height="50" width="130">
-                </a>
-                <div class="collapse navbar-collapse" id="Navbar">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link  text-white" href="./index.html"><span class="fa fa-home fa-lg"></span>Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link  text-white" href="#"><span class="fa fa-info fa-lg"></span>Activity</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link  text-white" href="#"><span class="fa fa-info fa-lg"></span>Treatments</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link  text-white" href="#"><span class="fa fa-address-card fa-lg"></span>Contact Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#"><span class="fa fa-info fa-lg"></span>About Us</a>
-                        </li>
-                    </ul>
-                    <span class="navbar-text">
-                        <a data-toggle="modal" data-target="#loginModal" class="text-white"> <span class="fa fa-sign-in"></span> Login </a>
-                    </span>
-              
-                </div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<!--Styles and font awsome-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+</head>
+<body>
+    <nav class="navbar navbar-light navbar-expand-sm fixed-top appointment-header" style="border-bottom: 0.7px dashed black; background-color: azure; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">        
+        <a class="navbar-brand mr-auto" href="#">
+            <img src="images/logo.png" height="50" width="130">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="Navbar">
+            <div class="container  justify-content-md-end text-center justify-content-center">
+            <ul class="navbar-nav" style="text-align: center;">
+                <li class="nav-item active">
+                    <a class="nav-link" href="./index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./contact.html">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./aboutUs.html">About Us</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="./login.php">Login</a>
+                </li>
+            </ul>
             </div>
-        </nav>
-        <div class="container">
-            <div class="row row-content">
-                <div class="col-12 text-center">
-                    <h3>Contact Us</h3>
-                    <p class="wow fadeInDown animated">Lets us know how we can help.</p>
-                </div>
-                    <div class="col-12">
-                        <form>
-                            <div class="form-group row">
-                                <label for="firstname" class="col-md-2 col-form-label">First Name</label>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="FirstName">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="lastname" class="col-md-2 col-form-label">Last Name</label>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="LastName">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="telnum" class="col-12 col-md-2 col-form-label">Contact Tel.</label>
-                                <div class="col-5 col-md-3">
-                                    <input type="tel" class="form-control" id="areacode" name="areacode" placeholder="Area code">
-                                </div>
-                                <div class="col-7 col-md-7">
-                                    <input type="tel" class="form-control col-md-5" id="telnum" name="telnum" placeholder="Tel. number">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="emailid" class="col-md-2 col-form-label">Email</label>
-                                <div class="col-md-8">
-                                    <input type="email" class="form-control" id="emailid" name="emailid" placeholder="Email">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-6 offset-md-2">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="approve" id="approve" value="">
-                                        <label class="form-check-label" for="approve">
-                                        <strong>May we contact you?</strong>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 offset-md-0">
-                                    <select class="form-control">
-                                        <option>Tel.</option>
-                                        <option>Email</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="feedback" class="col-md-2 col-form-label">Any Questions?</label>
-                                <div class="col-md-8">
-                                    <textarea class="form-control" id="feedback" name="feedback" rows="12"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="offset-md-2 col-md-10">
-                                    <button type="submit" class="btn btn-primary">Send</button>
-                                </div>
-                            </div>
-                                
-                        </form>                    
-                    </div>
-             </div>
         </div>
-        <footer class="footer">
-            <div class="container">
-                <h2 class="h2 text-center">Contact Us</h2>
-                    <div class="row">
-                        <div class="col col-sm text-center">
-                            <h4>Opening Hours</h4><br>
-                            <p style="font-size: small;">
-                                <span>Monday – Friday  9AM – 7PM</span><br>
-                                <span>Saturday 9AM – 2PM</span>
-                            </p>
-                        </div>
-    
-                        <div class="col col-sm text-center">
-                            <h4>Our Address</h4><br>
-                            <p style="font-size: small;">
-                                <span>University Crescent</span> <br>
-                                <span>City</span><br>
-                                <span>Belize</span><br>
-                                <span><abbr>Tel:</abbr> (501) 606-4177</span>
-                            </p>
-                        </div>                        
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1649.0708040163126!2d-88.76307202164934!3d17.242217192850692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f5dd567e130a313%3A0x5a44b6ba5fe7f20!2sBelmopan!5e0!3m2!1sen!2sbz!4v1605323394698!5m2!1sen!2sbz"></iframe> 
-                        </div>
-                    </div>
-                    <div class="row justify-content-center">             
-                        <div class="col-auto">
-                            <p>© 2020 Twinkling Smiles</p>
-                        </div>
-                    </div>
+    </nav>
+    <div class="container">
+        <div class="row row-content">
+            <div class="col-12 text-center">
+                <h3>Contact Us</h3>
+                <p class="wow fadeInDown animated">Lets us know how we can help.</p>
             </div>
-        </footer>
-            
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script> 
-        <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-     </body>
+                <div class="col-12">
+                    <form>
+                        <div class="form-group row">
+                            <label for="firstname" class="col-md-2 col-form-label">First Name</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="FirstName">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lastname" class="col-md-2 col-form-label">Last Name</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="LastName">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="telnum" class="col-12 col-md-2 col-form-label">Contact Tel.</label>
+                            <div class="col-5 col-md-3">
+                                <input type="tel" class="form-control" id="areacode" name="areacode" placeholder="Area code">
+                            </div>
+                            <div class="col-7 col-md-7">
+                                <input type="tel" class="form-control col-md-5" id="telnum" name="telnum" placeholder="Tel. number">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="emailid" class="col-md-2 col-form-label">Email</label>
+                            <div class="col-md-8">
+                                <input type="email" class="form-control" id="emailid" name="emailid" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-2">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="approve" id="approve" value="">
+                                    <label class="form-check-label" for="approve">
+                                    <strong>May we contact you?</strong>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-2 offset-md-0">
+                                <select class="form-control">
+                                    <option>Tel.</option>
+                                    <option>Email</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="feedback" class="col-md-2 col-form-label">Any Questions?</label>
+                            <div class="col-md-8">
+                                <textarea class="form-control" id="feedback" name="feedback" rows="12"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="offset-md-2 col-md-10">
+                                <button type="submit" class="btn btn-primary">Send</button>
+                            </div>
+                        </div>
+                            
+                    </form>                    
+                </div>
+            </div>
+    </div>
+<footer class="footer">
+    <div class="container">
+        <h2 class="h2 text-center">Contact Us</h2>
+        <div class="row">
+            <div class="col col-sm text-center">
+                <h4>Opening Hours</h4><br>
+                <p style="font-size: small;">
+                    <span>Monday – Friday  9AM – 7PM</span><br>
+                    <span>Saturday 9AM – 2PM</span>
+                </p>
+            </div>
+            <div class="col col-sm text-center">
+                <h4>Our Address</h4><br>
+                <p style="font-size: small;">
+                    <span>University Crescent</span> <br>
+                    <span>City</span><br>
+                    <span>Belize</span><br>
+                    <span><abbr>Tel:</abbr> (501) 606-4177</span>
+                </p>
+            </div>                        
+        </div>
+        <div class="row">
+            <div class="col">
+                <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1649.0708040163126!2d-88.76307202164934!3d17.242217192850692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f5dd567e130a313%3A0x5a44b6ba5fe7f20!2sBelmopan!5e0!3m2!1sen!2sbz!4v1605323394698!5m2!1sen!2sbz"></iframe> 
+            </div>
+        </div>
+        <div class="row justify-content-center">             
+            <div class="col-auto">
+                <p>© 2020 Twinkling Smiles</p>
+            </div>
+        </div>
+    </div>
+</footer>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script> 
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>

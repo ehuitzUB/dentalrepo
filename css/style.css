@@ -18,10 +18,11 @@ body{
 */
 }
 .footer{
-    background-color: #070707;
+    background-color: #74D2C8;
     color: white;
     margin:0px auto;
     padding: 20px 0px 20px 0px;
+    text-align: center;
 }
 
 .jumbotron {

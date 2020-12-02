@@ -7,6 +7,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
+
+// Include config file
+require_once "config.php";
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -81,45 +86,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                             <div class="row">
                                 <!-- appointment body starts here -->
                                 <div class="col-12">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <p class="d-inline">
-                                                        Patient Name
-                                                    </p>
-                                                </div>
-                                                <div class="col-8">
-                                                    <p class="d-inline">
-                                                       Treatment details
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- appointment body ends here -->
+                                
+                                
+                                
 
-                                <!-- appointment body starts here -->
-                                <div class="col-12">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <p class="d-inline">
-                                                    Patient Name
-                                                    </p>
-                                                </div>
-                                                <div class="col-8">
-                                                    <p class="d-inline">
-                                                        Treatment details
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
-                                <!-- appointment body ends here -->
+                                
+
+                                
                             </div>
                         </div>
                     </div>

@@ -7,6 +7,58 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
+
+// Include config file
+require_once "config.php";
+
+$procedureName = $procedureDescription = $procedureCost = "";
+$procedureName_err = $procedureDecription_err = $procedureCost_err = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+         
+    // Check if name is empty
+    
+     if(empty(trim($_POST["procedureName"]))){
+        $procedureName_err = "Please enter Procedure Name.";
+    } else{
+        $procedureName = trim($_POST["procedureName"]);
+    }
+    
+    // Check if description is empty
+    if(empty(trim($_POST["procedureDescription"]))){
+        $procedureDecription_err = "Please enter Procedure Description.";
+    } else{
+        $procedureDescription = trim($_POST["procedureDescription"]);
+    }
+    // Check if cost is empty
+    if(empty(trim($_POST["procedureCost"]))){
+        $procedureCost_err= "Please enter Procedure Cost.";
+    } else{
+        $procedureCost= trim($_POST["procedureCost"]);
+    }
+
+    if(empty($procedureCost_err) && empty($procedureName_err)){
+
+    $procedureName = mysqli_real_escape_string($link, $_REQUEST['procedureName']);
+    $procedureDescription = mysqli_real_escape_string($link, $_REQUEST['procedureDescription']);
+    $procedureCost = mysqli_real_escape_string($link, $_REQUEST['procedureCost']);
+ 
+// Attempt insert query execution
+    $sql = "INSERT INTO procedures (procedureName, procedureDescription, procedureCost) VALUES ('$procedureName', '$procedureDescription', '$procedureCost')";
+    if(mysqli_query($link, $sql)){
+        echo "Records added successfully.";
+    } else{
+        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+    }
+        //mysqli_close($link);
+    }
+
+
+        // Close connection
+        //mysqli_close($link);
+    }
+    
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,7 +67,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Twinkling Smiles | Procedures</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
@@ -79,56 +131,83 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         </div>
                         <div class="col-12 appointment-body">
                             <div class="row">
-                                <!-- appointment body starts here -->
-                                <div class="col-12">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <p class="d-inline">
-                                                        Procedure Name
-                                                    </p>
-                                                </div>
-                                                <div class="col-8">
-                                                    <p class="d-inline">
-                                                       Procedure details
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- appointment body ends here -->
+
+                            <table class = "customers">
+                                <theader>
+                                    <tr>
+                                        <th>Procedure ID</th>
+                                        <th>Procedure Name</th>
+                                        <th>Procedure Cost</th>
+
+                                    </tr>
+
+                                </theader>
+
+                                <tbody>
+
 
                                 <!-- appointment body starts here -->
-                                <div class="col-12">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <p class="d-inline">
-                                                    Procedure Name
-                                                    </p>
-                                                </div>
-                                                <div class="col-8">
-                                                    <p class="d-inline">
-                                                    Procedure details
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- appointment body ends here -->
+                                <?php
+                                // Check connection
+                                if ($link->connect_error) {
+                                die("Connection failed: " . $link->connect_error);
+                                }
+                                $sql = "SELECT procedureID, procedureName, procedureCost FROM procedures";
+                                $result = $link->query($sql);
+                                if ($result->num_rows > 0) {
+                                // output data of each row
+                                while($row = $result->fetch_assoc()) {
+                                echo "<tr><td>" . $row["procedureID"]. "</td><td>" . $row["procedureName"] . "</td><td>"
+                                . $row["procedureCost"]. "</td></tr>";
+                                }
+                                echo "</table>";
+                                } else { echo "0 results"; }
+                                $link->close();
+                            ?>
+                            </tbody>
+                            </table>
+
+                               
+                               
                             </div>
                         </div>
                     </div>
                 </div>
+               
                 <div class="col-md-4 col-sm-3 offset-md-1 appointment-body">
                     <div class="row">
                         <div class="col-12 appointment-header intro">
                             <p class="d-inline">Create Procedure</p>
+
+                               
                         </div>
+                        <div class="row"> 
+                            <div class="col-12">              
+                                <form action="proceduresDoctor.php" method="post">
+                                    <div>
+                                        <div>
+                                            <label>Procedure Name</label>
+                                            <input type="text" name="procedureName" class="form-control" value="<?php echo $procedureName; ?>">
+                                            <span class="help-block"><?php echo $procedureName_err; ?></span>
+                                        </div>    
+                                        <div <?php echo (!empty($procedureDescription_err)) ? 'has-error' : ''; ?>>
+                                            <label>Procedure Description</label>
+                                            <input type="text" name="procedureDescription" class="form-control">
+                                            <span class="help-block"><?php echo $procedureDecription_err; ?></span>
+                                        </div>
+                                        <div <?php echo (!empty($procedureCost_err)) ? 'has-error' : ''; ?>>
+                                            <label>Procedure Cost</label>
+                                            <input type="text" name="procedureCost" class="form-control">
+                                            <span class="help-block"><?php echo $procedureCost_err; ?></span>
+                                        </div>
+                                        <div class="text-center">
+                                            <input type="submit" class="btn btn-primary" value="Submit">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>  
+                        </div>         
+
                     </div>
                 </div>
             </div>

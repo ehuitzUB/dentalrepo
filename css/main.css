@@ -1,8 +1,4 @@
-/* ------------------------------------------------------------------------------
- 	Author: WebThemez
-/* ------------------------------------------------------------------------------
-	Typography
--------------------------------------------------------------------------------*/
+
  
 
 @import url(http://fonts.googleapis.com/css?family=ABeeZee&subset=latin:300,400,500,600,700); 
@@ -865,3 +861,27 @@ ul.list-default li {
 		min-height: 350px;
 }
 }
+
+.customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .customers td, .customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .customers tr:nth-child(even){background-color: #f2f2f2;}
+  
+  .customers tr:hover {background-color: #ddd;}
+  
+  .customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #01a97c;
+    color: white;
+  }
+  

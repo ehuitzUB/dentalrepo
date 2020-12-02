@@ -44,10 +44,6 @@ address{
     }
   }
 
-.navbar-dark {
-background-color: #512DA8;
-}
-
 .tab-content {
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
@@ -55,11 +51,8 @@ background-color: #512DA8;
     padding: 10px;
 }
 
-.carousel {
-    background:#512DA8;
-}
 .carousel-item {
-    height: 300px;
+    height: 400px;
 }
 .carousel-item img {
     position: absolute;
@@ -69,7 +62,6 @@ background-color: #512DA8;
 }
 /* Dashboard styles */
 .appointment-header{
-    background-color: #394462;
     color: black;
 }
 .appointment-header a{

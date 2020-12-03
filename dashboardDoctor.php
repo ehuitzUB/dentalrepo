@@ -17,24 +17,21 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <title>Twinkling Smiles | Dashboard</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/main.css">
     </head>
-    <!-- navbar-->
-    <nav class="navbar navbar-light navbar-expand-sm fixed-top">
-        <div class="container">     
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    
+    <body>
+        <nav class="navbar navbar-light navbar-expand-sm fixed-top appointment-header" style="border-bottom: 0.7px dashed black; background-color: azure; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">        
             <a class="navbar-brand mr-auto" href="#">
                 <img src="images/logo.png" height="50" width="130">
             </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="Navbar">
-                <ul class="navbar-nav mr-auto" >
+                <div class="container  justify-content-md-end text-center justify-content-center">
+                <ul class="navbar-nav" style="text-align: center;">
                     <li class="nav-item active text-black">
                         <a class="nav-link " href="./dashboardDoctor.php"><span class="fa fa-home fa-lg"></span>Home</a>
-                    </li>
-                    <li class="nav-item text-black">
-                        <a class="nav-link " href="./appointmentsDoctor.php"><span class="fa fa-calendar"></span>Appointments</a>
                     </li>
                     <li class="nav-item text-black">
                         <a class="nav-link" href="./patientsDoctor.php"><span class="fa fa-user-circle"></span>Patients</a>
@@ -48,39 +45,91 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <li class="nav-item text-black">
                         <a class="nav-link"  href="./reportsDoctor.php"><span class="fa fa-bar-chart"></span>Reports</a>
                     </li>
+                    <li class="nav-item text-black">
+                        <a class="nav-link"  href="./logout.php"><span class="fa fa-sign-out"></span> Logout</a>
+                    </li>
                 </ul>
-                <span class="navbar-text ">
-                <a class="text-black" href="logout.php" > <span class="fa fa-sign-out"></span> Logout </a>
-                </span>
-          
+                </div>
             </div>
-        </div>
-    </nav>
-    <body class="gray">
+        </nav>
+        <body>
     <div class="container row-content">
         <!--welcome header bar-->
-        <div class="row" >
+        <div class="row">
             <div class="col-md-4 col-sm-4">
-                <h5>Welcome Dr. <?php echo htmlspecialchars($_SESSION["username"]); ?></h5>
-            </div>
-            <div class="col-md-1  col-sm-1 offset-md-5 text-center">
-                <p class="d-inline"><span></span> Events</p>
-            </div>
-            <div class="col-md-1  col-sm-1 offset-md-5>
-                <p class="d-inline"><span></span> Settings</p>
+                <h5>Welcome, <span>{USER_NAME}</span></h5>
             </div>
         </div>
         <div class="container">
             <div class="row">
-
-            
                 <div class="col-md-7 col-sm-8" style="margin: 0 0 10px 0;">
                     <div class="row">
-                        <div class="col-10 appointment-header intro">
-                            <p class="d-inline">Today's Appointment(s)</p>
+                        <div class="col-md-10 appointment-header" style="background-color: #01a97c; color: white;">
+                            <p class="d-inline">Appointments</p>
+                            
                         </div>
-                        <div class="col-2 appointment-header intro">
-                            <a href="#">[View all]</a>
+                        <div class="col-md-2" style="background-color: #01a97c; color: white;"><a href="#">View all</a></div>
+                        <div class="col-12 appointment-body">
+                            <div class="row">
+                                <!-- appointment body starts here -->
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-4" >
+                                                    <p class="d-inline">
+                                                        <span>{USER_NAME}</span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <p class="d-inline">
+                                                        appointment time
+                                                    </p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <p class="d-inline">
+                                                        appointment details
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- appointment body ends here -->
+                                <!-- appointment body starts here -->
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-4" >
+                                                    <p class="d-inline">
+                                                        <span>{USER_NAME}</span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <p class="d-inline">
+                                                        appointment time
+                                                    </p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <p class="d-inline">
+                                                        appointment details
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- appointment body ends here -->                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-3 offset-md-1 appointment-body">
+                <div class="row">
+                        <div class="col-md-12 appointment-header" style="background-color: #01a97c; color: white;">
+                            <p class="d-inline">Appointments</p>
+                            
                         </div>
                         <div class="col-12 appointment-body">
                             <div class="row">
@@ -89,14 +138,19 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="row">
-                                                <div class="col-4">
+                                                <div class="col-4" >
                                                     <p class="d-inline">
-                                                        Time
+                                                        <span>{USER_NAME}</span>
                                                     </p>
                                                 </div>
-                                                <div class="col-8">
+                                                <div class="col-4">
                                                     <p class="d-inline">
-                                                        appointment name/details
+                                                        appointment time
+                                                    </p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <p class="d-inline">
+                                                        appointment details
                                                     </p>
                                                 </div>
                                             </div>
@@ -104,37 +158,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                                     </div>
                                 </div>
                                 <!-- appointment body ends here -->
-
-                                <!-- appointment body starts here -->
-                                <div class="col-12">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <p class="d-inline">
-                                                        Time
-                                                    </p>
-                                                </div>
-                                                <div class="col-8">
-                                                    <p class="d-inline">
-                                                        appointment name/details
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- appointment body ends here -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-3 offset-md-1 appointment-body">
-                    <div class="row">
-                        <div class="col-12 appointment-header intro">
-                            <p class="d-inline">Today's Completed Appointment(s)</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
-
+require_once "config.php";
 
     ?>
     <!DOCTYPE html>
@@ -81,47 +81,55 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                             </div>
                             <div class="col-12 appointment-body">
                                 <div class="row">
-                                    <!-- appointment body starts here -->
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <p class="d-inline">
-                                                            Patient Name
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-8">
-                                                        <p class="d-inline">
-                                                            details
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- appointment body ends here -->
+                                    <!-- patient table starts here -->
+                            <table class = "customers">
+                                <theader>
+                                    <tr>
+                                        <th>Patient ID</th>
+                                        <th>Patient Name</th>
+                                        <th>Patient Telephone</th>
+                                        <th>Patient DOB</th>
+                                        <th>Edit</th>
+                                       <th>Delete</th>
 
-                                    <!-- appointment body starts here -->
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <p class="d-inline">
-                                                        Patient Name
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-8">
-                                                        <p class="d-inline">
-                                                            details
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- appointment body ends here -->
+                                    </tr>
+
+                                </theader>
+
+                                <tbody>
+
+    
+                                <!-- appointment body starts here -->
+                                <?php
+                                    // Check connection
+                                    if ($link->connect_error) {
+                                    die("Connection failed: " . $link->connect_error);
+                                    }
+                                    $sql = "SELECT patient.accountID as accID, concat(account.firstName, ' ',account.lastname) AS fullname, account.telephone AS tp, patient.DOB as dateb FROM account LEFT JOIN patient ON patient.accountID=account.accountID WHERE account.accountType=3 AND account.accountStatus= 'Active'";
+                                    $result = $link->query($sql);
+                                    if ($result->num_rows > 0) {
+                                    // output data of each row
+                                    while($row = $result->fetch_assoc()) {
+                                    echo "<tr>".
+                                    "<td>" . $row["accID"]. "</td>".
+                                    "<td>" . $row["fullname"] . "</td>".
+                                    "<td>"  . $row["tp"]. "</td>".
+                                    "<td>"  . $row["dateb"]. "</td>".
+                                    "<td><a href = 'editPatientsDoctor.php?GetID=".$row["accID"]."'>Edit</a></td>".
+                                    "<td><a href = '#'>Delete</a></td>".  
+
+                                    "</tr>";
+                                    }
+                                    } else { echo "0 results"; }
+                                    $link->close();
+                            ?>
+                            </tbody>
+                            </table>
+
+                                    
+
+                                   
+                                    <!-- patient table ends here -->
                                 </div>
                             
                             </div>

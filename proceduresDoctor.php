@@ -72,21 +72,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <link rel="stylesheet" href="css/main.css">
     </head>
     <!-- navbar-->
-    <nav class="navbar navbar-light navbar-expand-sm fixed-top">
-        <div class="container">     
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <nav class="navbar navbar-light navbar-expand-sm fixed-top appointment-header" style="border-bottom: 0.7px dashed black; background-color: azure; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">        
             <a class="navbar-brand mr-auto" href="#">
                 <img src="images/logo.png" height="50" width="130">
             </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="Navbar">
-                <ul class="navbar-nav mr-auto" >
-                    <li class="nav-item  text-black">
+                <div class="container  justify-content-md-end text-center justify-content-center">
+                <ul class="navbar-nav" style="text-align: center;">
+                    <li class="nav-item active text-black">
                         <a class="nav-link " href="./dashboardDoctor.php"><span class="fa fa-home fa-lg"></span>Home</a>
-                    </li>
-                    <li class="nav-item text-black">
-                        <a class="nav-link " href="./appointmentsDoctor.php"><span class="fa fa-calendar"></span>Appointments</a>
                     </li>
                     <li class="nav-item text-black">
                         <a class="nav-link" href="./patientsDoctor.php"><span class="fa fa-user-circle"></span>Patients</a>
@@ -94,33 +91,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <li class="nav-item text-black">
                         <a class="nav-link" href="./treatmentsDoctor.php"><span class="fa fa-circle-o-notch"></span>Treatments</a>
                     </li>
-                    <li class="nav-item active text-black">
+                    <li class="nav-item text-black">
                         <a class="nav-link"  href="./proceduresDoctor.php"><span class="fa fa-plus-square"></span>Procedures</a>
                     </li>
                     <li class="nav-item text-black">
                         <a class="nav-link"  href="./reportsDoctor.php"><span class="fa fa-bar-chart"></span>Reports</a>
                     </li>
+                    <li class="nav-item text-black">
+                        <a class="nav-link"  href="./logout.php"><span class="fa fa-sign-out"></span> Logout</a>
+                    </li>
                 </ul>
-                <span class="navbar-text ">
-                <a class="text-black" href="logout.php" > <span class="fa fa-sign-out"></span> Logout </a>
-                </span>
-          
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
     <body class="gray">
     <div class="container row-content">
         <!--welcome header bar-->
         <div class="row" >
             <div class="col-md-4 col-sm-4">
                 <h5>Procedures</h5>
-            </div>
-            
+            </div>  
         </div>
         <div class="container">
             <div class="row">
-
-            
                 <div class="col-md-7 col-sm-8" style="margin: 0 0 10px 0;">
                     <div class="row">
                         <div class="col-10 appointment-header intro">
@@ -131,8 +124,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         </div>
                         <div class="col-12 appointment-body">
                             <div class="row">
-
-                            <table class = "customers">
+                                <table class = "customers">
                                 <theader>
                                     <tr>
                                         <th>Procedure ID</th>
@@ -145,37 +137,32 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                                 </theader>
 
-                                <tbody>
+                                    <tbody>
+                                    <!-- appointment body starts here -->
+                                        <?php
+                                        // Check connection
+                                        if ($link->connect_error) {
+                                        die("Connection failed: " . $link->connect_error);
+                                        }
+                                        $sql = "SELECT procedureID, procedureName, procedureCost FROM procedures ORDER BY procedureName asc";
+                                        $result = $link->query($sql);
+                                        if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $result->fetch_assoc()) {
+                                        echo "<tr>".
+                                        "<td>" . $row["procedureID"]. "</td>".
+                                        "<td>" . $row["procedureName"] . "</td>".
+                                        "<td>"  . $row["procedureCost"]. "</td>".
+                                        "<td><a href = 'editProceduresDoctor.php?GetID=".$row["procedureID"]."'>Edit</a></td>".
+                                    //  "<td><a href = '#'>Delete</a></td>".  
 
-    
-                                <!-- appointment body starts here -->
-                                <?php
-                                    // Check connection
-                                    if ($link->connect_error) {
-                                    die("Connection failed: " . $link->connect_error);
-                                    }
-                                    $sql = "SELECT procedureID, procedureName, procedureCost FROM procedures ORDER BY procedureName asc";
-                                    $result = $link->query($sql);
-                                    if ($result->num_rows > 0) {
-                                    // output data of each row
-                                    while($row = $result->fetch_assoc()) {
-                                    echo "<tr>".
-                                    "<td>" . $row["procedureID"]. "</td>".
-                                    "<td>" . $row["procedureName"] . "</td>".
-                                    "<td>"  . $row["procedureCost"]. "</td>".
-                                    "<td><a href = 'editProceduresDoctor.php?GetID=".$row["procedureID"]."'>Edit</a></td>".
-                                  //  "<td><a href = '#'>Delete</a></td>".  
-
-                                    "</tr>";
-                                    }
-                                    } else { echo "0 results"; }
-                                    $link->close();
-                            ?>
-                            </tbody>
-                            </table>
-
-                               
-                               
+                                        "</tr>";
+                                        }
+                                        } else { echo "0 results"; }
+                                        $link->close();
+                                        ?>
+                                    </tbody>
+                                </table> 
                             </div>
                         </div>
                     </div>
@@ -185,25 +172,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="row">
                         <div class="col-12 appointment-header intro">
                             <p class="d-inline">Create Procedure</p>
-
-                               
                         </div>
                         <div class="row"> 
                             <div class="col-12">              
                                 <form action="proceduresDoctor.php" method="post">
                                     <div class = "">
                                         <div>
-                                            <label>Procedure Name</label>
-                                            <input type="text" name="procedureName" class="form-control">
+                                            <label class="ml-3">Procedure Name</label>
+                                            <input type="text" name="procedureName" class="form-control ml-3">
                                             <span class="help-block"><?php echo $procedureName_err; ?></span>
                                         </div>    
                                         <div <?php echo (!empty($procedureDescription_err)) ? 'has-error' : ''; ?>>
-                                            <label>Procedure Description</label>
+                                            <label class="ml-3">Procedure Description</label>
                                             <input type="text" name="procedureDescription" class="form-control">
                                             <span class="help-block"><?php echo $procedureDecription_err; ?></span>
                                         </div>
                                         <div <?php echo (!empty($procedureCost_err)) ? 'has-error' : ''; ?>>
-                                            <label>Procedure Cost</label>
+                                            <label class="ml-3">Procedure Cost</label>
                                             <input type="text" name="procedureCost" class="form-control">
                                             <span class="help-block"><?php echo $procedureCost_err; ?></span>
                                         </div>
@@ -214,7 +199,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 </form>
                             </div>  
                         </div>         
-
                     </div>
                 </div>
             </div>

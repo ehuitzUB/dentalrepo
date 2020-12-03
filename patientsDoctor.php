@@ -1,7 +1,7 @@
 <?php
 // Initialize the session
 session_start();
- 
+
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
@@ -22,43 +22,40 @@ require_once "config.php";
             <link rel="stylesheet" href="css/main.css">
         </head>
         <!-- navbar-->
-        <nav class="navbar navbar-light navbar-expand-sm fixed-top">
-            <div class="container">     
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <a class="navbar-brand mr-auto" href="#">
-                    <img src="images/logo.png" height="50" width="130">
-                </a>
-                <div class="collapse navbar-collapse" id="Navbar">
-                    <ul class="navbar-nav mr-auto" >
-                        <li class="nav-item text-black">
-                            <a class="nav-link " href="./dashboardDoctor.php"><span class="fa fa-home fa-lg"></span>Home</a>
-                        </li>
-                        <li class="nav-item text-black">
-                            <a class="nav-link " href="./appointmentsDoctor.php"><span class="fa fa-calendar"></span>Appointments</a>
-                        </li>
-                        <li class="nav-item active text-black">
-                            <a class="nav-link" href="./patientsDoctor.php"><span class="fa fa-user-circle"></span>Patients</a>
-                        </li>
-                        <li class="nav-item text-black">
-                            <a class="nav-link" href="./treatmentsDoctor.php"><span class="fa fa-circle-o-notch"></span>Treatments</a>
-                        </li>
-                        <li class="nav-item text-black">
-                            <a class="nav-link"  href="./proceduresDoctor.php"><span class="fa fa-plus-square"></span>Procedures</a>
-                        </li>
-                        <li class="nav-item text-black">
-                            <a class="nav-link"  href="./reportsDoctor.php"><span class="fa fa-bar-chart"></span>Reports</a>
-                        </li>
-                    </ul>
-                    <span class="navbar-text ">
-                    <a class="text-black" href="logout.php" > <span class="fa fa-sign-out"></span> Logout </a>
-                    </span>
-            
+        
+        <body>
+        <nav class="navbar navbar-light navbar-expand-sm fixed-top appointment-header" style="border-bottom: 0.7px dashed black; background-color: azure; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">        
+            <a class="navbar-brand mr-auto" href="#">
+                <img src="images/logo.png" height="50" width="130">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="Navbar">
+                <div class="container  justify-content-md-end text-center justify-content-center">
+                <ul class="navbar-nav" style="text-align: center;">
+                    <li class="nav-item active text-black">
+                        <a class="nav-link " href="./dashboardDoctor.php"><span class="fa fa-home fa-lg"></span>Home</a>
+                    </li>
+                    <li class="nav-item text-black">
+                        <a class="nav-link" href="./patientsDoctor.php"><span class="fa fa-user-circle"></span>Patients</a>
+                    </li>
+                    <li class="nav-item text-black">
+                        <a class="nav-link" href="./treatmentsDoctor.php"><span class="fa fa-circle-o-notch"></span>Treatments</a>
+                    </li>
+                    <li class="nav-item text-black">
+                        <a class="nav-link"  href="./proceduresDoctor.php"><span class="fa fa-plus-square"></span>Procedures</a>
+                    </li>
+                    <li class="nav-item text-black">
+                        <a class="nav-link"  href="./reportsDoctor.php"><span class="fa fa-bar-chart"></span>Reports</a>
+                    </li>
+                    <li class="nav-item text-black">
+                        <a class="nav-link"  href="./logout.php"><span class="fa fa-sign-out"></span> Logout</a>
+                    </li>
+                </ul>
                 </div>
             </div>
         </nav>
-        <body class="gray">
         <div class="container row-content">
             <!--welcome header bar-->
             <div class="row" >
@@ -73,14 +70,21 @@ require_once "config.php";
                 
                     <div class="col-md-7 col-sm-8" style="margin: 0 0 10px 0;">
                         <div class="row">
-                            <div class="col-10 appointment-header intro">
-                                <p class="d-inline">All Patients</p>
+                            <div class="col-3 appointment-header intro">
+                                <p class="d-inline">First Name</p>
                             </div>
-                            <div class="col-2 appointment-header intro">
-                                <a href="#">[Search]</a>
+                            <div class="col-3 appointment-header intro">
+                                <p class="d-inline">Last Name</p>
                             </div>
+                            <div class="col-3 appointment-header intro">
+                                <p class="d-inline">Telephone</p>
+                            </div>
+                            <div class="col-3 appointment-header intro">
+                                <p class="d-inline">DOB</p>
+                            </div>                            
                             <div class="col-12 appointment-body">
                                 <div class="row">
+<<<<<<< HEAD
                                     <!-- patient table starts here -->
                             <table class = "customers">
                                 <theader>
@@ -130,6 +134,69 @@ require_once "config.php";
 
                                    
                                     <!-- patient table ends here -->
+=======
+                                    <!-- appointment body starts here -->
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <p class="d-inline">
+                                                            Patient Name
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <p class="d-inline">
+                                                            details
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <p class="d-inline">
+                                                            details
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <p class="d-inline">
+                                                            details
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- appointment body ends here -->
+
+                                   <!-- appointment body starts here -->
+                                   <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <p class="d-inline">
+                                                            Patient Name
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <p class="d-inline">
+                                                            details
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <p class="d-inline">
+                                                            details
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <p class="d-inline">
+                                                            details
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- appointment body ends here -->
+>>>>>>> 293ac36fa36a24943359c23fbfe7eb990daf8011
                                 </div>
                             
                             </div>

@@ -11,12 +11,23 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 // Include config file
 require_once "config.php";
 
-$procedureName = $procedureDescription = $procedureCost = "";
-$procedureName_err = $procedureDecription_err = $procedureCost_err = "";
+$pID = $_GET['GetID'];
+$sql = "SELECT procedureID, procedureName, procedureDescription, procedureCost FROM procedures WHERE procedureID= '".$pID."'";
+$result = mysqli_query($link,$sql);
+
+while($row=mysqli_fetch_assoc($result)){
+    $proID=$row['procedureID'];
+    $proName=$row['procedureName'];
+    $proDesc=$row['procedureDescription'];
+    $proCost=$row['procedureCost'];
+}
+$procedureName = $procedureDescription = $procedureCost = $procedureID = "";
+$procedureName_err = $procedureDecription_err = $procedureCost_err = $procedureID_err = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
          
+   
     // Check if name is empty
     
      if(empty(trim($_POST["procedureName"]))){
@@ -40,13 +51,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if(empty($procedureCost_err) && empty($procedureName_err)){
 
+    $procedureID = mysqli_real_escape_string($link, $_REQUEST['procedureID']);
     $procedureName = mysqli_real_escape_string($link, $_REQUEST['procedureName']);
     $procedureDescription = mysqli_real_escape_string($link, $_REQUEST['procedureDescription']);
     $procedureCost = mysqli_real_escape_string($link, $_REQUEST['procedureCost']);
  
 // Attempt insert query execution
-    $sql = "INSERT INTO procedures (procedureName, procedureDescription, procedureCost) VALUES ('$procedureName', '$procedureDescription', '$procedureCost')";
-    if(mysqli_query($link, $sql)){
+    $updatesql = "UPDATE procedures SET procedureName = '".$procedureName."' , procedureDescription =  '".$procedureDescription."', procedureCost =  '".$procedureCost."' procedureID= '".$pID."'";
+    if(mysqli_query($link, $updatesql)){
         header("location:proceduresDoctor.php");
     } else{
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
@@ -119,67 +131,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
         <div class="container">
             <div class="row">
-
-            
-                <div class="col-md-7 col-sm-8" style="margin: 0 0 10px 0;">
-                    <div class="row">
-                        <div class="col-10 appointment-header intro">
-                            <p class="d-inline">All Procedures</p>
-                        </div>
-                        <div class="col-2 appointment-header intro">
-                            <a href="#">[Search]</a>
-                        </div>
-                        <div class="col-12 appointment-body">
-                            <div class="row">
-
-                            <table class = "customers">
-                                <theader>
-                                    <tr>
-                                        <th>Procedure ID</th>
-                                        <th>Procedure Name</th>
-                                        <th>Procedure Cost</th>
-                                        <th>Edit</th>
-                                       <!-- <th>Delete</th>-->
-
-                                    </tr>
-
-                                </theader>
-
-                                <tbody>
-
-    
-                                <!-- appointment body starts here -->
-                                <?php
-                                    // Check connection
-                                    if ($link->connect_error) {
-                                    die("Connection failed: " . $link->connect_error);
-                                    }
-                                    $sql = "SELECT procedureID, procedureName, procedureCost FROM procedures ORDER BY procedureName asc";
-                                    $result = $link->query($sql);
-                                    if ($result->num_rows > 0) {
-                                    // output data of each row
-                                    while($row = $result->fetch_assoc()) {
-                                    echo "<tr>".
-                                    "<td>" . $row["procedureID"]. "</td>".
-                                    "<td>" . $row["procedureName"] . "</td>".
-                                    "<td>"  . $row["procedureCost"]. "</td>".
-                                    "<td><a href = 'editProceduresDoctor.php?GetID=".$row["procedureID"]."'>Edit</a></td>".
-                                  //  "<td><a href = '#'>Delete</a></td>".  
-
-                                    "</tr>";
-                                    }
-                                    } else { echo "0 results"; }
-                                    $link->close();
-                            ?>
-                            </tbody>
-                            </table>
-
-                               
-                               
-                            </div>
-                        </div>
-                    </div>
-                </div>
                
                 <div class="col-md-4 col-sm-3 offset-md-1 appointment-body">
                     <div class="row">
@@ -192,25 +143,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <div class="col-12">              
                                 <form action="proceduresDoctor.php" method="post">
                                     <div class = "">
+                                    <div>
+                    
                                         <div>
                                             <label>Procedure Name</label>
-                                            <input type="text" name="procedureName" class="form-control">
+                                            <input type="text" name="procedureName" class="form-control" value="<?php echo $proName; ?>">
                                             <span class="help-block"><?php echo $procedureName_err; ?></span>
                                         </div>    
                                         <div <?php echo (!empty($procedureDescription_err)) ? 'has-error' : ''; ?>>
                                             <label>Procedure Description</label>
-                                            <input type="text" name="procedureDescription" class="form-control">
+                                            <input type="text" name="procedureDescription" class="form-control" value="<?php echo $proDesc; ?>">
                                             <span class="help-block"><?php echo $procedureDecription_err; ?></span>
                                         </div>
                                         <div <?php echo (!empty($procedureCost_err)) ? 'has-error' : ''; ?>>
                                             <label>Procedure Cost</label>
-                                            <input type="text" name="procedureCost" class="form-control">
+                                            <input type="text" name="procedureCost" class="form-control" value="<?php echo $proCost; ?>">
                                             <span class="help-block"><?php echo $procedureCost_err; ?></span>
                                         </div>
                                         <div class="text-center">
                                             <input type="submit" class="btn btn-primary" value="Submit">
                                         </div>
+                                    
                                     </div>
+                                
                                 </form>
                             </div>  
                         </div>         

@@ -884,4 +884,10 @@ ul.list-default li {
     background-color: #01a97c;
     color: white;
   }
+
+  .customers a {
+	color: blue;
+  }
+
+
   

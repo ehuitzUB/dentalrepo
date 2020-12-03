@@ -12,7 +12,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 require_once "config.php";
 
 $pID = $_GET['GetID'];
-$sql = "SELECT procedureID, procedureName, procedureDescription, procedureCost FROM procedures WHERE procedureID= '".$pID."'";
+$sql = "SELECT procedureID, procedureName, procedureDescription, procedureCost FROM procedures WHERE procedureID= '$pID'";
 $result = mysqli_query($link,$sql);
 
 while($row=mysqli_fetch_assoc($result)){
@@ -21,14 +21,14 @@ while($row=mysqli_fetch_assoc($result)){
     $proDesc=$row['procedureDescription'];
     $proCost=$row['procedureCost'];
 }
-$procedureName = $procedureDescription = $procedureCost = $procedureID = "";
-$procedureName_err = $procedureDecription_err = $procedureCost_err = $procedureID_err = "";
+$procedureName = $procedureDescription = $procedureCost = "";
+$procedureName_err = $procedureDecription_err = $procedureCost_err =  "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-         
-   
+    $prID = $_GET['GetID'];
+    
     // Check if name is empty
+
     
      if(empty(trim($_POST["procedureName"]))){
         $procedureName_err = "Please enter Procedure Name.";
@@ -55,19 +55,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $procedureName = mysqli_real_escape_string($link, $_REQUEST['procedureName']);
     $procedureDescription = mysqli_real_escape_string($link, $_REQUEST['procedureDescription']);
     $procedureCost = mysqli_real_escape_string($link, $_REQUEST['procedureCost']);
- 
+
 // Attempt insert query execution
-    $updatesql = "UPDATE procedures SET procedureName = '".$procedureName."' , procedureDescription =  '".$procedureDescription."', procedureCost =  '".$procedureCost."' procedureID= '".$pID."'";
+$updatesql = "UPDATE procedures SET procedureName='$procedureName' , procedureDescription='$procedureDescription', procedureCost= '$procedureCost' WHERE procedureID='$procedureID'";
     if(mysqli_query($link, $updatesql)){
-        header("location:proceduresDoctor.php");
+        header("location: proceduresDoctor.php");
     } else{
-        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+        echo "ERROR: Could not able to execute $updatesql. " . mysqli_error($link);
     }
-        mysqli_close($link);
+        //mysqli_close($link);
     }
 
 
         // Close connection
+       // mysqli_close($link);
     }
     
 ?>
@@ -77,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Twinkling Smiles | Procedures</title>
+        <title>Twinkling Smiles | Edit Procedures</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/main.css">
@@ -140,9 +141,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         </div>
                         <div class="row"> 
                             <div class="col-12">              
-                                <form action="proceduresDoctor.php" method="post">
+                                <form action="editProceduresDoctor.php?GetID=<?php echo $proID ?>" method = "post">
                                     <div class = "">
                                     <div>
+                                        <div> 
+                                            <label>Procedure ID</label>
+                                            <input type="text" name="procedureID" class="form-control" value="<?php echo $proID ?>" readonly>
+            
+                                        </div>  
                     
                                         <div>
                                             <label>Procedure Name</label>

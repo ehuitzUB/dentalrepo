@@ -145,21 +145,21 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                                             <div class="row">
                                             <form>
                                             <div class="form-group">
-                                                    <label for="formPatientFirstName">Patient First Name</label>
-                                                    <input type="text" class="form-control" id="formPatientFirstName" placeholder="First Name">
+                                                    <label for="formPatientFirstName" class="ml-3 mt-2" >Patient First Name</label>
+                                                    <input type="text" class="form-control ml-3" id="formPatientFirstName" placeholder="First Name">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="formPatientLastName">Patient Last Name</label>
-                                                    <input type="text" class="form-control" id="formPatientLastName" placeholder="Last Name">
+                                                    <label for="formPatientLastName" class="ml-3 mt-2">Patient Last Name</label>
+                                                    <input type="text" class="form-control ml-3" id="formPatientLastName" placeholder="Last Name">
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="formPatientPhone">Phone Number</label>
-                                                    <input type="text" class="form-control" id="formPatientPhone" placeholder="Phone Number">
+                                                    <label for="formPatientPhone" class="ml-3">Phone Number</label>
+                                                    <input type="text" class="form-control ml-3" id="formPatientPhone" placeholder="Phone Number">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="formPatientDOB">Date of Birth</label>
-                                                    <input type="text" class="form-control" id="formPatientDOB" placeholder="Date of Birth">
+                                                    <label for="formPatientDOB" class="ml-3">Date of Birth</label>
+                                                    <input type="text" class="form-control ml-3" id="formPatientDOB" placeholder="Date of Birth">
                                                 </div>
                                                 
                                                 

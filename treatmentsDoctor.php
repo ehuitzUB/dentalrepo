@@ -82,10 +82,10 @@ require_once "config.php";
                             <div class="row">
                                 <!-- appointment body starts here -->
                                 <div class="col-12">
+                                <!-- sql goes here -->
                                 
                                 
-                                
-
+                                <!-- sql ends here -->
                                 </div>
                                 
 

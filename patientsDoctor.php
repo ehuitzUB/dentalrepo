@@ -9,6 +9,61 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 require_once "config.php";
 
+$patientFName = $patientLName = $patientPhone = $patientDOB = "";
+$patientFName_err = $patientLName_err = $patientPhone_err = $patientDOB_err = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+         
+    // Check if FName is empty
+    
+     if(empty(trim($_POST["patientFName"]))){
+        $patientFName_err = "Please enter First Name.";
+    } else{
+        $patientFName = trim($_POST["patientFName"]);
+    }
+    
+    // Check if LName is empty
+    if(empty(trim($_POST["patientLName"]))){
+        $patientLName_err = "Please enter Last Name.";
+    } else{
+        $patientLName = trim($_POST["patientLName"]);
+    }
+    // Check if phone is empty
+    if(empty(trim($_POST["patientPhone"]))){
+        $patientPhone_err= "Please enter Phone.";
+    } else{
+        $patientPhone= trim($_POST["patientPhone"]);
+    }
+    // Check if phone is empty
+    if(empty(trim($_POST["patientDOB"]))){
+        $patientDOB_err= "Please enter Phone.";
+    } else{
+        $patientDOB= trim($_POST["patientDOB"]);
+    }
+
+    if(empty($patientFName_err) && empty($patientLName_err)){
+
+    $patientFName = mysqli_real_escape_string($link, $_REQUEST['patientFName']);
+    $patientLName = mysqli_real_escape_string($link, $_REQUEST['patientLName']);
+    $patientPhone = mysqli_real_escape_string($link, $_REQUEST['patientPhone']);
+    $patientDOB = mysqli_real_escape_string($link, $_REQUEST['patientDOB']);
+ 
+// Attempt insert query execution
+    $sql = "INSERT INTO account (firstname, lastname, telephone, accountType, DOB) VALUES ('$patientFName', '$patientLName', '$patientPhone', 3, '$patientDOB');SELECT @last := LAST_INSERT_ID();INSERT INTO patient (accountID) VALUES (@last)";
+    if(mysqli_multi_query($link, $sql)){
+        header("location:patientsDoctor.php");
+    } else{
+        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+    }
+        //mysqli_close($link);
+    }
+
+
+        // Close connection
+        //mysqli_close($link);
+    }
+
     ?>
     <!DOCTYPE html>
     <html>
@@ -84,7 +139,6 @@ require_once "config.php";
                             </div>                            
                             <div class="col-12 appointment-body">
                                 <div class="row">
-<<<<<<< HEAD
                                     <!-- patient table starts here -->
                             <table class = "customers">
                                 <theader>
@@ -109,7 +163,7 @@ require_once "config.php";
                                     if ($link->connect_error) {
                                     die("Connection failed: " . $link->connect_error);
                                     }
-                                    $sql = "SELECT patient.accountID as accID, concat(account.firstName, ' ',account.lastname) AS fullname, account.telephone AS tp, patient.DOB as dateb FROM account LEFT JOIN patient ON patient.accountID=account.accountID WHERE account.accountType=3 AND account.accountStatus= 'Active'";
+                                    $sql = "SELECT patient.accountID as accID, concat(account.firstName, ' ',account.lastname) AS fullname, account.telephone AS tp, account.DOB as dateb FROM account LEFT JOIN patient ON patient.accountID=account.accountID WHERE account.accountType=3 AND account.accountStatus= 'Active'";
                                     $result = $link->query($sql);
                                     if ($result->num_rows > 0) {
                                     // output data of each row
@@ -125,7 +179,7 @@ require_once "config.php";
                                     "</tr>";
                                     }
                                     } else { echo "0 results"; }
-                                    $link->close();
+                                  //  $link->close();
                             ?>
                             </tbody>
                             </table>
@@ -134,69 +188,6 @@ require_once "config.php";
 
                                    
                                     <!-- patient table ends here -->
-=======
-                                    <!-- appointment body starts here -->
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-3">
-                                                        <p class="d-inline">
-                                                            Patient Name
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <p class="d-inline">
-                                                            details
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <p class="d-inline">
-                                                            details
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <p class="d-inline">
-                                                            details
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- appointment body ends here -->
-
-                                   <!-- appointment body starts here -->
-                                   <div class="col-12">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-3">
-                                                        <p class="d-inline">
-                                                            Patient Name
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <p class="d-inline">
-                                                            details
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <p class="d-inline">
-                                                            details
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <p class="d-inline">
-                                                            details
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- appointment body ends here -->
->>>>>>> 293ac36fa36a24943359c23fbfe7eb990daf8011
                                 </div>
                             
                             </div>
@@ -218,26 +209,33 @@ require_once "config.php";
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="row">
-                                                    <form>
-                                                        <div class="form-group">
-                                                            <label for="formPatientFirstName" class="ml-3 mt-2" >Patient First Name</label>
-                                                            <input type="text" class="form-control ml-3" id="formPatientFirstName" placeholder="First Name">
+                                                <form action="patientsDoctor.php" method="post">
+                                                        <div class = "">
+                                                            <div>
+                                                                <label class="ml-3">Patient First Name</label>
+                                                                <input type="text" name="patientFName" class="form-control ml-3">
+                                                                <span class="help-block"><?php echo $patientFName_err; ?></span>
+                                                            </div>    
+                                                            <div <?php echo (!empty($patientLName_err)) ? 'has-error' : ''; ?>>
+                                                                <label class="ml-3">Patient Last Name</label>
+                                                                <input type="text" name="patientLName" class="form-control">
+                                                                <span class="help-block"><?php echo $patientLName_err; ?></span>
+                                                            </div>
+                                                            <div <?php echo (!empty($patientPhone_err)) ? 'has-error' : ''; ?>>
+                                                                <label class="ml-3">Patient Phone</label>
+                                                                <input type="text" name="patientPhone" class="form-control">
+                                                                <span class="help-block"><?php echo $patientPhone_err; ?></span>
+                                                            </div>
+                                                            <div <?php echo (!empty($patientDOB_err)) ? 'has-error' : ''; ?>>
+                                                                <label class="ml-3">Patient DOB</label>
+                                                                <input type="text" name="patientDOB" class="form-control">
+                                                                <span class="help-block"><?php echo $patientDOB_err; ?></span>
+                                                            </div>
+                                                            <div class="text-center">
+                                                                <input type="submit" class="btn btn-primary" value="Submit">
+                                                            </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label for="formPatientLastName" class="ml-3 mt-2">Patient Last Name</label>
-                                                            <input type="text" class="form-control ml-3" id="formPatientLastName" placeholder="Last Name">
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label for="formPatientPhone" class="ml-3">Phone Number</label>
-                                                            <input type="text" class="form-control ml-3" id="formPatientPhone" placeholder="Phone Number">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="formPatientDOB" class="ml-3">Date of Birth</label>
-                                                            <input type="text" class="form-control ml-3" id="formPatientDOB" placeholder="Date of Birth">
-                                                        </div>
-                                                        
-                                                    </form>          
+                                                </form>     
                                                 </div>
                                             </div>
                                         </div>

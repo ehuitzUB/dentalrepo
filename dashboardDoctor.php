@@ -53,14 +53,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             </div>
         </nav>
         <body>
-    <div class="container row-content">
-        <!--welcome header bar-->
-        <div class="row">
+    <div class="container">
+        <!--welcome hea der bar-->
+        <div class="row row-content">
             <div class="col-md-4 col-sm-4">
                 <h5>Welcome, <span>{USER_NAME}</span></h5>
             </div>
-        </div>
-        <div class="container">
             <div class="row">
                 <div class="col-md-7 col-sm-8" style="margin: 0 0 10px 0;">
                     <div class="row">

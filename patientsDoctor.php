@@ -234,6 +234,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                               <input type="text" name="patientDOB" class="form-control">
                               <span class="help-block"><?php echo $patientDOB_err; ?></span>
                             </div>
+                            <div>
+                              <label class="ml-3">Password</label>
+                              <input type="text" name="patientDOB" class="form-control">
+                              <span class="help-block"></span>
+                            </div>
+                            <div>
+                              <label class="ml-3">Confirm Password</label>
+                              <input type="text" name="patientDOB" class="form-control">
+                              <span class="help-block"></span>
+                            </div>
                             <div class="text-center">
                               <input type="submit" class="btn btn-primary" value="Submit">
                             </div>

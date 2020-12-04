@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <!-- navbar-->
 
-<body>
+<body style="background: url(./images/backgroungimg.png) no-repeat center fixed; background-size:cover;">
   <nav class="navbar navbar-light navbar-expand-sm fixed-top appointment-header" style="border-bottom: 0.7px dashed black; background-color: azure; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
     <a class="navbar-brand mr-auto" href="#">
       <img src="images/logo.png" height="50" width="130">
@@ -124,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <h5>Patients</h5>
       <div class="col-md-12 table-responsive">
       <button class="btn btn-primary" data-toggle="modal" data-target="#createPatients">Create Patient</button>
-        <table class="table text-center">
+        <table class="table text-center" id="patienttable">
           <caption></caption>
           <theader>
             <tr>
@@ -225,9 +225,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </div>
 </div>
 <!-- modal end -->
-<footer class="footer">
+<footer class="footer" style="position:fixed; bottom: 0px; width: 100%;">
   <div class="container">
-      <div class="row justify-content-center mt-5" >
+      <div class="row justify-content-center mt-0 md-0" >
         <p>Copyright &copy 2020 Twinkly Smiles Dentistry </p>
       </div>
   </div> 

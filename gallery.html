@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
 </head>
 
-<body>
+<body style="background: url(./images/backgroungimg.png); background-size: 115%;background-position: 50% 50% ;">
     <!--Navbar-->
     <nav class="navbar navbar-light navbar-expand-sm fixed-top appointment-header"
         style="border-bottom: 0.7px dashed black; background-color: azure; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
@@ -47,7 +47,6 @@
         </div>
     </nav>
     <!--Body content-->
-    <div id="maincontain" class="container-fluid" style="background: url(./images/backgroungimg.png); background-size: 115%;background-position: 50% 50% ;">  
     <div class="container">
         <div class="row-content">
             <div class="col col-sm">
@@ -142,6 +141,66 @@
                                     <img src="./images/servicespic9.JPG" class="img-thumbnail" alt="Responsive image">
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col col-sm">
+                                    <h2>Popular Services</h2>
+                                    <div id="accordion">
+                                        <div class="card">
+                                            <div class="card-header" role="tab" id="braceshead">
+                                                <h3 class="mb-0">
+                                                    <a data-toggle="collapse" data-target="#braces">
+                                                        Braces Procedure <small> 100+ patients</small>
+                                                    </a>
+                                                </h3>
+                                            </div>
+                                            <div class="collapse show" id="braces" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p class="d-none d-sm-block">When dental braces are placed, a cheek retractor is used to keep the teeth visible and dry during the procedure. The teeth are first polished to ensure that the brackets will bond properly, after which they are air-dried.
+
+                                                        A conditioner is used on the front surfaces of the teeth for 30 seconds to further prepare them for bonding the brackets. This is cleaned off, the teeth are dried, and an adhesive primer is placed on the teeth to enhance the bonding process.
+                                                        
+                                                        Cement is placed on the back of the brackets, which are then applied to the predetermined positions on the teeth. Once the brackets are in place, excess cement is removed, and the brackets are hardened into place with a high-intensity light. The retractor is removed, and the dental arch wires are then put into place.
+                                                        
+                                                        The entire process of bonding the brackets and placing the arch wires can take anywhere from 10 to 20 minutes. The length of time is often determined by the time it takes to position the components correctly in order to treat the person’s specific condition.
+                                                        
+                                                        When braces are first placed and then later adjusted, you can expect to feel some tightness, which typically progresses to soreness, for approximately four to six hours after your appointment. This soreness is a direct result of arch wires tightening the teeth into position. Over-the-counter (OTC) pain relievers are recommended to help relieve this pain. You can expect the soreness to decrease in about three to five days.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-header" role="tab" id="dentalfillingshead">
+                                                <h3 class="mb-0">
+                                                    <a class="collapsed" data-toggle="collapse" data-target="#dentalfillings">
+                                                        Dental Fillings <small>Gold, Porcelain, Silver amalgam</small>
+                                                    </a>
+                                                </h3>
+                                            </div>
+                                            <div class="collapse" id="dentalfillings" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p class="d-none d-sm-block">To treat a cavity your dentist will remove the decayed portion of the tooth and then "fill" the area on the tooth where the decayed material was removed.
+                                                        Fillings are also used to repair cracked or broken teeth and teeth that have been worn down from misuse (such as from nail-biting or tooth grinding).
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-header" role="tab" id="bleachhead">
+                                                <h3 class="mb-0">
+                                                    <a class="collapsed" data-toggle="collapse" data-target="#bleach">
+                                                        Teeth whitening <small>Bleaching your teeth can make them lighter</small>
+                                                    </a>
+                                                </h3>
+                                            </div>
+                                            <div class="collapse" id="bleach" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p class="d-none d-sm-block">For decades, getting your teeth whitened involved soaking them in a hydrogen peroxide-based solution, which lifted stains but required several treatments to see results. Thanks to technology, that process has been sped up significantly, with lasers spurring on the chemical reaction of the solution—and whitening teeth in half the time.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="customers">
@@ -187,7 +246,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <!-- Footer section -->

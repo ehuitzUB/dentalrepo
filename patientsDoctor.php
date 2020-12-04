@@ -225,7 +225,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </div>
 </div>
 <!-- modal end -->
-<footer class="footer" style="position:fixed; bottom: 0px; width: 100%;">
+<footer class="footer" style="bottom: 0px; width: 100%;">
   <div class="container">
       <div class="row justify-content-center mt-0 md-0" >
         <p>Copyright &copy 2020 Twinkly Smiles Dentistry </p>

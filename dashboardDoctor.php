@@ -57,27 +57,6 @@ require_once "config.php";
         </ul>
       </div>
     </div>
-<<<<<<< HEAD
-  </nav>
-    <div class="row row-content text-center">
-      <button class="btn btn-primary" data-toggle="modal" data-target="#createAppointment">Create Appointment</button>
-      <div class="col-md-12 table-responsive">
-        <table class="table" id="patienttable">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Patient Name</th>
-              <th>Procedure</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Status</th>
-              <th>Edit</th>
-              <th>Cancel</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- appointment body starts here -->
-=======
 </nav>
 <div class="container">
     <div class="row row-content d-flex justify-content-center"> 
@@ -99,7 +78,6 @@ require_once "config.php";
                 </thead>
                 <tbody>
                    <!-- appointment body starts here -->
->>>>>>> 33bb0cea242236bc63406396521c39ba6308594e
             <?php
             // Check connection
             if ($link->connect_error) {
@@ -136,20 +114,6 @@ require_once "config.php";
       </div>
     </div>
   <!-- Create Patients Modal -->
-<<<<<<< HEAD
-  <div class="modal fade" id="createAppointment" tabindex="-1" role="dialog" aria-labelledby="createAppointmentLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="createAppointmentLabel">Create Appointment</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form class="form" action=".php" method="post">
-=======
   <div class="modal fade" id="createAppointment" tabindex="-1" role="dialog" aria-labelledby="createAppointmentLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -161,7 +125,6 @@ require_once "config.php";
       </div>
       <div class="modal-body text-center">
         <form class="form" action=".php" method="post">
->>>>>>> 33bb0cea242236bc63406396521c39ba6308594e
             <div class="form-group">
               <label class="ml-3">Treatment</label>
               <input type="text" name="TreatmentID" class="form-control ml-3">

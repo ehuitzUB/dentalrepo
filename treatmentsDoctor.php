@@ -206,8 +206,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                               $result = $link->query($sql);
                                               if ($result->num_rows > 0) {
                                                 // output data of each row
-                                                  while ($row = $result->fetch_assoc()){
-                                                  echo "<option value='{$row['accountID']}'>{$row['firstName']}</option>";
+                                                print_r($return);
+                                                foreach ($return as $row){
+                                                  echo "<option value='".$row['accountID']."'>".$row['firstName']."</option>";
                                                    }
                                                } 
                                                else {

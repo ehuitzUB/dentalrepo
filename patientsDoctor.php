@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
   // Check if phone is empty
   if (empty(trim($_POST["patientDOB"]))) {
-    $patientDOB_err = "Please enter Phone.";
+    $patientDOB_err = "Please enter DOB.";
   } else {
     $patientDOB = trim($_POST["patientDOB"]);
   }
@@ -50,8 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $patientDOB = mysqli_real_escape_string($link, $_REQUEST['patientDOB']);
     $password = mysqli_real_escape_string($link, $_REQUEST['userpasswd']);
     $patient_password = password_hash($password, PASSWORD_DEFAULT);
-    $fName=substr($patientFName, 0, 2);
-    $lName=substr($patientLName, 0, 2);
+    $fName=substr($patientFName, 0, 3);
+    $lName=substr($patientLName, 0, 3);
     $patientUserName=strtolower($fName.$lName);
  
 // Attempt insert query execution
@@ -192,27 +192,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="form-group" <?php echo (!empty($patientLName_err)) ? 'has-error' : ''; ?>>
               <label class="ml-3">Patient Last Name</label>
-              <input type="text" name="patientLName" class="form-control">
+              <input type="text" name="patientLName" class="form-control ml-3">
               <span class="help-block"><?php echo $patientLName_err; ?></span>
             </div>
             <div class="form-group"<?php echo (!empty($patientPhone_err)) ? 'has-error' : ''; ?>>
               <label class="ml-3">Patient Phone</label>
-              <input type="text" name="patientPhone" class="form-control">
+              <input type="text" name="patientPhone" class="form-control ml-3">
               <span class="help-block"><?php echo $patientPhone_err; ?></span>
             </div>
             <div class="form-group"<?php echo (!empty($patientDOB_err)) ? 'has-error' : ''; ?>>
               <label class="ml-3">Patient DOB</label>
-              <input type="text" name="patientDOB" class="form-control">
+              <input type="text" name="patientDOB" class="form-control ml-3">
               <span class="help-block"><?php echo $patientDOB_err; ?></span>
             </div>
             <div>
               <label class="ml-3">User Password</label>
-              <input type="text" name="userpasswd" class="form-control">
+              <input type="text" name="userpasswd" class="form-control ml-3">
               <span class="help-block"></span>
             </div>
             <div>
               <label class="ml-3">Confirm Password</label>
-              <input type="text" name="confirmuserpasswd" class="form-control">
+              <input type="text" name="confirmuserpasswd" class="form-control ml-3">
               <span class="help-block"></span>
             </div>
             <div class="modal-footer text-center">
@@ -225,6 +225,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </div>
 </div>
 <!-- modal end -->
+<footer class="footer">
+  <div class="container">
+      <div class="row justify-content-center mt-5" >
+        <p>Copyright &copy 2020 Twinkly Smiles Dentistry </p>
+      </div>
+  </div> 
+</footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="controller/patients.js"></script>

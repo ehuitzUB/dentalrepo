@@ -93,3 +93,4 @@ function validateAddPatientForm() {
   // }
   return flag;
 } 
+

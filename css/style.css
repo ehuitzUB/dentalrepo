@@ -112,6 +112,7 @@ padding: 0;
 
 .alert_window{
   position: absolute;
+  z-index: 1000;
   bottom: 10px;
 }
 

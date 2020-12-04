@@ -13,52 +13,49 @@ require_once "config.php";
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Twinkling Smiles | Dashboard</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/main.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Twinkling Smiles | Dashboard</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/main.css">
 </head>
 
-<body>
-<nav class="navbar navbar-light navbar-expand-sm fixed-top appointment-header"
+<body style="background: url(./images/backgroungimg.png) no-repeat center fixed; background-size:cover;">
+  <nav class="navbar navbar-light navbar-expand-sm fixed-top appointment-header"
     style="border-bottom: 0.7px dashed black; background-color: azure; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
     <a class="navbar-brand mr-auto" href="#">
-        <img src="images/logo.png" height="50" width="130">
+      <img src="images/logo.png" height="50" width="130">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
-        <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="Navbar">
-        <div class="container  justify-content-md-end text-center justify-content-center">
-            <ul class="navbar-nav" style="text-align: center;">
-                <li class="nav-item active text-black">
-                    <a class="nav-link " href="./dashboardDoctor.php"><span class="fa fa-home fa-lg"></span>Home</a>
-                </li>
-                <li class="nav-item text-black">
-                    <a class="nav-link" href="./patientsDoctor.php"><span
-                            class="fa fa-user-circle"></span>Patients</a>
-                </li>
-                <li class="nav-item text-black">
-                    <a class="nav-link" href="./treatmentsDoctor.php"><span
-                            class="fa fa-circle-o-notch"></span>Treatments</a>
-                </li>
-                <li class="nav-item text-black">
-                    <a class="nav-link" href="./proceduresDoctor.php"><span
-                            class="fa fa-plus-square"></span>Procedures</a>
-                </li>
-                <li class="nav-item text-black">
-                    <a class="nav-link" href="./reportsDoctor.php"><span class="fa fa-bar-chart"></span>Reports</a>
-                </li>
-                <li class="nav-item text-black">
-                    <a class="nav-link" href="./logout.php"><span class="fa fa-sign-out"></span> Logout</a>
-                </li>
-            </ul>
-        </div>
+      <div class="container  justify-content-md-end text-center justify-content-center">
+        <ul class="navbar-nav" style="text-align: center;">
+          <li class="nav-item active text-black">
+            <a class="nav-link " href="./dashboardDoctor.php"><span class="fa fa-home fa-lg"></span>Home</a>
+          </li>
+          <li class="nav-item text-black">
+            <a class="nav-link" href="./patientsDoctor.php"><span class="fa fa-user-circle"></span>Patients</a>
+          </li>
+          <li class="nav-item text-black">
+            <a class="nav-link" href="./treatmentsDoctor.php"><span class="fa fa-circle-o-notch"></span>Treatments</a>
+          </li>
+          <li class="nav-item text-black">
+            <a class="nav-link" href="./proceduresDoctor.php"><span class="fa fa-plus-square"></span>Procedures</a>
+          </li>
+          <li class="nav-item text-black">
+            <a class="nav-link" href="./reportsDoctor.php"><span class="fa fa-bar-chart"></span>Reports</a>
+          </li>
+          <li class="nav-item text-black">
+            <a class="nav-link" href="./logout.php"><span class="fa fa-sign-out"></span> Logout</a>
+          </li>
+        </ul>
+      </div>
     </div>
 </nav>
 <div class="container">
@@ -112,11 +109,10 @@ require_once "config.php";
             }
             //  $link->close();
             ?>
-                </tbody>
-            </table>
-        </div>
+          </tbody>
+        </table>
+      </div>
     </div>
-</div>
   <!-- Create Patients Modal -->
   <div class="modal fade" id="createAppointment" tabindex="-1" role="dialog" aria-labelledby="createAppointmentLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -148,29 +144,29 @@ require_once "config.php";
               <label class="ml-3">Appointment Comments</label>
               <input type="text" name="appComments" class="form-control ml-3">
               <span class="help-block"></span>
-            </div>           
+            </div>
             <div class="modal-footer text-center">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<!-- modal end -->
-<footer class="footer" style="position: absolute; bottom: 0px; width: 100%;">
+  <!-- modal end -->
+  <footer class="footer" style="position: absolute; bottom: 0px; width: 100%;">
     <div class="container">
-        <div class="row justify-content-center">
-            <p>Copyright &copy; 2020 Twinkly Smiles Dentistry </p>
-        </div>
+      <div class="row justify-content-center">
+        <p>Copyright &copy; 2020 Twinkly Smiles Dentistry </p>
+      </div>
     </div>
-</footer>
-<!--footer ends-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+  </footer>
+  <!--footer ends-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
     integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
     crossorigin="anonymous"></script>
-<script type="text/javascript"
-    src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

@@ -143,7 +143,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
   </style>
 </head>
-<body>
+<body style="background: url(./images/backgroungimg.png) no-repeat center fixed; background-size:cover;">
 <nav class="navbar navbar-light navbar-expand-sm fixed-top appointment-header"
     style="border-bottom: 0.7px dashed black; background-color: azure; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
     <a class="navbar-brand mr-auto" href="#">
@@ -174,7 +174,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       </div>
     </div>
 </nav>
-<div id="maincontain" class="container-fluid" style="background: url(./images/backgroungimg.png); background-size: 150%;background-position: 50% 50% ;">  
   <div class="container">
     <div class="row row-content d-flex justify-content-center">
         <div class="col-md-5 text-center">
@@ -198,7 +197,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
     </div>
   </div>
-</div>
 <footer class="footer" style="position: absolute; bottom: 0px; width: 100%;">
         <div class="container">
             <div class="row justify-content-center" >

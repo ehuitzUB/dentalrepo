@@ -128,9 +128,24 @@ require_once "config.php";
       <div class="modal-body text-center">
         <form class="form" action=".php" method="post">
             <div class="form-group">
-              <label class="ml-3">Treatment</label>
-              <input type="text" name="TreatmentID" class="form-control ml-3">
-              <span class="help-block"></span>
+              <label class="ml-3">Patient - Treatment</label>
+              <select name="patienttreatment" id="treatmentIDvalue">
+              <option></option>
+              <?php
+                  if ($link->connect_error) {
+                   die("Connection failed: " . $link->connect_error);
+                     }
+                       $sqlpatient = "SELECT treatment.treatmentID, concat(account.firstName, ' ',account.lastname) AS fullname, treatment.treatmentDesc FROM treatment LEFT JOIN patient ON patient.patientID=treatment.treatmentID LEFT JOIN account ON account.accountID=patient.accountID ";
+                       $results = $link->query($sqlpatient);
+                       if ($results->num_rows > 0) {
+                         // output data of each row
+                             while ($row = $results->fetch_assoc()){
+                              echo "<option value='".$row['treatmentID']."'>".$row['fullname']." - ".$row['treatmentDesc']."</option>";
+                              }
+                            } else {
+                              echo "0 results";                                         }
+               ?>
+              </select>
             </div>
             <div class="form-group">
               <label class="ml-3">AppointmentDate</label>
@@ -139,7 +154,7 @@ require_once "config.php";
             </div>
             <div class="form-group">
               <label class="ml-3">Appointment Time</label>
-              <input type="text" name="appointmentTime" class="form-control ml-3">
+              <input type="time" name="appointmentTime" class="form-control ml-3 " step="2" min="8:00" max="17:00">
               <span class="help-block"></span>
             </div>
             <div class="form-group">

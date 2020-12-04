@@ -78,13 +78,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="collapse navbar-collapse" id="Navbar">
         <div class="container  justify-content-md-end text-center justify-content-center">
             <ul class="navbar-nav" style="text-align: center;">
-                <li class="nav-item active text-black">
+                <li class="nav-item text-black">
                     <a class="nav-link " href="./dashboardDoctor.php"><span class="fa fa-home fa-lg"></span>Home</a>
                 </li>
                 <li class="nav-item text-black">
                     <a class="nav-link" href="./patientsDoctor.php"><span class="fa fa-user-circle"></span>Patients</a>
                 </li>
-                <li class="nav-item text-black">
+                <li class="nav-item active text-black">
                     <a class="nav-link" href="./treatmentsDoctor.php"><span class="fa fa-circle-o-notch"></span>Treatments</a>
                 </li>
                 <li class="nav-item text-black">
@@ -187,7 +187,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                               if ($results->num_rows > 0) {
                                                 // output data of each row
                                                 while ($row = $results->fetch_assoc()){
-                                                    echo "<option value='".$row['accountID']."'>".$row['fullname']."</option>";
+                                                    echo "<option value='".$row['accountID']."'>".$row['fullname']. "</option>";
+                                                   
                                                     }
                                                 } else {
                                                     echo "0 results";

@@ -126,7 +126,7 @@ require_once "config.php";
         </button>
       </div>
       <div class="modal-body text-center">
-        <form class="form" action=".php" method="post">
+        <form class="form" action="dashboard.php" method="post">
             <div class="form-group">
               <label class="ml-3">Patient - Treatment</label>
               <select name="patienttreatment" id="treatmentIDvalue">

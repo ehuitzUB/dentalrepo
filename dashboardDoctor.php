@@ -25,7 +25,7 @@ require_once "config.php";
 
 <body style="background: url(./images/backgrounddash.png) no-repeat center fixed; background-size:cover;">
   <nav class="navbar navbar-light navbar-expand-sm fixed-top appointment-header" style="border-bottom: 0.7px dashed black; background-color: azure; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
-    <a class="navbar-brand mr-auto" href="#">
+    <a class="navbar-brand mr-auto" href="./dashboardDoctor.php">
       <img src="images/logo.png" height="50" width="130">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">

@@ -70,10 +70,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/main.css">
+        <style>
+        .table thead{
+            background-color:#74D2C8;
+        }
+        </style>
     </head>
     <!-- navbar-->
     <nav class="navbar navbar-light navbar-expand-sm fixed-top appointment-header" style="border-bottom: 0.7px dashed black; background-color: azure; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">        
-        <a class="navbar-brand mr-auto" href="#">
+        <a class="navbar-brand mr-auto" href="./dashboardDoctor.php">
             <img src="images/logo.png" height="50" width="130">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
@@ -111,8 +116,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <h3>Procedures</h3>
             <div class="col-md-12 table-responsive">
             <button class="btn btn-primary" data-toggle="modal" data-target="#createProcedure">Create Procedure</button>
-                <table class = "customers">
-                    <theader>
+                <table class = "table">
+                    <thead>
                         <tr>
                             <th>Procedure ID</th>
                             <th>Procedure Name</th>
@@ -120,7 +125,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <th>Edit</th>
                         <th>Delete</th>
                         </tr>
-                    </theader>                    <tbody>
+                    </thead>                    <tbody>
                     <!-- appointment body starts here -->
                         <?php
                         // Check connection

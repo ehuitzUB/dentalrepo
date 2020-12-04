@@ -77,14 +77,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <title>Twinkling Smiles | Patients</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="css/main.css">
+  <style>
+    .table thead{
+        background-color:#74D2C8;
+    }
+  </style>
 </head>
 <!-- navbar-->
 
 <body style="background: url(./images/backgroungimg.png) no-repeat center fixed; background-size:cover;">
   <nav class="navbar navbar-light navbar-expand-sm fixed-top appointment-header" style="border-bottom: 0.7px dashed black; background-color: azure; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
-    <a class="navbar-brand mr-auto" href="#">
+    <a class="navbar-brand mr-auto" href="./dashboardDoctor.php">
       <img src="images/logo.png" height="50" width="130">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
@@ -123,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <button class="btn btn-primary" data-toggle="modal" data-target="#createPatients">Create Patient</button>
         <table class="table text-center" id="patienttable">
           <caption></caption>
-          <theader>
+          <thead>
             <tr>
               <th>Patient ID</th>
               <th>Patient Name</th>
@@ -132,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <th>Edit</th>
               <th>Delete</th>
             </tr>
-          </theader>
+          </thead>
           <tbody>
             <!-- appointment body starts here -->
             <?php

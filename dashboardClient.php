@@ -87,7 +87,9 @@ require_once "config.php";
                             LEFT JOIN patient ON patient.patientID=treatment.patientID
                             LEFT JOIN account ON account.accountID=patient.accountID
                             LEFT JOIN users ON users.loginID=account.loginID
-                            WHERE users.username = '".$_SESSION["username"]."' ";
+                            WHERE users.username = '".$_SESSION["username"]."' 
+                            AND appointment.appointmentStatus = 'Open'
+                            ORDER BY appointment.appointmentDate ASC, appointment.appointmentTime ASC";
                             $result = $link->query($sql);
                             if ($result->num_rows > 0) {
                             // output data of each row
@@ -98,7 +100,8 @@ require_once "config.php";
                             "<td>"  . $row["appDate"]. "</td>".
                             "<td>"  . $row["appTime"]. "</td>".
                             "<td>"  . $row["appStatus"]. "</td>".
-                            "<td><a class=\"btn btn-danger\"href = '.php?GetID=".$row["appID"]."'>Cancel</a></td>". 
+
+                            "<td><a class=\"btn btn-danger\" onclick=\"cancelAppointmentDoctor(" . $row["appID"] . ")\" >Cancel</a></td>" .
                             "</tr>";
                             }
                             } else { echo "0 results"; }
@@ -123,5 +126,6 @@ require_once "config.php";
 <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 </script>
+<script src="controller/treatments.js"></script>
 </body>
 </html>

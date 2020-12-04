@@ -54,61 +54,60 @@ require_once "config.php";
             </li>
         </ul>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-md-6 ">
-                <!-- Table Start -->
-                <h3 class="h3 text-center">Appointments</h3>
-                <table class="table text-center"> 
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>AppID</th>
-                            <th>TreatID</th>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Status</th>
-                            <th>Edit</th>
-                            <th>Cancel</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                           <!-- appointment body starts here -->
-                           <?php
-                                        // Check connection
-                                        if ($link->connect_error) {
-                                        die("Connection failed: " . $link->connect_error);
-                                        }
-                                        $sql = "SELECT appointment.appointmentID AS appID, concat(account.firstName, ' ',account.lastname) AS fullname, appointment.appointmentDate AS appDate, appointment.appointmentTime AS appTime, appointment.appointmentStatus AS appStatus 
-                                        FROM appointment
-                                        LEFT JOIN treatment ON treatment.treatmentID=appointment.treatmentID
-                                        LEFT JOIN patient ON patient.patientID=treatment.patientID
-                                        LEFT JOIN account ON account.accountID=patient.accountID
-                                        LEFT JOIN users ON users.loginID=account.loginID
-                                        WHERE users.username = '".$_SESSION["username"]."' ";
-                                        $result = $link->query($sql);
-                                        if ($result->num_rows > 0) {
-                                        // output data of each row
-                                        while($row = $result->fetch_assoc()) {
-                                        echo "<tr>".
-                                        "<td>" . $row["appID"]. "</td>".
-                                        "<td>" . $row["fullname"] . "</td>".
-                                        "<td>"  . $row["appDate"]. "</td>".
-                                        "<td>"  . $row["appTime"]. "</td>".
-                                        "<td>"  . $row["appStatus"]. "</td>".
-                                        "<td><a href = '.php?GetID=".$row["appID"]."'>Edit</a></td>".
-                                        "<td><a href = '.php?GetID=".$row["appID"]."'>Cancel</a></td>". 
-
-                                        "</tr>";
-                                        }
-                                        } else { echo "0 results"; }
-                                        $link->close();
-                                        ?>
-                        </tr>
-                        
-                    </tbody>
-                </table>
-                <!-- Table End-->
-            </div>
+    </div>
+</nav>
+        
+<div class="container">
+    <div class="row row-content">
+        <div class="col-md-12 table-responsive">
+            <!-- Table Start -->
+            <h3 class="h3 text-center">Appointments</h3>
+            <table class="table text-center" style="font-size: small;"> 
+                <thead class="thead-dark">
+                    <tr>
+                        <th>AppID</th>
+                        <th>TreatID</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Cancel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <!-- appointment body starts here -->
+                        <?php
+                            // Check connection
+                            if ($link->connect_error) {
+                            die("Connection failed: " . $link->connect_error);
+                            }
+                            $sql = "SELECT appointment.appointmentID AS appID, concat(account.firstName, ' ',account.lastname) AS fullname, appointment.appointmentDate AS appDate, appointment.appointmentTime AS appTime, appointment.appointmentStatus AS appStatus 
+                            FROM appointment
+                            LEFT JOIN treatment ON treatment.treatmentID=appointment.treatmentID
+                            LEFT JOIN patient ON patient.patientID=treatment.patientID
+                            LEFT JOIN account ON account.accountID=patient.accountID
+                            LEFT JOIN users ON users.loginID=account.loginID
+                            WHERE users.username = '".$_SESSION["username"]."' ";
+                            $result = $link->query($sql);
+                            if ($result->num_rows > 0) {
+                            // output data of each row
+                            while($row = $result->fetch_assoc()) {
+                            echo "<tr>".
+                            "<td>" . $row["appID"]. "</td>".
+                            "<td>" . $row["fullname"] . "</td>".
+                            "<td>"  . $row["appDate"]. "</td>".
+                            "<td>"  . $row["appTime"]. "</td>".
+                            "<td>"  . $row["appStatus"]. "</td>".
+                            "<td><a class=\"btn btn-danger\"href = '.php?GetID=".$row["appID"]."'>Cancel</a></td>". 
+                            "</tr>";
+                            }
+                            } else { echo "0 results"; }
+                            $link->close();
+                        ?>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Table End-->
         </div>
     </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script> 

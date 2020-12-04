@@ -8,7 +8,31 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
   exit;
 }
 require_once "config.php";
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+  $treatmentID = mysqli_real_escape_string($link, $_REQUEST['patienttreatment']);
+  $appointmentDate = mysqli_real_escape_string($link, $_REQUEST['appDate']);
+  $appointmentTime = mysqli_real_escape_string($link, $_REQUEST['appTime']);
+  $appointmentComments = mysqli_real_escape_string($link, $_REQUEST['appComments']);
+
+
+  $sql = "INSERT INTO appointment (treatmentID, appointmentDate, appointmentTime, appointmentComments) VALUES ('$treatmentID', '$appointmentDate', '$appointmentTime ', '$appointmentComments' )";
+    if(mysqli_query($link, $sql)){
+        header("location:dashboardDoctor.php");
+    } else{
+        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+    }
+        //mysqli_close($link);
+    }
+
+
+        // Close connection
+        //mysqli_close($link);
+    
+
+
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -88,7 +112,8 @@ require_once "config.php";
             LEFT JOIN treatment ON treatment.treatmentID=appointment.treatmentID
             LEFT JOIN patient ON patient.patientID=treatment.patientID
             LEFT JOIN account ON account.accountID=patient.accountID
-            WHERE appointment.appointmentStatus = 'Open'";
+            WHERE appointment.appointmentStatus = 'Open'
+            ORDER BY appointment.appointmentDate ASC, appointment.appointmentTime ASC ";
             $result = $link->query($sql);
             if ($result->num_rows > 0) {
               // output data of each row
@@ -131,7 +156,7 @@ require_once "config.php";
             </button>
           </div>
           <div class="modal-body text-center">
-            <form class="form" action=".php" method="post">
+            <form class="form" action="dashboardDoctor.php" method="post">
               <div class="form-group">
                 <label class="ml-3">Patient - Treatment</label>
                 <select name="patienttreatment" id="treatmentIDvalue">
@@ -155,12 +180,12 @@ require_once "config.php";
               </div>
               <div class="form-group">
                 <label class="ml-3">AppointmentDate</label>
-                <input type="text" name="appointmentDate" class="form-control ml-3">
+                <input type="text" name="appDate" class="form-control ml-3">
                 <span class="help-block"></span>
               </div>
               <div class="form-group">
                 <label class="ml-3">Appointment Time</label>
-                <input type="time" name="appointmentTime" class="form-control ml-3 " step="2" min="8:00" max="17:00">
+                <input type="time" name="appTime" class="form-control ml-3 " step="2" min="8:00" max="17:00">
                 <span class="help-block"></span>
               </div>
               <div class="form-group">
@@ -178,7 +203,7 @@ require_once "config.php";
       </div>
     </div>
     <!-- modal end -->
-    <footer class="footer" style="position: absolute; bottom: 0px; width: 100%;">
+    <footer class="footer" style="position: relative; bottom: 0px; width: 125%;">
       <div class="container">
         <div class="row justify-content-center">
           <p>Copyright &copy; 2020 Twinkly Smiles Dentistry </p>

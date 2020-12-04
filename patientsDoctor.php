@@ -121,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <div class="container">
     <!--welcome header bar-->
     <div class="row row-content d-flex justify-content-center">
-      <h5>Patients</h5>
+      <h3>Patients</h3>
       <div class="col-md-12 table-responsive">
       <button class="btn btn-primary" data-toggle="modal" data-target="#createPatients">Create Patient</button>
         <table class="table text-center" id="patienttable">
@@ -183,7 +183,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body text-center">
         <form class="form" action="patientsDoctor.php" method="post">
             <div class="form-group">
               <label class="ml-3">Patient First Name</label>
@@ -205,17 +205,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <input type="text" name="patientDOB" class="form-control ml-3">
               <span class="help-block"><?php echo $patientDOB_err; ?></span>
             </div>
-            <div>
+            <div class="form-group">
               <label class="ml-3">User Password</label>
               <input type="text" name="userpasswd" class="form-control ml-3">
               <span class="help-block"></span>
             </div>
-            <div>
+            <div class="form-group">
               <label class="ml-3">Confirm Password</label>
               <input type="text" name="confirmuserpasswd" class="form-control ml-3">
               <span class="help-block"></span>
             </div>
-            <div class="modal-footer text-center">
+            <div class="form-group text-center">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>

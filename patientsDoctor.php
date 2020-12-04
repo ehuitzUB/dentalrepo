@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $patientUserName=$patientFName[0].$patientFName;
  
 // Attempt insert query execution
-    $sql = "INSERT INTO account (firstname, lastname, telephone, accountType, DOB) VALUES ('$patientFName', '$patientLName', '$patientPhone', 3, '$patientDOB');SELECT @last := LAST_INSERT_ID();INSERT INTO patient (accountID) VALUES (@last); INSERT INTO users ('$patientUserName','$patient_password'); SELECT @userid := LAST_INSERT_ID(); UPDATE account SET loginID=@userid WHERE accountID=@last;";
+    $sql = "INSERT INTO account (firstname, lastname, telephone, accountType, DOB) VALUES ('$patientFName', '$patientLName', '$patientPhone', 3, '$patientDOB');SELECT @last := LAST_INSERT_ID();INSERT INTO patient (accountID) VALUES (@last); INSERT INTO users (username, password) VALUES ('$patientUserName', '$patient_password'); SELECT @userid := LAST_INSERT_ID(); UPDATE account SET loginID=@userid WHERE accountID=@last;";
     if(mysqli_multi_query($link, $sql)){
         header("location:patientsDoctor.php");
     } else{

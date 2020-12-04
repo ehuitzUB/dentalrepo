@@ -62,10 +62,11 @@ require_once "config.php";
     </div>
 </nav>
 <div class="container">
-    <div class="row row-content text-center"> 
-    <button class="btn btn-primary" data-toggle="modal" data-target="#createAppointment">Create Appointment</button>
+    <div class="row row-content d-flex justify-content-center"> 
+      <h3>Create Appointment</h3>
         <div class="col-md-12 table-responsive">
-            <table class="table">
+          <button class="btn btn-primary" data-toggle="modal" data-target="#createAppointment">Create Appointment</button>
+            <table class="table text-center">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -120,13 +121,13 @@ require_once "config.php";
   <div class="modal fade" id="createAppointment" tabindex="-1" role="dialog" aria-labelledby="createAppointmentLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header text-center">
         <h5 class="modal-title" id="createAppointmentLabel">Create Appointment</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body text-center">
         <form class="form" action=".php" method="post">
             <div class="form-group">
               <label class="ml-3">Treatment</label>

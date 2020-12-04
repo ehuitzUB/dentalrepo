@@ -66,7 +66,7 @@ h5 {
 	Global Styles
 -------------------------------------------------------------------------------*/
 a {
-	color:floralwhite;
+	/*color:floralwhite;*/
 }
 a:hover, a:focus {
 	text-decoration: none;
@@ -790,7 +790,11 @@ ul.list-default li {
 	text-align: left;
 	background: #1f1f1f;
 	padding-top: 0;
+	position: absolute; 
+	bottom: 0px; 
+	width: 100%;
 }
+
 .footer-top {
 	background-color: #181818;
 	padding-top: 50px;
@@ -815,7 +819,7 @@ ul.list-default li {
 	color: rgba(255, 255, 255, 0.50);
 }
 .footer a:hover {
-	color: #e84545;
+	color: blue;
 }
 .footer .footer-share {
 	margin-top: 0;
@@ -888,6 +892,7 @@ ul.list-default li {
   .customers a {
 	color: blue;
   }
+
 
 
   

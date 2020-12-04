@@ -197,6 +197,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     <div class = "">
                                         <div>
                                             <label class="ml-3">Patient Name</label>
+                                            <select name="patientName" id="cars">
+                                            <?php
+                                              $queryForpatients = "SELECT accountID,firstName,lastName FROM account WHERE accountStatus='Active'";
+                                              $sql = sqlsrv_query($db, $queryForpatients);
+                                              $row = sqlsrv_fetch_array($sql, SQLSRV_FETCH_ASSOC);
+                                              while ($row = sqlsrv_fetch_array($sql, SQLSRV_FETCH_ASSOC)) {
+                                              echo "<option value=\"accountID\">" . $row['firstName'] . "</option>";
+                                              }
+                                              ?>
+                                            </select>
                                             <input type="text" name="patientName" class="form-control ml-3">
                                             <span class="help-block"><?php echo $patientName_err; ?></span>
                                         </div>    

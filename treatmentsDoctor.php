@@ -204,16 +204,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                             }
                                               $sql = "SELECT accountID,firstName FROM account WHERE accountStatus='Active'";
                                               $result = $link->query($sql);
-                                              if ($result->num_rows > 0) {
-                                                // output data of each row
-                                                print_r($return);
-                                                foreach ($return as $row){
+                        
+                                                print_r($result);
+                                                foreach ($result as $row){
                                                   echo "<option value='".$row['accountID']."'>".$row['firstName']."</option>";
                                                    }
-                                               } 
-                                               else {
-                                                echo "0 results". mysqli_error($link);
-                                            }
+    
                                             $link->close();
                                               ?>
                                             </select>

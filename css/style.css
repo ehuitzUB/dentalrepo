@@ -12,6 +12,7 @@ body{
     padding: 50px 0px 50px 0px;
     border-bottom: 1px ridge;
     min-height:400px;
+    width: 100%;
 /* The min-height property defines the minimum height of an element.  If the content is smaller than the  
      minimum height, the minimum height will be applied.  If the content is larger than the minimum height,     
      the min-height property has no effect.

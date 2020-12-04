@@ -81,7 +81,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </button>
         <div class="collapse navbar-collapse" id="Navbar">
             <div class="container  justify-content-md-end text-center justify-content-center">
-            <ul class="navbar-nav" style="text-align: center;">
+            <ul class="navbar-nav text-center">
                 <li class="nav-item active text-black">
                     <a class="nav-link " href="./dashboardDoctor.php"><span class="fa fa-home fa-lg"></span>Home</a>
                 </li>

@@ -131,7 +131,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                         <th>Procedure Name</th>
                                         <th>Procedure Cost</th>
                                         <th>Edit</th>
-                                       <!-- <th>Delete</th>-->
+                                       <th>Delete</th>
 
                                     </tr>
 
@@ -154,7 +154,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                         "<td>" . $row["procedureName"] . "</td>".
                                         "<td>"  . $row["procedureCost"]. "</td>".
                                         "<td><a href = 'editProceduresDoctor.php?GetID=".$row["procedureID"]."'>Edit</a></td>".
-                                    //  "<td><a href = '#'>Delete</a></td>".  
+                                        "<td><a href = 'deleteProceduresDoctor.php?GetID=".$row["procedureID"]."'>Delete</a></td>". 
 
                                         "</tr>";
                                         }

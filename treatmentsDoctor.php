@@ -10,6 +10,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 // Include config file
 require_once "config.php";
+
 $patientName = $treatmentDescription = "";
 $patientName_err = $treatmentDescription_err = "";
 
@@ -172,7 +173,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                         } else {
                                             echo "0 results". mysqli_error($link);
                                         }
-                                        $link->close();
+                                       // $link->close();
                                         ?>
                                     </tbody>
                                 </table>
@@ -197,16 +198,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     <div class = "">
                                         <div>
                                             <label class="ml-3">Patient Name</label>
-                                            <select name="patientName" id="cars">
+                                            <select name="patientName">
                                             <?php
                                             if ($link->connect_error) {
                                                 die("Connection failed: " . $link->connect_error);
                                             }
-                                              $sql = "SELECT accountID FROM account WHERE accountStatus='Active' AND accountType = 3";
-                                              $result = $link->query($sql);
-                                              if ($result->num_rows > 0) {
+                                              $sqlpatient = "SELECT accountID, firstName FROM account WHERE accountStatus='Active'";
+                                              $results = $link->query($sqlpatient);
+                                              if ($results->num_rows > 0) {
                                                 // output data of each row
-                                                while ($row = $result->fetch_assoc()){
+                                                while ($row = $results->fetch_assoc()){
                                                   echo "<option value='".$row['accountID']."'>".$row['firstName']."</option>";
                                                    }
                                                 } else {

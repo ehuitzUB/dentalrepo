@@ -786,15 +786,7 @@ ul.list-default li {
 /* ------------------------------------------------------------------------------
 	 Footer
 -------------------------------------------------------------------------------*/
-.footer {
-	text-align: left;
-	background: #1f1f1f;
-	padding-top: 0;
-	position: absolute; 
-	bottom: 0px; 
-	width: 100%;
-}
-
+/*
 .footer-top {
 	background-color: #181818;
 	padding-top: 50px;
@@ -837,7 +829,7 @@ ul.list-default li {
 	color: #e84545;
 	font-size: 11px;
 	margin: 0 2px;
-}
+}*/
 @media only screen and (max-width: 1020px) {
     #header .logo a {
     /* padding-top: 29%; */

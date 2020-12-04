@@ -225,6 +225,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </div>
 </div>
 <!-- modal end -->
+<footer class="footer">
+  <div class="container">
+      <div class="row justify-content-center mt-5" >
+      <p>Copyright &copy 2020 Twinkly Smiles Dentistry </p>
+      </div>
+  </div> 
+</footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="controller/patients.js"></script>

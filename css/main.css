@@ -819,7 +819,7 @@ ul.list-default li {
 	color: rgba(255, 255, 255, 0.50);
 }
 .footer a:hover {
-	color: #e84545;
+	color: blue;
 }
 .footer .footer-share {
 	margin-top: 0;
@@ -892,6 +892,7 @@ ul.list-default li {
   .customers a {
 	color: blue;
   }
+
 
 
   

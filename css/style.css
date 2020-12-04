@@ -108,3 +108,11 @@ address{
 .navbar{
 padding: 0;
 }
+
+.alert_window{
+  position: absolute;
+  bottom: 10px;
+}
+.alert {
+  
+}

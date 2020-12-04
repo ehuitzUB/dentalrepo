@@ -136,12 +136,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
   <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
-  <style>
-    .card {
-      border: none;
-      text-align: center;
-    }
-  </style>
 </head>
 <body style="background: url(./images/backgroungimg.png) no-repeat center fixed; background-size:cover;">
 <nav class="navbar navbar-light navbar-expand-sm fixed-top appointment-header"

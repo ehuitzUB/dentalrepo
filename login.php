@@ -193,13 +193,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="form-group text-center">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <div class="form-group">
-                <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
-            </div>
             </form>
         </div>
     </div>
 </div> 
+<footer class="footer" style="position: absolute; bottom: 0px; width: 100%;">
+        <div class="container">
+            <div class="row justify-content-center mt-5" >
+            <p>Copyright &copy 2020 Twinkly Smiles Dentistry </p>
+            </div>
+        </div> 
+</footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
     integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
     crossorigin="anonymous"></script>

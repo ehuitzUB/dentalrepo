@@ -178,7 +178,7 @@ require_once "config.php";
       </div>
     </div>
     <!-- modal end -->
-    <footer class="footer" style="position: absolute; bottom: 0px; width: 100%;">
+    <footer class="footer" style=" bottom: 0px; width: 100%;">
       <div class="container">
         <div class="row justify-content-center">
           <p>Copyright &copy; 2020 Twinkly Smiles Dentistry </p>

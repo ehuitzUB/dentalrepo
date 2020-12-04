@@ -150,7 +150,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         } else {
                             echo "0 results". mysqli_error($link);
                         }
-                        $link->close();
+                        //$link->close();
                         ?>
                     </tbody>
                 </table>

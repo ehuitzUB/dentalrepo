@@ -7,6 +7,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
+require_once "config.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -66,19 +67,45 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Treatment</th>
-                        <th>Time</th>
+                        <th>ID</th>
+                        <th>Patient Name</th>
+                        <th>Procedure</th>
                         <th>Date</th>
+                        <th>Time</th>
                         <th>Status</th>
+                        <th>Edit</th>
+                        <th>Cancel</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <td>Mark</td>
-                    <td>Teeth Whitening</td>
-                    <td>9:30 am</td>
-                    <td>25 November</td>
-                    <td>Active</td>
+                   <!-- appointment body starts here -->
+            <?php
+            // Check connection
+            if ($link->connect_error) {
+              die("Connection failed: " . $link->connect_error);
+            }
+            $sql = "SELECT appointment.appointmentID AS aID, appointment.treatmentID AS atID, appointment.appointmentDate AS aDate, appointment.appointmentTime AS aTime, appointment.appointmentStatus as aStatus FROM appointment";
+            $result = $link->query($sql);
+            if ($result->num_rows > 0) {
+              // output data of each row
+              while ($row = $result->fetch_assoc()) {
+                echo "<tr>" .
+                  "<td>" . $row["aID"] . "</td>" .
+                  "<td>" . $row["atID"] . "</td>" .
+                  
+                  "<td>"  . $row["tp"] . "</td>" .
+                  "<td>"  . $row["aDate"] . "</td>" .
+                  "<td>"  . $row["aTime"] . "</td>" .
+                  "<td>"  . $row["aStatus"] . "</td>" .
+                  "<td><a href = '.php?GetID=" . $row["accID"] . "'>Edit</a></td>" .
+                  "<td><a class=\"btn btn-danger\" >Edit</a></td>" .
+                  "</tr>";
+              }
+            } else {
+              echo "0 results";
+            }
+            //  $link->close();
+            ?>
                 </tbody>
             </table>
         </div>

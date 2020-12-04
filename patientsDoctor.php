@@ -9,7 +9,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 }
 require_once "config.php";
 
-$patientFName = $patientLName = $patientPhone = $patientDOB = "";
+$patientFName = $patientLName = $patientPhone = $patientDOB =$password= "";
 $patientFName_err = $patientLName_err = $patientPhone_err = $patientDOB_err = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -48,9 +48,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $patientLName = mysqli_real_escape_string($link, $_REQUEST['patientLName']);
     $patientPhone = mysqli_real_escape_string($link, $_REQUEST['patientPhone']);
     $patientDOB = mysqli_real_escape_string($link, $_REQUEST['patientDOB']);
+    $password = mysqli_real_escape_string($link, $_REQUEST['userpasswd']);
+    $patient_password = password_hash($password, PASSWORD_DEFAULT);
+    $patientUserName=strtolower($patientFName[0,2].$patientLName[0,2]);
  
 // Attempt insert query execution
-    $sql = "INSERT INTO account (firstname, lastname, telephone, accountType, DOB) VALUES ('$patientFName', '$patientLName', '$patientPhone', 3, '$patientDOB');SELECT @last := LAST_INSERT_ID();INSERT INTO patient (accountID) VALUES (@last); ";
+    $sql = "INSERT INTO account (firstname, lastname, telephone, accountType, DOB) VALUES ('$patientFName', '$patientLName', '$patientPhone', 3, '$patientDOB');SELECT @last := LAST_INSERT_ID();INSERT INTO patient (accountID) VALUES (@last); INSERT INTO users (username, password) VALUES ('$patientUserName', '$patient_password'); SELECT @userid := LAST_INSERT_ID(); UPDATE account SET loginID=@userid WHERE accountID=@last;";
     if(mysqli_multi_query($link, $sql)){
         header("location:patientsDoctor.php");
     } else{
@@ -199,6 +202,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <label class="ml-3">Patient DOB</label>
               <input type="text" name="patientDOB" class="form-control">
               <span class="help-block"><?php echo $patientDOB_err; ?></span>
+            </div>
+            <div>
+              <label class="ml-3">User Password</label>
+              <input type="text" name="userpasswd" class="form-control">
+              <span class="help-block"></span>
+            </div>
+            <div>
+              <label class="ml-3">Confirm Password</label>
+              <input type="text" name="confirmuserpasswd" class="form-control">
+              <span class="help-block"></span>
             </div>
             <div class="modal-footer text-center">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

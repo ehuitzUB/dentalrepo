@@ -146,7 +146,7 @@ require_once "config.php";
                                         "<td>"  . $row["appTime"]. "</td>".
                                         "<td>"  . $row["appStatus"]. "</td>".
                                         "<td><a href = '.php?GetID=".$row["appID"]."'>Edit</a></td>".
-                                        "<td><a href = '.php?GetID=".$row["appID"]."'>Delete</a></td>". 
+                                        "<td><a href = '.php?GetID=".$row["appID"]."'>Cancel</a></td>". 
 
                                         "</tr>";
                                         }

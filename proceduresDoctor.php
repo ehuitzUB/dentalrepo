@@ -82,7 +82,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="collapse navbar-collapse" id="Navbar">
                 <div class="container  justify-content-md-end text-center justify-content-center">
                 <ul class="navbar-nav" style="text-align: center;">
-                    <li class="nav-item active text-black">
+                    <li class="nav-item text-black">
                         <a class="nav-link " href="./dashboardDoctor.php"><span class="fa fa-home fa-lg"></span>Home</a>
                     </li>
                     <li class="nav-item text-black">
@@ -91,7 +91,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <li class="nav-item text-black">
                         <a class="nav-link" href="./treatmentsDoctor.php"><span class="fa fa-circle-o-notch"></span>Treatments</a>
                     </li>
-                    <li class="nav-item text-black">
+                    <li class="nav-item active text-black">
                         <a class="nav-link"  href="./proceduresDoctor.php"><span class="fa fa-plus-square"></span>Procedures</a>
                     </li>
                     <li class="nav-item text-black">

@@ -204,13 +204,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                             }
                                               $sql = "SELECT accountID,firstName FROM account WHERE accountStatus='Active'";
                                               $result = $link->query($sql);
-                        
-                                                print_r($result);
-                                                foreach ($result as $row){
+                                              if ($result->num_rows > 0) {
+                                                // output data of each row
+                                                while ($row = $result->fetch_assoc()){
                                                   echo "<option value='".$row['accountID']."'>".$row['firstName']."</option>";
                                                    }
-    
-                                            $link->close();
+                                                } else {
+                                                    echo "0 results";
+                                                  }
                                               ?>
                                             </select>
                                             <input type="text" name="patientName" class="form-control ml-3">

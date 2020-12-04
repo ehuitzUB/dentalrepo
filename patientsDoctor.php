@@ -83,7 +83,7 @@ echo $patientDOB;
 </head>
 <!-- navbar-->
 
-<body>
+<body style="background: url(./images/backgroungimg.png) no-repeat center fixed; background-size:cover;">
   <nav class="navbar navbar-light navbar-expand-sm fixed-top appointment-header" style="border-bottom: 0.7px dashed black; background-color: azure; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
     <a class="navbar-brand mr-auto" href="#">
       <img src="images/logo.png" height="50" width="130">
@@ -119,10 +119,10 @@ echo $patientDOB;
   <div class="container">
     <!--welcome header bar-->
     <div class="row row-content d-flex justify-content-center">
-      <h5>Patients</h5>
+      <h3>Patients</h3>
       <div class="col-md-12 table-responsive">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#createPatients">Create Patient</button>
-        <table class="table text-center">
+      <button class="btn btn-primary" data-toggle="modal" data-target="#createPatients">Create Patient</button>
+        <table class="table text-center" id="patienttable">
           <caption></caption>
           <theader>
             <tr>
@@ -203,17 +203,17 @@ echo $patientDOB;
               <input type="date" name="patientDOB" class="form-control" required>
               <span id="errorPatientDOB" class="help-block text-danger"><?php echo $patientDOB_err; ?></span>
             </div>
-            <div>
+            <div class="form-group">
               <label class="ml-3">User Password</label>
               <input type="password" name="userpasswd" class="form-control" required>
               <span id="errorPatientPassword" class="help-block text-danger"></span>
             </div>
-            <div>
+            <div class="form-group">
               <label class="ml-3">Confirm Password</label>
               <input type="password" name="confirmuserpasswd" class="form-control" required>
               <span id="errorPatientConfirm" class="help-block text-danger"></span>
             </div>
-            <div class="modal-footer text-center">
+            <div class="form-group text-center">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
@@ -223,10 +223,11 @@ echo $patientDOB;
       </div>
     </div>
   </div>
-  <!-- modal end -->
-  <footer class="footer">
-    <div class="container">
-      <div class="row justify-content-center mt-5">
+</div>
+<!-- modal end -->
+<footer class="footer" style="position:fixed; bottom: 0px; width: 100%;">
+  <div class="container">
+      <div class="row justify-content-center mt-0 md-0" >
         <p>Copyright &copy 2020 Twinkly Smiles Dentistry </p>
       </div>
     </div>

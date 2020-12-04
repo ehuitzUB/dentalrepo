@@ -52,7 +52,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 </div>
             </div>
         </nav>
-    <body class="gray">
+    <body class="gray" style="background: url(./images/backgroungimg.png) no-repeat center fixed; background-size:cover;">
     <div class="container row-content">
         <!--welcome header bar-->
         <div class="row" >

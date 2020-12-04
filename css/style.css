@@ -123,3 +123,22 @@ a.nav-link:hover{
 #social-media-btn a{
 margin: 5px;
 }
+
+#patienttable th, td {
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px black;
+    
+}
+
+#patienttable th{
+    background-color: #18B5F8;
+    border: 15px;
+    border: solid;
+}
+
+#patienttable tr:nth-child(odd) {
+    background-color: #CDF0FF;
+ }
+ #patienttable tr:nth-child(even) {
+    background-color: white;
+ }

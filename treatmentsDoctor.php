@@ -10,6 +10,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 // Include config file
 require_once "config.php";
+
 $patientName = $treatmentDescription = "";
 $patientName_err = $treatmentDescription_err = "";
 
@@ -26,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Check if description is empty
     if(empty(trim($_POST["treatmentDescription"]))){
-        $treatmentDescription_err = "Please enter Treatment Description.";
+        $treatmentDecription_err = "Please enter Treatment Description.";
     } else{
         $treatmentDescription = trim($_POST["treatmentDescription"]);
     }
@@ -35,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($patientName_err) && empty($treatmentDescription_err)){
 
     $patientName = mysqli_real_escape_string($link, $_REQUEST['patientName']);
-    $treatmentDescription = mysqli_real_escape_string($link, $_REQUEST['treatmentDescription']);
+    $treatmentDescription = mysqli_real_escape_string($link, $_REQUEST['patientDescription']);
  
 // Attempt insert query execution
     $sql = "INSERT INTO treatment (patientID, treatmentDesc) VALUES ('$patientName', '$treatmentDescription')";
@@ -100,8 +101,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
 </nav>
 
-<body>
-    <div class="container">
+<body class="gray" style="background: url(./images/backgroungimg.png) no-repeat center fixed; background-size:cover;">
+    <div class="container row-content">
         <!--welcome header bar-->
         <div class="row row-content d-flex justify-content-center">
             <h3>Treatments</h3>
@@ -149,7 +150,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         } else {
                             echo "0 results". mysqli_error($link);
                         }
-                        $link->close();
+                        //$link->close();
                         ?>
                     </tbody>
                 </table>
@@ -174,26 +175,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 <form action="treatmentsDoctor.php" method="post">
                                     <div class = "">
                                         <div>
-                                            <label class="ml-3">Patient Name</label>
+                                            <label class="ml-3">Patient Name</label><br>
                                             <select name="patientName">
+                                            <option></option>
                                             <?php
                                             if ($link->connect_error) {
                                                 die("Connection failed: " . $link->connect_error);
                                             }
-                                                $sqlpatient = "SELECT accountID,firstName FROM account WHERE accountStatus='Active'";
-                                                $results = $link->query($sqlpatient);
-                                                if ($results->num_rows > 0) {
+                                              $sqlpatient = "SELECT accountID, concat(firstName, ' ',lastname) AS fullname FROM account WHERE accountStatus='Active' AND accountType = '3' ";
+                                              $results = $link->query($sqlpatient);
+                                              if ($results->num_rows > 0) {
                                                 // output data of each row
                                                 while ($row = $results->fetch_assoc()){
-                                                    echo "<option value='".$row['accountID']."'>".$row['firstName']."</option>";
+                                                    echo "<option value='".$row['accountID']."'>".$row['fullname']."</option>";
                                                     }
                                                 } else {
                                                     echo "0 results";
                                                     }
                                                 ?>
                                             </select>
-                                            <input type="text" name="patientName" class="form-control ml-3">
-                                            <span class="help-block"><?php echo $patientName_err; ?></span>
                                         </div>    
                                         <div <?php echo (!empty($treatmentDescription_err)) ? 'has-error' : ''; ?>>
                                             <label class="ml-3">Treatment Descritpion</label>

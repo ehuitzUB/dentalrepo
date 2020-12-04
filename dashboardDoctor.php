@@ -102,7 +102,7 @@ require_once "config.php";
                   "<td>"  . $row["aDate"] . "</td>" .
                   "<td>"  . $row["aTime"] . "</td>" .
                   "<td>"  . $row["aStatus"] . "</td>" .
-                  "<td><a href = '.php?GetID=" . $row["accID"] . "'>Edit</a></td>" .
+                  "<td><a href = '.php?GetID=" . $row["aID"] . "'>Edit</a></td>" .
                   "<td><a class=\"btn btn-danger\" >Cancel</a></td>" .
                   "</tr>";
               }
@@ -116,7 +116,6 @@ require_once "config.php";
         </div>
     </div>
 </div>
-<<<<<<< HEAD
   <!-- Create Patients Modal -->
   <div class="modal fade" id="createAppointment" tabindex="-1" role="dialog" aria-labelledby="createAppointmentLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -160,9 +159,6 @@ require_once "config.php";
 </div>
 <!-- modal end -->
 <footer class="footer" style="position: absolute; bottom: 0px; width: 100%;">
-=======
-<footer class="footer">
->>>>>>> e27a949106ca0325c4df2781148c96e573e76fdc
     <div class="container">
         <div class="row justify-content-center">
             <p>Copyright &copy; 2020 Twinkly Smiles Dentistry </p>

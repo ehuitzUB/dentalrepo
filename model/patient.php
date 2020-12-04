@@ -60,3 +60,4 @@ function addPatient($link, $patient){
   }
   echo json_encode($data);
 }
+?>

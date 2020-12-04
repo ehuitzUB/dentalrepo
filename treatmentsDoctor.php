@@ -197,6 +197,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     <div class = "">
                                         <div>
                                             <label class="ml-3">Patient Name</label>
+                                            <select name="patientName" id="cars">
+                                            <?php
+                                            if ($link->connect_error) {
+                                                die("Connection failed: " . $link->connect_error);
+                                            }
+                                              $sql = "SELECT accountID FROM account WHERE accountStatus='Active'";
+                                              $result = $link->query($sql);
+                        
+                                        
+                                              while ($row = $result->fetch_assoc()){
+                                                  echo "<option value='".$row['accountID']."'>".$row['firstName']."</option>";
+                                                   }
+    
+                                            $link->close();
+                                              ?>
+                                            </select>
                                             <input type="text" name="patientName" class="form-control ml-3">
                                             <span class="help-block"><?php echo $patientName_err; ?></span>
                                         </div>    

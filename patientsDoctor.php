@@ -59,8 +59,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //mysqli_close($link);
     }
     //mysqli_close($link);
-  }
-
 
   // Close connection
   //mysqli_close($link);
@@ -263,7 +261,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
   </div>
   <!-- Footer section -->
-  <footer class="footer">
+  <footer class="footer" style="position: absolute; bottom: 0px; width: 100%;">
     <div class="container">
       <div class="row justify-content-center mt-5">
         <p>Copyright &copy 2020 Twinkly Smiles Dentistry </p>

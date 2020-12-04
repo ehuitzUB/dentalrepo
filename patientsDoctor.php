@@ -48,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $patientLName = mysqli_real_escape_string($link, $_REQUEST['patientLName']);
     $patientPhone = mysqli_real_escape_string($link, $_REQUEST['patientPhone']);
     $patientDOB = mysqli_real_escape_string($link, $_REQUEST['patientDOB']);
+<<<<<<< HEAD
 
     // Attempt insert query execution
     $sql = "INSERT INTO account (firstname, lastname, telephone, accountType, DOB) VALUES ('$patientFName', '$patientLName', '$patientPhone', 3, '$patientDOB');SELECT @last := LAST_INSERT_ID();INSERT INTO patient (accountID) VALUES (@last)";
@@ -55,6 +56,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       header("location:patientsDoctor.php");
     } else {
       echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+=======
+ 
+// Attempt insert query execution
+    $sql = "INSERT INTO account (firstname, lastname, telephone, accountType, DOB) VALUES ('$patientFName', '$patientLName', '$patientPhone', 3, '$patientDOB');SELECT @last := LAST_INSERT_ID();INSERT INTO patient (accountID) VALUES (@last); ";
+    if(mysqli_multi_query($link, $sql)){
+        header("location:patientsDoctor.php");
+    } else{
+        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+    }
+        //mysqli_close($link);
+>>>>>>> 429c2003462186b1f44efa7d7ce5b1b20ad50649
     }
     //mysqli_close($link);
   }

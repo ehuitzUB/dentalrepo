@@ -139,6 +139,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
       </div>
     </div>
+
     <div class="alert_window">
       <div id="cancel_appointment_success" class="alert alert-success show" role="alert">
       </div>
@@ -202,6 +203,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
       </div>
     </div>
+  </div>
     <!-- modal end -->
     <footer class="footer" style="position: relative; bottom: 0px; width: 125%;">
       <div class="container">

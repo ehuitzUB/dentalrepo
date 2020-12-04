@@ -19,8 +19,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
@@ -62,13 +62,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </nav>
     <div class="container">
         <!--welcome hea der bar-->
-        <div class="row">
+        <div class="row pt-5">
             <div class="col-md-4 col-sm-4">
                 <h5>Welcome, <span>{USER_NAME}</span></h5>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-7 col-sm-8" style="margin: 0 0 10px 0;">
+            <!--added pb-5 padding Lok at this fehr-->
+            <div class="col-md-7 col-sm-8 pb-5">
                 <div class="row">
                     <div class="col-md-10 appointment-header" style="background-color: #01a97c; color: white;">
                         <p class="d-inline">Appointments</p>
@@ -132,7 +133,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-3 offset-md-1 appointment-body">
+            <!--added pb-5 padding Lok at this fehr-->
+            <div class="col-md-4 col-sm-3 offset-md-1 appointment-body pb-5">
                 <div class="row">
                     <div class="col-md-12 appointment-header" style="background-color: #01a97c; color: white;">
                         <p class="d-inline">Appointments</p>
@@ -173,9 +175,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <!--Added below div was missing-->
     </div>
         <!--footer-->
-        <footer class="footer">
+        <footer class="footer pt-3 pb-0">
             <div class="container">
-                <div class="row justify-content-center">
+                <div class="row justify-content-center" >
                     <p>Copyright &copy; 2020 Twinkly Smiles Dentistry </p>
                 </div>
             </div>

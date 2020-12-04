@@ -101,99 +101,77 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
 </nav>
 
-<body class="gray">
-    <div class="container row-content">
+<body>
+    <div class="container">
         <!--welcome header bar-->
-        <div class="row">
-            <div class="col-md-4 col-sm-4">
-                <h5>Treatments</h5>
+        <div class="row row-content d-flex justify-content-center">
+            <h3>Treatments</h3>
+            <div class="col-md-12 table-responsive">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#createTreatment">Create Treatment</button>
+                <!-- sql goes here -->
+                <table class="table">
+                    <theader>
+                        <tr>
+                            <th>ID</th>
+                            <th>Description</th>
+                            <th>Name</th>
+                            <th>Date Begin</th>
+                            <th>Date End</th>
+                            <th>Status</th>
+                            <th>Edit</th>
+                        </tr>
+                    </theader>
+                    <tbody>
+                        <!-- appointment body starts here -->
+                        <?php
+                        // Check connection
+                        if ($link->connect_error) {
+                            die("Connection failed: " . $link->connect_error);
+                        }
+                        $sql = "SELECT treatment.treatmentID AS tID, patient.patientID AS pID, 
+                        concat(account.firstName, ' ',account.lastname) AS fullname, treatment.treatmentDesc as tDesc , DATE(treatment.treatmentDateBegin) AS tBegin, DATE(treatment.treatmentDateEnd) AS tEnd, treatment.treatmentStatus AS tStatus 
+                        FROM treatment 
+                        LEFT JOIN patient on patient.patientID=treatment.patientID
+                        INNER JOIN account on account.accountID=patient.accountID";
+                        $result = $link->query($sql);
+                        if ($result->num_rows > 0) {
+                            // output data of each row
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>" .
+                                    "<td>" . $row["tID"] . "</td>" .
+                                    "<td>" . $row["tDesc"] . "</td>" .
+                                    "<td>"  . $row["fullname"] . "</td>" .
+                                    "<td>"  . $row["tBegin"] . "</td>" .
+                                    "<td>"  . $row["tEnd"] . "</td>" .
+                                    "<td>"  . $row["tStatus"] . "</td>" .
+                                    "<td><a href = '.php?GetID=" . $row["tID"] . "'>Edit</a></td>" .
+                                    "</tr>";
+                            }
+                        } else {
+                            echo "0 results". mysqli_error($link);
+                        }
+                        $link->close();
+                        ?>
+                    </tbody>
+                </table>
+                <!-- sql ends here -->
             </div>
-
         </div>
-        <div class="container">
-            <div class="row">
-
-
-                <div class="col-md-7 col-sm-8" style="margin: 0 0 10px 0;">
-                    <div class="row">
-                        <div class="col-10 appointment-header intro">
-                            <p class="d-inline">All Treatments</p>
-                        </div>
-                        <div class="col-2 appointment-header intro">
-                            <a href="#">[Search]</a>
-                        </div>
-                        <div class="col-12 appointment-body">
-                            <div class="row">
-                                <!-- appointment body starts here -->
-
-                                <!-- sql goes here -->
-                                <table class="customers">
-                                    <theader>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Descritpion</th>
-                                            <th>Name</th>
-                                            <th>Date Begin</th>
-                                            <th>Date End</th>
-                                            <th>Status</th>
-                                            <th>Edit</th>
-
-                                        </tr>
-
-                                    </theader>
-
-                                    <tbody>
-                                        <!-- appointment body starts here -->
-                                        <?php
-                                        // Check connection
-                                        if ($link->connect_error) {
-                                            die("Connection failed: " . $link->connect_error);
-                                        }
-                                        $sql = "SELECT treatment.treatmentID AS tID, patient.patientID AS pID, 
-                                        concat(account.firstName, ' ',account.lastname) AS fullname, treatment.treatmentDesc as tDesc , treatment.treatmentDateBegin AS tBegin, treatment.treatmentDateEnd AS tEnd, treatment.treatmentStatus AS tStatus 
-                                        FROM treatment 
-                                        LEFT JOIN patient on patient.patientID=treatment.patientID
-                                        INNER JOIN account on account.accountID=patient.accountID";
-                                        $result = $link->query($sql);
-                                        if ($result->num_rows > 0) {
-                                            // output data of each row
-                                            while ($row = $result->fetch_assoc()) {
-                                                echo "<tr>" .
-                                                    "<td>" . $row["tID"] . "</td>" .
-                                                    "<td>" . $row["tDesc"] . "</td>" .
-                                                    "<td>"  . $row["fullname"] . "</td>" .
-                                                    "<td>"  . $row["tBegin"] . "</td>" .
-                                                    "<td>"  . $row["tEnd"] . "</td>" .
-                                                    "<td>"  . $row["tStatus"] . "</td>" .
-                                                    "<td><a href = '.php?GetID=" . $row["tID"] . "'>Edit</a></td>" .
-                                                    
-
-                                                    "</tr>";
-                                            }
-                                        } else {
-                                            echo "0 results". mysqli_error($link);
-                                        }
-                                       // $link->close();
-                                        ?>
-                                    </tbody>
-                                </table>
-
-                                <!-- sql ends here -->
-                            </div>
-
-
-
-
-                        </div>
-                    </div>
+    </div>
+      <!-- Create treatment Modal -->
+    <div class="modal fade" id="createTreatment" tabindex="-1" role="dialog" aria-labelledby="createAppointmentLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="createAppointmentLabel">Create Treatment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 </div>
-                <div class="col-md-4 col-sm-3 offset-md-1 appointment-body">
-                    <div class="row">
-                        <div class="col-12 appointment-header intro">
-                            <p class="d-inline">Create Treatment</p>
-                        </div>
+                <div class="modal-body text-center">
+                    <div class="container">
                         <div class="row"> 
-                            <div class="col-12">              
+                            <div class="col-12 text-center">              
                                 <form action="treatmentsDoctor.php" method="post">
                                     <div class = "">
                                         <div>
@@ -208,12 +186,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                               if ($results->num_rows > 0) {
                                                 // output data of each row
                                                 while ($row = $results->fetch_assoc()){
-                                                  echo "<option value='".$row['accountID']."'>".$row['firstName']."</option>";
-                                                   }
+                                                    echo "<option value='".$row['accountID']."'>".$row['firstName']."</option>";
+                                                    }
                                                 } else {
                                                     echo "0 results";
-                                                  }
-                                              ?>
+                                                    }
+                                                ?>
                                             </select>
                                             <input type="text" name="patientName" class="form-control ml-3">
                                             <span class="help-block"><?php echo $patientName_err; ?></span>
@@ -232,9 +210,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         </div> 
                     </div>
                 </div>
+
+                
+                </div>
             </div>
         </div>
     </div>
+<!-- modal end -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>

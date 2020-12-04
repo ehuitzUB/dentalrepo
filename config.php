@@ -12,7 +12,11 @@
  */
 
 
+<<<<<<< HEAD
 define('DB_SERVER', '198.57.151.234');
+=======
+define('DB_SERVER', '198.57.151.234:3306');
+>>>>>>> 5c4852efb62c83a2012c78d776fb3248abc1ff62
 define('DB_USERNAME', 'elmerhui_elmer');
 define('DB_PASSWORD', 'belize123');
 define('DB_NAME', 'elmerhui_dentaldatabase');

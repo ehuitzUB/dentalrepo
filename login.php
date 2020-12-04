@@ -173,8 +173,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </ul>
       </div>
     </div>
-  </nav>
-<div class="container">
+</nav>
+<div id="maincontain" class="container-fluid" style="background: url(./images/backgroungimg.png); background-size: 150%;background-position: 50% 50% ;">  
+  <div class="container">
     <div class="row row-content d-flex justify-content-center">
         <div class="col-md-5 text-center">
             <h2>Login</h2>
@@ -196,10 +197,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </form>
         </div>
     </div>
-</div> 
+  </div>
+</div>
 <footer class="footer" style="position: absolute; bottom: 0px; width: 100%;">
         <div class="container">
-            <div class="row justify-content-center mt-5" >
+            <div class="row justify-content-center" >
             <p>Copyright &copy 2020 Twinkly Smiles Dentistry </p>
             </div>
         </div> 

@@ -173,7 +173,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <!--Added below div was missing-->
     </div>
         <!--footer-->
-        <footer class="footer">
+        <footer class="footer" >
             <div class="container">
                 <div class="row justify-content-center">
                     <p>Copyright &copy; 2020 Twinkly Smiles Dentistry </p>

@@ -66,19 +66,39 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Treatment</th>
-                        <th>Time</th>
+                        <th>ID</th>
+                        <th>Patient Name</th>
+                        <th>Procedure</th>
                         <th>Date</th>
                         <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <td>Mark</td>
-                    <td>Teeth Whitening</td>
-                    <td>9:30 am</td>
-                    <td>25 November</td>
-                    <td>Active</td>
+                   <!-- appointment body starts here -->
+            <?php
+            // Check connection
+            if ($link->connect_error) {
+              die("Connection failed: " . $link->connect_error);
+            }
+            $sql = "SELECT patient.accountID as accID, concat(account.firstName, ' ',account.lastname) AS fullname, account.telephone AS tp, account.DOB as dateb FROM account LEFT JOIN patient ON patient.accountID=account.accountID WHERE account.accountType=3 AND account.accountStatus= 'Active'";
+            $result = $link->query($sql);
+            if ($result->num_rows > 0) {
+              // output data of each row
+              while ($row = $result->fetch_assoc()) {
+                echo "<tr>" .
+                  "<td>" . $row["accID"] . "</td>" .
+                  "<td>" . $row["fullname"] . "</td>" .
+                  "<td>"  . $row["tp"] . "</td>" .
+                  "<td>"  . $row["dateb"] . "</td>" .
+                  "<td><a href = 'editPatientsDoctor.php?GetID=" . $row["accID"] . "'>Edit</a></td>" .
+                  "<td><a class=\"btn btn-danger\" onclick=\"deletePatient(" . $row["accID"] . ")\">Delete</a></td>" .
+                  "</tr>";
+              }
+            } else {
+              echo "0 results";
+            }
+            //  $link->close();
+            ?>
                 </tbody>
             </table>
         </div>
@@ -98,5 +118,4 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <script type="text/javascript"
     src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-
 </html>

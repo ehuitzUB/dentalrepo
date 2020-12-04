@@ -228,7 +228,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <footer class="footer">
   <div class="container">
       <div class="row justify-content-center mt-5" >
-      <p>Copyright &copy 2020 Twinkly Smiles Dentistry </p>
+        <p>Copyright &copy 2020 Twinkly Smiles Dentistry </p>
       </div>
   </div> 
 </footer>

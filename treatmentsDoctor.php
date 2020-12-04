@@ -101,13 +101,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
 </nav>
 
-<<<<<<< HEAD
 <body class="gray" style="background: url(./images/backgroungimg.png) no-repeat center fixed; background-size:cover;">
     <div class="container row-content">
-=======
-<body>
-    <div class="container">
->>>>>>> b9eaada8eefdb000e382203acabf64e6d2f5a08e
         <!--welcome header bar-->
         <div class="row row-content d-flex justify-content-center">
             <h3>Treatments</h3>

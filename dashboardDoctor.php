@@ -24,7 +24,7 @@ require_once "config.php";
   <link rel="stylesheet" href="./css/main.css">
 </head>
 
-<body style="background: url(./images/backgroungimg.png) no-repeat center fixed; background-size:cover;">
+<body style="background: url(./images/backgrounddash.png) no-repeat center fixed; background-size:cover;">
   <nav class="navbar navbar-light navbar-expand-sm fixed-top appointment-header"
     style="border-bottom: 0.7px dashed black; background-color: azure; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
     <a class="navbar-brand mr-auto" href="#">
@@ -57,12 +57,11 @@ require_once "config.php";
         </ul>
       </div>
     </div>
-<<<<<<< HEAD
   </nav>
     <div class="row row-content text-center">
       <button class="btn btn-primary" data-toggle="modal" data-target="#createAppointment">Create Appointment</button>
       <div class="col-md-12 table-responsive">
-        <table class="table">
+        <table class="table" id="patienttable">
           <thead>
             <tr>
               <th>ID</th>
@@ -77,29 +76,6 @@ require_once "config.php";
           </thead>
           <tbody>
             <!-- appointment body starts here -->
-=======
-</nav>
-<div class="container">
-    <div class="row row-content d-flex justify-content-center"> 
-      <h3>Create Appointment</h3>
-        <div class="col-md-12 table-responsive">
-          <button class="btn btn-primary" data-toggle="modal" data-target="#createAppointment">Create Appointment</button>
-            <table class="table text-center">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Patient Name</th>
-                        <th>Procedure</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Status</th>
-                        <th>Edit</th>
-                        <th>Cancel</th>
-                    </tr>
-                </thead>
-                <tbody>
-                   <!-- appointment body starts here -->
->>>>>>> b9eaada8eefdb000e382203acabf64e6d2f5a08e
             <?php
             // Check connection
             if ($link->connect_error) {
@@ -136,7 +112,6 @@ require_once "config.php";
       </div>
     </div>
   <!-- Create Patients Modal -->
-<<<<<<< HEAD
   <div class="modal fade" id="createAppointment" tabindex="-1" role="dialog" aria-labelledby="createAppointmentLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -149,19 +124,6 @@ require_once "config.php";
         </div>
         <div class="modal-body">
           <form class="form" action=".php" method="post">
-=======
-  <div class="modal fade" id="createAppointment" tabindex="-1" role="dialog" aria-labelledby="createAppointmentLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h5 class="modal-title" id="createAppointmentLabel">Create Appointment</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-center">
-        <form class="form" action=".php" method="post">
->>>>>>> b9eaada8eefdb000e382203acabf64e6d2f5a08e
             <div class="form-group">
               <label class="ml-3">Treatment</label>
               <input type="text" name="TreatmentID" class="form-control ml-3">

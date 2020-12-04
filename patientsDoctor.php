@@ -51,7 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fName = substr($patientFName, 0, 3);
     $lName = substr($patientLName, 0, 3);
     $patientUserName = strtolower($fName . $lName);
-echo $patientDOB;
     // Attempt insert query execution
     $sql = "INSERT INTO account (firstname, lastname, telephone, accountType, DOB) VALUES ('$patientFName', '$patientLName', '$patientPhone', 3, '$patientDOB');SELECT @last := LAST_INSERT_ID();INSERT INTO patient (accountID) VALUES (@last); INSERT INTO users (username, password) VALUES ('$patientUserName', '$patient_password'); SELECT @userid := LAST_INSERT_ID(); UPDATE account SET loginID=@userid WHERE accountID=@last;";
     if (mysqli_multi_query($link, $sql)) {
@@ -94,10 +93,10 @@ echo $patientDOB;
     <div class="collapse navbar-collapse" id="Navbar">
       <div class="container  justify-content-md-end text-center justify-content-center">
         <ul class="navbar-nav" style="text-align: center;">
-          <li class="nav-item active text-black">
+          <li class="nav-item text-black">
             <a class="nav-link " href="./dashboardDoctor.php"><span class="fa fa-home fa-lg"></span>Home</a>
           </li>
-          <li class="nav-item text-black">
+          <li class="nav-item active text-black">
             <a class="nav-link" href="./patientsDoctor.php"><span class="fa fa-user-circle"></span>Patients</a>
           </li>
           <li class="nav-item text-black">
@@ -159,7 +158,7 @@ echo $patientDOB;
               echo "0 results";
             }
             //  $link->close();
-            ?>
+          ?>
           </tbody>
         </table>
         <div class="alert_window">
@@ -186,22 +185,22 @@ echo $patientDOB;
             <div>
               <label class="ml-3">Patient First Name</label>
               <input type="text" name="patientFName" class="form-control" required>
-              <span id="errorPatientFName" class="help-block text-danger"><?php echo $patientFName_err; ?></span>
+              <span id="errorPatientFName" class="help-block text-danger"></span>
             </div>
-            <div class="form-group" <?php echo (!empty($patientLName_err)) ? 'has-error' : ''; ?>>
+            <div>
               <label class="ml-3">Patient Last Name</label>
               <input type="text" name="patientLName" class="form-control" required>
-              <span id="errorPatientLName" class="help-block text-danger"><?php echo $patientLName_err; ?></span>
+              <span id="errorPatientLName" class="help-block text-danger"></span>
             </div>
-            <div class="form-group" <?php echo (!empty($patientPhone_err)) ? 'has-error' : ''; ?>>
+            <div class="form-group">
               <label class="ml-3">Patient Phone</label>
               <input type="text" name="patientPhone" class="form-control" required>
-              <span id="errorPatientPhone" class="help-block text-danger"><?php echo $patientPhone_err; ?></span>
+              <span id="errorPatientPhone" class="help-block text-danger"></span>
             </div>
-            <div class="form-group" <?php echo (!empty($patientDOB_err)) ? 'has-error' : ''; ?>>
+            <div class="form-group">
               <label class="ml-3">Patient DOB</label>
               <input type="date" name="patientDOB" class="form-control" required>
-              <span id="errorPatientDOB" class="help-block text-danger"><?php echo $patientDOB_err; ?></span>
+              <span id="errorPatientDOB" class="help-block text-danger"></span>
             </div>
             <div class="form-group">
               <label class="ml-3">User Password</label>
@@ -225,7 +224,7 @@ echo $patientDOB;
   </div>
 </div>
 <!-- modal end -->
-<footer class="footer" style="position:fixed; bottom: 0px; width: 100%;">
+<footer class="footer" style="bottom: 0px; width: 100%;">
   <div class="container">
       <div class="row justify-content-center mt-0 md-0" >
         <p>Copyright &copy 2020 Twinkly Smiles Dentistry </p>

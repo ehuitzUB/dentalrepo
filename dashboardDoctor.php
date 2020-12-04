@@ -58,7 +58,9 @@ require_once "config.php";
   </nav>
   <div class="container">
     <div class="row row-content d-flex justify-content-center">
-      <h3>Create Appointment</h3>
+      <h4>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></h4> <br>
+      <h3>Appointments for Today</h3>
+
       <div class="col-md-12 table-responsive">
         <button class="btn btn-primary" data-toggle="modal" data-target="#createAppointment">Create Appointment</button>
         <table class="table text-center">
@@ -131,9 +133,25 @@ require_once "config.php";
           <div class="modal-body text-center">
             <form class="form" action=".php" method="post">
               <div class="form-group">
-                <label class="ml-3">Treatment</label>
-                <input type="text" name="TreatmentID" class="form-control ml-3">
-                <span class="help-block"></span>
+                <label class="ml-3">Patient - Treatment</label>
+                <select name="patienttreatment" id="treatmentIDvalue">
+                  <option></option>
+                  <?php
+                  if ($link->connect_error) {
+                    die("Connection failed: " . $link->connect_error);
+                  }
+                  $sqlpatient = "SELECT treatment.treatmentID, concat(account.firstName, ' ',account.lastname) AS fullname, treatment.treatmentDesc FROM treatment LEFT JOIN patient ON patient.patientID=treatment.treatmentID LEFT JOIN account ON account.accountID=patient.accountID ";
+                  $results = $link->query($sqlpatient);
+                  if ($results->num_rows > 0) {
+                    // output data of each row
+                    while ($row = $results->fetch_assoc()) {
+                      echo "<option value='" . $row['treatmentID'] . "'>" . $row['fullname'] . " - " . $row['treatmentDesc'] . "</option>";
+                    }
+                  } else {
+                    echo "0 results";
+                  }
+                  ?>
+                </select>
               </div>
               <div class="form-group">
                 <label class="ml-3">AppointmentDate</label>
@@ -142,7 +160,7 @@ require_once "config.php";
               </div>
               <div class="form-group">
                 <label class="ml-3">Appointment Time</label>
-                <input type="text" name="appointmentTime" class="form-control ml-3">
+                <input type="time" name="appointmentTime" class="form-control ml-3 " step="2" min="8:00" max="17:00">
                 <span class="help-block"></span>
               </div>
               <div class="form-group">
@@ -159,19 +177,18 @@ require_once "config.php";
         </div>
       </div>
     </div>
-  </div>
-  <!-- modal end -->
-  <footer class="footer" style="position: absolute; bottom: 0px; width: 100%;">
-    <div class="container">
-      <div class="row justify-content-center">
-        <p>Copyright &copy; 2020 Twinkly Smiles Dentistry </p>
+    <!-- modal end -->
+    <footer class="footer" style="position: absolute; bottom: 0px; width: 100%;">
+      <div class="container">
+        <div class="row justify-content-center">
+          <p>Copyright &copy; 2020 Twinkly Smiles Dentistry </p>
+        </div>
       </div>
-    </div>
-  </footer>
-  <!--footer ends-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="controller/treatments.js"></script>
+    </footer>
+    <!--footer ends-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="controller/treatments.js"></script>
 </body>
 
 </html>

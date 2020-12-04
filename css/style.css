@@ -105,3 +105,20 @@ address{
     border-bottom: 1px solid #ddd;
     padding: 10px;
 }
+.navbar{
+padding: 0;
+}
+
+.alert_window{
+  position: absolute;
+  bottom: 10px;
+}
+
+a.nav-link:hover{
+    background-color: #01a97c;
+    color: white;
+  }
+
+#social-media-btn a{
+margin: 5px;
+}

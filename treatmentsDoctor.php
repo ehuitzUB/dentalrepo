@@ -175,26 +175,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 <form action="treatmentsDoctor.php" method="post">
                                     <div class = "">
                                         <div>
-                                            <label class="ml-3">Patient Name</label>
+                                            <label class="ml-3">Patient Name</label><br>
                                             <select name="patientName">
+                                            <option></option>
                                             <?php
                                             if ($link->connect_error) {
                                                 die("Connection failed: " . $link->connect_error);
                                             }
-                                              $sqlpatient = "SELECT accountID, firstName FROM account WHERE accountStatus='Active'";
+                                              $sqlpatient = "SELECT accountID, concat(firstName, ' ',lastname) AS fullname FROM account WHERE accountStatus='Active' AND accountType = '3' ";
                                               $results = $link->query($sqlpatient);
                                               if ($results->num_rows > 0) {
                                                 // output data of each row
                                                 while ($row = $results->fetch_assoc()){
-                                                    echo "<option value='".$row['accountID']."'>".$row['firstName']."</option>";
+                                                    echo "<option value='".$row['accountID']."'>".$row['fullname']."</option>";
                                                     }
                                                 } else {
                                                     echo "0 results";
                                                     }
                                                 ?>
                                             </select>
-                                            <input type="text" name="patientName" class="form-control ml-3">
-                                            <span class="help-block"><?php echo $patientName_err; ?></span>
                                         </div>    
                                         <div <?php echo (!empty($treatmentDescription_err)) ? 'has-error' : ''; ?>>
                                             <label class="ml-3">Treatment Descritpion</label>

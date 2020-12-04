@@ -66,7 +66,7 @@ h5 {
 	Global Styles
 -------------------------------------------------------------------------------*/
 a {
-	color:floralwhite;
+	/*color:floralwhite;*/
 }
 a:hover, a:focus {
 	text-decoration: none;

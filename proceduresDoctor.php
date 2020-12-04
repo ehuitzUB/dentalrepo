@@ -184,12 +184,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                         </div>    
                                         <div <?php echo (!empty($procedureDescription_err)) ? 'has-error' : ''; ?>>
                                             <label class="ml-3">Procedure Description</label>
-                                            <input type="text" name="procedureDescription" class="form-control">
+                                            <input type="text" name="procedureDescription" class="form-control ml-3">
                                             <span class="help-block"><?php echo $procedureDecription_err; ?></span>
                                         </div>
                                         <div <?php echo (!empty($procedureCost_err)) ? 'has-error' : ''; ?>>
                                             <label class="ml-3">Procedure Cost</label>
-                                            <input type="text" name="procedureCost" class="form-control">
+                                            <input type="text" name="procedureCost" class="form-control ml-3">
                                             <span class="help-block"><?php echo $procedureCost_err; ?></span>
                                         </div>
                                         <div class="text-center">

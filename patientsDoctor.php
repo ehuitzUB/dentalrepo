@@ -192,27 +192,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="form-group" <?php echo (!empty($patientLName_err)) ? 'has-error' : ''; ?>>
               <label class="ml-3">Patient Last Name</label>
-              <input type="text" name="patientLName" class="form-control">
+              <input type="text" name="patientLName" class="form-control ml-3">
               <span class="help-block"><?php echo $patientLName_err; ?></span>
             </div>
             <div class="form-group"<?php echo (!empty($patientPhone_err)) ? 'has-error' : ''; ?>>
               <label class="ml-3">Patient Phone</label>
-              <input type="text" name="patientPhone" class="form-control">
+              <input type="text" name="patientPhone" class="form-control ml-3">
               <span class="help-block"><?php echo $patientPhone_err; ?></span>
             </div>
             <div class="form-group"<?php echo (!empty($patientDOB_err)) ? 'has-error' : ''; ?>>
               <label class="ml-3">Patient DOB</label>
-              <input type="text" name="patientDOB" class="form-control">
+              <input type="text" name="patientDOB" class="form-control ml-3">
               <span class="help-block"><?php echo $patientDOB_err; ?></span>
             </div>
             <div>
               <label class="ml-3">User Password</label>
-              <input type="text" name="userpasswd" class="form-control">
+              <input type="text" name="userpasswd" class="form-control ml-3">
               <span class="help-block"></span>
             </div>
             <div>
               <label class="ml-3">Confirm Password</label>
-              <input type="text" name="confirmuserpasswd" class="form-control">
+              <input type="text" name="confirmuserpasswd" class="form-control ml-3">
               <span class="help-block"></span>
             </div>
             <div class="modal-footer text-center">

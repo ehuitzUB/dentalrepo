@@ -63,6 +63,7 @@ require_once "config.php";
 </nav>
 <div class="container">
     <div class="row row-content text-center"> 
+    <button class="btn btn-primary" data-toggle="modal" data-target="#createAppointment">Create Appointment</button>
         <div class="col-md-12 table-responsive">
             <table class="table">
                 <thead>
@@ -115,6 +116,48 @@ require_once "config.php";
         </div>
     </div>
 </div>
+  <!-- Create Patients Modal -->
+  <div class="modal fade" id="createAppointment" tabindex="-1" role="dialog" aria-labelledby="createAppointmentLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createAppointmentLabel">Create Appointment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form" action=".php" method="post">
+            <div class="form-group">
+              <label class="ml-3">Treatment</label>
+              <input type="text" name="TreatmentID" class="form-control ml-3">
+              <span class="help-block"></span>
+            </div>
+            <div class="form-group">
+              <label class="ml-3">AppointmentDate</label>
+              <input type="text" name="appointmentDate" class="form-control ml-3">
+              <span class="help-block"></span>
+            </div>
+            <div class="form-group">
+              <label class="ml-3">Appointment Time</label>
+              <input type="text" name="appointmentTime" class="form-control ml-3">
+              <span class="help-block"></span>
+            </div>
+            <div class="form-group">
+              <label class="ml-3">Appointment Comments</label>
+              <input type="text" name="appComments" class="form-control ml-3">
+              <span class="help-block"></span>
+            </div>           
+            <div class="modal-footer text-center">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal end -->
 <footer class="footer" style="position: absolute; bottom: 0px; width: 100%;">
     <div class="container">
         <div class="row justify-content-center">

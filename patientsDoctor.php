@@ -118,148 +118,98 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="row">
       <div class="col-md-4 col-sm-4">
         <h5>Patients</h5>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#createPatients">Create Patient</button>
       </div>
-
-    </div>
-    <div class="container">
-      <div class="row">
-
-
-        <div class="col-md-7 col-sm-8" style="margin: 0 0 10px 0;">
-          <div class="row">
-            <div class="col-3 appointment-header intro">
-              <p class="d-inline">First Name</p>
-            </div>
-            <div class="col-3 appointment-header intro">
-              <p class="d-inline">Last Name</p>
-            </div>
-            <div class="col-3 appointment-header intro">
-              <p class="d-inline">Telephone</p>
-            </div>
-            <div class="col-3 appointment-header intro">
-              <p class="d-inline">DOB</p>
-            </div>
-            <div class="col-12 appointment-body">
-              <div class="row">
-                <!-- patient table starts here -->
-                <table class="customers">
-                  <theader>
-                    <tr>
-                      <th>Patient ID</th>
-                      <th>Patient Name</th>
-                      <th>Patient Telephone</th>
-                      <th>Patient DOB</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
-
-                    </tr>
-
-                  </theader>
-
-                  <tbody>
-
-
-                    <!-- appointment body starts here -->
-                    <?php
-                    // Check connection
-                    if ($link->connect_error) {
-                      die("Connection failed: " . $link->connect_error);
-                    }
-                    $sql = "SELECT patient.accountID as accID, concat(account.firstName, ' ',account.lastname) AS fullname, account.telephone AS tp, account.DOB as dateb FROM account LEFT JOIN patient ON patient.accountID=account.accountID WHERE account.accountType=3 AND account.accountStatus= 'Active'";
-                    $result = $link->query($sql);
-                    if ($result->num_rows > 0) {
-                      // output data of each row
-                      while ($row = $result->fetch_assoc()) {
-                        echo "<tr>" .
-                          "<td>" . $row["accID"] . "</td>" .
-                          "<td>" . $row["fullname"] . "</td>" .
-                          "<td>"  . $row["tp"] . "</td>" .
-                          "<td>"  . $row["dateb"] . "</td>" .
-                          "<td><a href = 'editPatientsDoctor.php?GetID=" . $row["accID"] . "'>Edit</a></td>" .
-                          "<td><a class=\"btn btn-danger\" onclick=\"deletePatient(" . $row["accID"] . ")\">Delete</a></td>" .
-                          "</tr>";
-                      }
-                    } else {
-                      echo "0 results";
-                    }
-                    //  $link->close();
-                    ?>
-                  </tbody>
-                </table>
-
-
-
-
-                <!-- patient table ends here -->
-              </div>
-
-            </div>
-
-
+      <div class="col-md-12">
+        <table class="table">
+          <theader>
+            <tr>
+              <th>Patient ID</th>
+              <th>Patient Name</th>
+              <th>Patient Telephone</th>
+              <th>Patient DOB</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </theader>
+          <tbody>
+            <!-- appointment body starts here -->
+            <?php
+            // Check connection
+            if ($link->connect_error) {
+              die("Connection failed: " . $link->connect_error);
+            }
+            $sql = "SELECT patient.accountID as accID, concat(account.firstName, ' ',account.lastname) AS fullname, account.telephone AS tp, account.DOB as dateb FROM account LEFT JOIN patient ON patient.accountID=account.accountID WHERE account.accountType=3 AND account.accountStatus= 'Active'";
+            $result = $link->query($sql);
+            if ($result->num_rows > 0) {
+              // output data of each row
+              while ($row = $result->fetch_assoc()) {
+                echo "<tr>" .
+                  "<td>" . $row["accID"] . "</td>" .
+                  "<td>" . $row["fullname"] . "</td>" .
+                  "<td>"  . $row["tp"] . "</td>" .
+                  "<td>"  . $row["dateb"] . "</td>" .
+                  "<td><a href = 'editPatientsDoctor.php?GetID=" . $row["accID"] . "'>Edit</a></td>" .
+                  "<td><a class=\"btn btn-danger\" onclick=\"deletePatient(" . $row["accID"] . ")\">Delete</a></td>" .
+                  "</tr>";
+              }
+            } else {
+              echo "0 results";
+            }
+            //  $link->close();
+            ?>
+          </tbody>
+        </table>
+        <div class="alert_window">
+          <div id="delete_patient_success" class="alert alert-success" role="alert">
+          </div>
+          <div id="delete_patient_failure" class="alert alert-danger" role="alert">
           </div>
         </div>
-        <div class="col-md-4 col-sm-3 offset-md-1 appointment-body">
-          <div class="row">
-            <div class="col-12 appointment-header intro">
-              <p class="d-inline">Add New Patient</p>
-            </div>
-            <div class="col-12 appointment-body">
-              <div class="row">
-                <!-- appointment body starts here -->
-
-                <!-- appointment body starts here -->
-                <div class="col-12">
-                  <div class="row">
-                    <div class="col-12">
-                      <div class="row">
-                        <form action="patientsDoctor.php" method="post">
-                          <div class="">
-                            <div>
-                              <label class="ml-3">Patient First Name</label>
-                              <input type="text" name="patientFName" class="form-control ml-3">
-                              <span class="help-block"><?php echo $patientFName_err; ?></span>
-                            </div>
-                            <div <?php echo (!empty($patientLName_err)) ? 'has-error' : ''; ?>>
-                              <label class="ml-3">Patient Last Name</label>
-                              <input type="text" name="patientLName" class="form-control">
-                              <span class="help-block"><?php echo $patientLName_err; ?></span>
-                            </div>
-                            <div <?php echo (!empty($patientPhone_err)) ? 'has-error' : ''; ?>>
-                              <label class="ml-3">Patient Phone</label>
-                              <input type="text" name="patientPhone" class="form-control">
-                              <span class="help-block"><?php echo $patientPhone_err; ?></span>
-                            </div>
-                            <div <?php echo (!empty($patientDOB_err)) ? 'has-error' : ''; ?>>
-                              <label class="ml-3">Patient DOB</label>
-                              <input type="text" name="patientDOB" class="form-control">
-                              <span class="help-block"><?php echo $patientDOB_err; ?></span>
-                            </div>
-                            <div class="text-center">
-                              <input type="submit" class="btn btn-primary" value="Submit">
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- appointment body ends here -->
-              </div>
-
-            </div>
-
-
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="alert_window">
-      <div id="delete_patient_success" class="alert alert-success" role="alert">
-      </div>
-      <div id="delete_patient_failure" class="alert alert-danger" role="alert">
       </div>
     </div>
   </div>
+  <!-- Create Patients Modal -->
+  <div class="modal fade" id="createPatients" tabindex="-1" role="dialog" aria-labelledby="createPatientsLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createPatientsLabel">Create Patient</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="patientsDoctor.php" method="post">
+            <div>
+              <label class="ml-3">Patient First Name</label>
+              <input type="text" name="patientFName" class="form-control ml-3">
+              <span class="help-block"><?php echo $patientFName_err; ?></span>
+            </div>
+            <div <?php echo (!empty($patientLName_err)) ? 'has-error' : ''; ?>>
+              <label class="ml-3">Patient Last Name</label>
+              <input type="text" name="patientLName" class="form-control">
+              <span class="help-block"><?php echo $patientLName_err; ?></span>
+            </div>
+            <div <?php echo (!empty($patientPhone_err)) ? 'has-error' : ''; ?>>
+              <label class="ml-3">Patient Phone</label>
+              <input type="text" name="patientPhone" class="form-control">
+              <span class="help-block"><?php echo $patientPhone_err; ?></span>
+            </div>
+            <div <?php echo (!empty($patientDOB_err)) ? 'has-error' : ''; ?>>
+              <label class="ml-3">Patient DOB</label>
+              <input type="text" name="patientDOB" class="form-control">
+              <span class="help-block"><?php echo $patientDOB_err; ?></span>
+            </div>
+            <div class="modal-footer text-center">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
   <!-- Footer section -->
   <footer class="footer" style="position: absolute; bottom: 0px; width: 100%;">
     <div class="container">
@@ -273,5 +223,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="controller/patients.js"></script>
 </body>
-
 </html>

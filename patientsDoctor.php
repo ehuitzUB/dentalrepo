@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
   // Check if phone is empty
   if (empty(trim($_POST["patientDOB"]))) {
-    $patientDOB_err = "Please enter Phone.";
+    $patientDOB_err = "Please enter DOB.";
   } else {
     $patientDOB = trim($_POST["patientDOB"]);
   }
@@ -50,8 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $patientDOB = mysqli_real_escape_string($link, $_REQUEST['patientDOB']);
     $password = mysqli_real_escape_string($link, $_REQUEST['userpasswd']);
     $patient_password = password_hash($password, PASSWORD_DEFAULT);
-    $fName=substr($patientFName, 0, 2);
-    $lName=substr($patientLName, 0, 2);
+    $fName=substr($patientFName, 0, 3);
+    $lName=substr($patientLName, 0, 3);
     $patientUserName=strtolower($fName.$lName);
  
 // Attempt insert query execution

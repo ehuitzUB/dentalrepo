@@ -84,21 +84,25 @@ require_once "config.php";
             if ($link->connect_error) {
               die("Connection failed: " . $link->connect_error);
             }
-            $sql = "SELECT appointment.appointmentID AS aID, appointment.treatmentID AS atID, appointment.appointmentDate AS aDate, appointment.appointmentTime AS aTime, appointment.appointmentStatus as aStatus FROM appointment";
+            $sql = "SELECT appointment.appointmentID AS aID,  concat(account.firstName, ' ',account.lastname) AS fullname, appointment.appointmentComments AS aComments, appointment.appointmentDate AS aDate, appointment.appointmentTime AS aTime, appointment.appointmentStatus as aStatus 
+            FROM appointment 
+            LEFT JOIN treatment ON treatment.treatmentID=appointment.treatmentID
+            LEFT JOIN patient ON patient.patientID=treatment.patientID
+            LEFT JOIN account ON account.accountID=patient.accountID
+            WHERE appointment.appointmentStatus = 'Open'";
             $result = $link->query($sql);
             if ($result->num_rows > 0) {
               // output data of each row
               while ($row = $result->fetch_assoc()) {
                 echo "<tr>" .
                   "<td>" . $row["aID"] . "</td>" .
-                  "<td>" . $row["atID"] . "</td>" .
-                  
-                  "<td>"  . $row["tp"] . "</td>" .
+                  "<td>" . $row["fullname"] . "</td>" .
+                  "<td>"  . $row["aComments"] . "</td>" .
                   "<td>"  . $row["aDate"] . "</td>" .
                   "<td>"  . $row["aTime"] . "</td>" .
                   "<td>"  . $row["aStatus"] . "</td>" .
                   "<td><a href = '.php?GetID=" . $row["accID"] . "'>Edit</a></td>" .
-                  "<td><a class=\"btn btn-danger\" >Edit</a></td>" .
+                  "<td><a class=\"btn btn-danger\" >Cancel</a></td>" .
                   "</tr>";
               }
             } else {

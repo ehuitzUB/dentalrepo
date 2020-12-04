@@ -67,6 +67,7 @@ h5 {
 -------------------------------------------------------------------------------*/
 a {
 	/*color:floralwhite;*/
+	text-decoration: none;
 }
 a:hover, a:focus {
 	text-decoration: none;
@@ -886,7 +887,7 @@ ul.list-default li {
   }
 
   .customers a {
-	color: blue;
+	/*color: blue;*/
   }
 
 

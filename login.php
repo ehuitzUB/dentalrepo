@@ -155,7 +155,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="collapse navbar-collapse" id="Navbar">
       <div class="container  justify-content-md-end text-center justify-content-center">
         <ul class="navbar-nav" style="text-align: center;">
-          <li class="nav-item active">
+          <li class="nav-item ">
             <a class="nav-link" href="./index.html">Home</a>
           </li>
           <li class="nav-item">
@@ -167,7 +167,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           <li class="nav-item">
             <a class="nav-link" href="./gallery.html">Gallery</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="./login.php">Login</a>
           </li>
         </ul>

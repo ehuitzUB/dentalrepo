@@ -9,12 +9,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 }
 require_once "config.php";
 
-$patientFName = $patientLName = $patientPhone = $patientDOB =$password= "";
+$patientFName = $patientLName = $patientPhone = $patientDOB = $password = "";
 $patientFName_err = $patientLName_err = $patientPhone_err = $patientDOB_err = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-
   // Check if FName is empty
 
   if (empty(trim($_POST["patientFName"]))) {
@@ -50,20 +48,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $patientDOB = mysqli_real_escape_string($link, $_REQUEST['patientDOB']);
     $password = mysqli_real_escape_string($link, $_REQUEST['userpasswd']);
     $patient_password = password_hash($password, PASSWORD_DEFAULT);
-    $fName=substr($patientFName, 0, 3);
-    $lName=substr($patientLName, 0, 3);
-    $patientUserName=strtolower($fName.$lName);
- 
-// Attempt insert query execution
+    $fName = substr($patientFName, 0, 3);
+    $lName = substr($patientLName, 0, 3);
+    $patientUserName = strtolower($fName . $lName);
+echo $patientDOB;
+    // Attempt insert query execution
     $sql = "INSERT INTO account (firstname, lastname, telephone, accountType, DOB) VALUES ('$patientFName', '$patientLName', '$patientPhone', 3, '$patientDOB');SELECT @last := LAST_INSERT_ID();INSERT INTO patient (accountID) VALUES (@last); INSERT INTO users (username, password) VALUES ('$patientUserName', '$patient_password'); SELECT @userid := LAST_INSERT_ID(); UPDATE account SET loginID=@userid WHERE accountID=@last;";
-    if(mysqli_multi_query($link, $sql)){
-        header("location:patientsDoctor.php");
-    } else{
-        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-    }
-        //mysqli_close($link);
+    if (mysqli_multi_query($link, $sql)) {
+      header("location:patientsDoctor.php");
+    } else {
+      echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
     }
     //mysqli_close($link);
+  }
+  //mysqli_close($link);
 
   // Close connection
   //mysqli_close($link);
@@ -174,66 +172,69 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
   </div>
   <!-- Create Patients Modal -->
-<div class="modal fade" id="createPatients" tabindex="-1" role="dialog" aria-labelledby="createPatientsLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="createPatientsLabel">Create Patient</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-center">
-        <form class="form" action="patientsDoctor.php" method="post">
-            <div class="form-group">
+  <div class="modal fade" id="createPatients" tabindex="-1" role="dialog" aria-labelledby="createPatientsLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="createPatientsLabel">Create Patient</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="patientsDoctor.php" name="addPatientForm" onsubmit="return validateAddPatientForm()" method="post">
+            <div>
               <label class="ml-3">Patient First Name</label>
-              <input type="text" name="patientFName" class="form-control ml-3">
-              <span class="help-block"><?php echo $patientFName_err; ?></span>
+              <input type="text" name="patientFName" class="form-control" required>
+              <span id="errorPatientFName" class="help-block text-danger"><?php echo $patientFName_err; ?></span>
             </div>
             <div class="form-group" <?php echo (!empty($patientLName_err)) ? 'has-error' : ''; ?>>
               <label class="ml-3">Patient Last Name</label>
-              <input type="text" name="patientLName" class="form-control ml-3">
-              <span class="help-block"><?php echo $patientLName_err; ?></span>
+              <input type="text" name="patientLName" class="form-control" required>
+              <span id="errorPatientLName" class="help-block text-danger"><?php echo $patientLName_err; ?></span>
             </div>
-            <div class="form-group"<?php echo (!empty($patientPhone_err)) ? 'has-error' : ''; ?>>
+            <div class="form-group" <?php echo (!empty($patientPhone_err)) ? 'has-error' : ''; ?>>
               <label class="ml-3">Patient Phone</label>
-              <input type="text" name="patientPhone" class="form-control ml-3">
-              <span class="help-block"><?php echo $patientPhone_err; ?></span>
+              <input type="text" name="patientPhone" class="form-control" required>
+              <span id="errorPatientPhone" class="help-block text-danger"><?php echo $patientPhone_err; ?></span>
             </div>
-            <div class="form-group"<?php echo (!empty($patientDOB_err)) ? 'has-error' : ''; ?>>
+            <div class="form-group" <?php echo (!empty($patientDOB_err)) ? 'has-error' : ''; ?>>
               <label class="ml-3">Patient DOB</label>
-              <input type="text" name="patientDOB" class="form-control ml-3">
-              <span class="help-block"><?php echo $patientDOB_err; ?></span>
+              <input type="date" name="patientDOB" class="form-control" required>
+              <span id="errorPatientDOB" class="help-block text-danger"><?php echo $patientDOB_err; ?></span>
             </div>
             <div class="form-group">
               <label class="ml-3">User Password</label>
-              <input type="text" name="userpasswd" class="form-control ml-3">
-              <span class="help-block"></span>
+              <input type="password" name="userpasswd" class="form-control" required>
+              <span id="errorPatientPassword" class="help-block text-danger"></span>
             </div>
             <div class="form-group">
               <label class="ml-3">Confirm Password</label>
-              <input type="text" name="confirmuserpasswd" class="form-control ml-3">
-              <span class="help-block"></span>
+              <input type="password" name="confirmuserpasswd" class="form-control" required>
+              <span id="errorPatientConfirm" class="help-block text-danger"></span>
             </div>
             <div class="form-group text-center">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-        </form>
+            <input type="hidden" name="action" value="addPatient">
+          </form>
+        </div>
       </div>
     </div>
   </div>
 </div>
 <!-- modal end -->
-<footer class="footer" style="position:fixed; bottom: 0px; width: 100%;">
+<footer class="footer" style="bottom: 0px; width: 100%;">
   <div class="container">
       <div class="row justify-content-center mt-0 md-0" >
         <p>Copyright &copy 2020 Twinkly Smiles Dentistry </p>
       </div>
-  </div> 
-</footer>
+    </div>
+  </footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="controller/patients.js"></script>
 </body>
+
 </html>

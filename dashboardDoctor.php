@@ -24,7 +24,7 @@ require_once "config.php";
   <link rel="stylesheet" href="./css/main.css">
 </head>
 
-<body style="background: url(./images/backgroungimg.png) no-repeat center fixed; background-size:cover;">
+<body style="background: url(./images/backgrounddash.png) no-repeat center fixed; background-size:cover;">
   <nav class="navbar navbar-light navbar-expand-sm fixed-top appointment-header"
     style="border-bottom: 0.7px dashed black; background-color: azure; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
     <a class="navbar-brand mr-auto" href="#">

@@ -31,6 +31,18 @@ function deletePatient(id) {
   }
 }
 
+function addPatient(bucket){
+  if(bucket.action.value == "addPatient"){
+    $.ajax({
+      method: "POST",
+      url: "model/patient.php",
+      data: {action: 'addPatient', patient: bucket}
+    }).done(function(data){
+      var results = JSON.parse(data);
+    });
+  }
+}
+
 function validateAddPatientForm() {
   let bucket = document.forms["addPatientForm"];
   let flag = true;
@@ -76,5 +88,8 @@ function validateAddPatientForm() {
     $("#errorPatientFName").text("First name can only be letters.");
     flag = false;
   }
+  // if(flag === true) {
+  //   addPatient(bucket);
+  // }
   return flag;
-}
+} 

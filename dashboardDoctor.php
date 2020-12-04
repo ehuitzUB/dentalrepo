@@ -1,11 +1,11 @@
 <?php
 // Initialize the session
 session_start();
- 
+
 // Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
-    exit;
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+  header("location: login.php");
+  exit;
 }
 require_once "config.php";
 ?>
@@ -17,16 +17,14 @@ require_once "config.php";
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Twinkling Smiles | Dashboard</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body style="background: url(./images/backgrounddash.png) no-repeat center fixed; background-size:cover;">
-  <nav class="navbar navbar-light navbar-expand-sm fixed-top appointment-header"
-    style="border-bottom: 0.7px dashed black; background-color: azure; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
+  <nav class="navbar navbar-light navbar-expand-sm fixed-top appointment-header" style="border-bottom: 0.7px dashed black; background-color: azure; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
     <a class="navbar-brand mr-auto" href="#">
       <img src="images/logo.png" height="50" width="130">
     </a>
@@ -57,29 +55,29 @@ require_once "config.php";
         </ul>
       </div>
     </div>
-</nav>
-<div class="container">
-    <div class="row row-content d-flex justify-content-center"> 
-    <h4>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></h4> <br>
+  </nav>
+  <div class="container">
+    <div class="row row-content d-flex justify-content-center">
+      <h4>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></h4> <br>
       <h3>Appointments for Today</h3>
-      
-        <div class="col-md-12 table-responsive">
-          <button class="btn btn-primary" data-toggle="modal" data-target="#createAppointment">Create Appointment</button>
-            <table class="table text-center">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Patient Name</th>
-                        <th>Procedure</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Status</th>
-                        <th>Edit</th>
-                        <th>Cancel</th>
-                    </tr>
-                </thead>
-                <tbody>
-                   <!-- appointment body starts here -->
+
+      <div class="col-md-12 table-responsive">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#createAppointment">Create Appointment</button>
+        <table class="table text-center">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Patient Name</th>
+              <th>Procedure</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Status</th>
+              <th>Edit</th>
+              <th>Cancel</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- appointment body starts here -->
             <?php
             // Check connection
             if ($link->connect_error) {
@@ -103,7 +101,7 @@ require_once "config.php";
                   "<td>"  . $row["aTime"] . "</td>" .
                   "<td>"  . $row["aStatus"] . "</td>" .
                   "<td><a href = '.php?GetID=" . $row["aID"] . "'>Edit</a></td>" .
-                  "<td><a class=\"btn btn-danger\" >Cancel</a></td>" .
+                  "<td><a class=\"btn btn-danger\" onclick=\"cancelAppointmentDoctor(" . $row["aID"] . ")\" >Cancel</a></td>" .
                   "</tr>";
               }
             } else {
@@ -113,77 +111,84 @@ require_once "config.php";
             ?>
           </tbody>
         </table>
+
       </div>
     </div>
-  <!-- Create Patients Modal -->
-  <div class="modal fade" id="createAppointment" tabindex="-1" role="dialog" aria-labelledby="createAppointmentLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h5 class="modal-title" id="createAppointmentLabel">Create Appointment</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+    <div class="alert_window">
+      <div id="cancel_appointment_success" class="alert alert-success show" role="alert">
       </div>
-      <div class="modal-body text-center">
-        <form class="form" action=".php" method="post">
-            <div class="form-group">
-              <label class="ml-3">Patient - Treatment</label>
-              <select name="patienttreatment" id="treatmentIDvalue">
-              <option></option>
-              <?php
+      <div id="cancel_appointment_failure" class="alert alert-danger show" role="alert">
+      </div>
+    </div>
+    <!-- Create Patients Modal -->
+    <div class="modal fade" id="createAppointment" tabindex="-1" role="dialog" aria-labelledby="createAppointmentLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h5 class="modal-title" id="createAppointmentLabel">Create Appointment</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-center">
+            <form class="form" action=".php" method="post">
+              <div class="form-group">
+                <label class="ml-3">Patient - Treatment</label>
+                <select name="patienttreatment" id="treatmentIDvalue">
+                  <option></option>
+                  <?php
                   if ($link->connect_error) {
-                   die("Connection failed: " . $link->connect_error);
-                     }
-                       $sqlpatient = "SELECT treatment.treatmentID, concat(account.firstName, ' ',account.lastname) AS fullname, treatment.treatmentDesc FROM treatment LEFT JOIN patient ON patient.patientID=treatment.treatmentID LEFT JOIN account ON account.accountID=patient.accountID ";
-                       $results = $link->query($sqlpatient);
-                       if ($results->num_rows > 0) {
-                         // output data of each row
-                             while ($row = $results->fetch_assoc()){
-                              echo "<option value='".$row['treatmentID']."'>".$row['fullname']." - ".$row['treatmentDesc']."</option>";
-                              }
-                            } else {
-                              echo "0 results";                                         }
-               ?>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="ml-3">AppointmentDate</label>
-              <input type="text" name="appointmentDate" class="form-control ml-3">
-              <span class="help-block"></span>
-            </div>
-            <div class="form-group">
-              <label class="ml-3">Appointment Time</label>
-              <input type="time" name="appointmentTime" class="form-control ml-3 " step="2" min="8:00" max="17:00">
-              <span class="help-block"></span>
-            </div>
-            <div class="form-group">
-              <label class="ml-3">Appointment Comments</label>
-              <input type="text" name="appComments" class="form-control ml-3">
-              <span class="help-block"></span>
-            </div>
-            <div class="modal-footer text-center">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-          </form>
+                    die("Connection failed: " . $link->connect_error);
+                  }
+                  $sqlpatient = "SELECT treatment.treatmentID, concat(account.firstName, ' ',account.lastname) AS fullname, treatment.treatmentDesc FROM treatment LEFT JOIN patient ON patient.patientID=treatment.treatmentID LEFT JOIN account ON account.accountID=patient.accountID ";
+                  $results = $link->query($sqlpatient);
+                  if ($results->num_rows > 0) {
+                    // output data of each row
+                    while ($row = $results->fetch_assoc()) {
+                      echo "<option value='" . $row['treatmentID'] . "'>" . $row['fullname'] . " - " . $row['treatmentDesc'] . "</option>";
+                    }
+                  } else {
+                    echo "0 results";
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="ml-3">AppointmentDate</label>
+                <input type="text" name="appointmentDate" class="form-control ml-3">
+                <span class="help-block"></span>
+              </div>
+              <div class="form-group">
+                <label class="ml-3">Appointment Time</label>
+                <input type="time" name="appointmentTime" class="form-control ml-3 " step="2" min="8:00" max="17:00">
+                <span class="help-block"></span>
+              </div>
+              <div class="form-group">
+                <label class="ml-3">Appointment Comments</label>
+                <input type="text" name="appComments" class="form-control ml-3">
+                <span class="help-block"></span>
+              </div>
+              <div class="modal-footer text-center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- modal end -->
-  <footer class="footer" style="position: absolute; bottom: 0px; width: 100%;">
-    <div class="container">
-      <div class="row justify-content-center">
-        <p>Copyright &copy; 2020 Twinkly Smiles Dentistry </p>
+    <!-- modal end -->
+    <footer class="footer" style="position: absolute; bottom: 0px; width: 100%;">
+      <div class="container">
+        <div class="row justify-content-center">
+          <p>Copyright &copy; 2020 Twinkly Smiles Dentistry </p>
+        </div>
       </div>
-    </div>
-  </footer>
-  <!--footer ends-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
-    crossorigin="anonymous"></script>
-  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </footer>
+    <!--footer ends-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="controller/treatments.js"></script>
 </body>
 
 </html>

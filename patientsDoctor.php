@@ -9,7 +9,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 }
 require_once "config.php";
 
-$patientFName = $patientLName = $patientPhone = $patientDOB = "";
+$patientFName = $patientLName = $patientPhone = $patientDOB =$password= "";
 $patientFName_err = $patientLName_err = $patientPhone_err = $patientDOB_err = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $patientLName = mysqli_real_escape_string($link, $_REQUEST['patientLName']);
     $patientPhone = mysqli_real_escape_string($link, $_REQUEST['patientPhone']);
     $patientDOB = mysqli_real_escape_string($link, $_REQUEST['patientDOB']);
-    $password = mysqli_real_escape_string($link, $_REQUEST['patientDOB']);
+    $password = mysqli_real_escape_string($link, $_REQUEST['userpasswd']);
     $patient_password = password_hash($password, PASSWORD_DEFAULT);
     $patientUserName=$patientFName[0].$patientFName;
  

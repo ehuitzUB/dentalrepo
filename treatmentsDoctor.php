@@ -26,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Check if description is empty
     if(empty(trim($_POST["treatmentDescription"]))){
-        $treatmentDescription_err = "Please enter Treatment Description.";
+        $treatmentDecription_err = "Please enter Treatment Description.";
     } else{
         $treatmentDescription = trim($_POST["treatmentDescription"]);
     }
@@ -35,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($patientName_err) && empty($treatmentDescription_err)){
 
     $patientName = mysqli_real_escape_string($link, $_REQUEST['patientName']);
-    $treatmentDescription = mysqli_real_escape_string($link, $_REQUEST['treatmentDescription']);
+    $treatmentDescription = mysqli_real_escape_string($link, $_REQUEST['patientDescription']);
  
 // Attempt insert query execution
     $sql = "INSERT INTO treatment (patientID, treatmentDesc) VALUES ('$patientName', '$treatmentDescription')";
@@ -130,7 +130,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     <theader>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Description</th>
+                                            <th>Descritpion</th>
                                             <th>Name</th>
                                             <th>Date Begin</th>
                                             <th>Date End</th>
@@ -149,7 +149,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                             die("Connection failed: " . $link->connect_error);
                                         }
                                         $sql = "SELECT treatment.treatmentID AS tID, patient.patientID AS pID, 
-                                        concat(account.firstName, ' ',account.lastname) AS fullname, treatment.treatmentDesc as tDesc , DATE(treatment.treatmentDateBegin) AS tBegin, DATE(treatment.treatmentDateEnd) AS tEnd, treatment.treatmentStatus AS tStatus 
+                                        concat(account.firstName, ' ',account.lastname) AS fullname, treatment.treatmentDesc as tDesc , treatment.treatmentDateBegin AS tBegin, treatment.treatmentDateEnd AS tEnd, treatment.treatmentStatus AS tStatus 
                                         FROM treatment 
                                         LEFT JOIN patient on patient.patientID=treatment.patientID
                                         INNER JOIN account on account.accountID=patient.accountID";
@@ -197,26 +197,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     <div class = "">
                                         <div>
                                             <label class="ml-3">Patient Name</label>
-                                            <select name="patientName" id="cars">
-                                            <?php
-                                            if ($link->connect_error) {
-                                                die("Connection failed: " . $link->connect_error);
-                                            }
-                                              $sql = "SELECT accountID,firstName FROM account WHERE accountStatus='Active'";
-                                              $result = $link->query($sql);
-                                              if ($result->num_rows > 0) {
-                                                // output data of each row
-                                                print_r($return);
-                                                foreach ($return as $row){
-                                                  echo "<option value='".$row['accountID']."'>".$row['firstName']."</option>";
-                                                   }
-                                               } 
-                                               else {
-                                                echo "0 results". mysqli_error($link);
-                                            }
-                                            $link->close();
-                                              ?>
-                                            </select>
                                             <input type="text" name="patientName" class="form-control ml-3">
                                             <span class="help-block"><?php echo $patientName_err; ?></span>
                                         </div>    

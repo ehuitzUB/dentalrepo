@@ -158,41 +158,63 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
     </div>
       <!-- Create treatment Modal -->
-  <div class="modal fade" id="createTreatment" tabindex="-1" role="dialog" aria-labelledby="createAppointmentLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="createAppointmentLabel">Create Treatment</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <form action="treatmentsDoctor.php" method="post">
-                        <div class="form-group">
-                            <label class="ml-3">Patient Name</label>
-                            <input type="text" name="patientName" class="form-control ml-3">
-                            <span class="help-block"><?php echo $patientName_err; ?></span>
-                        </div>    
-                        <div class="form-group" <?php echo (!empty($treatmentDescription_err)) ? 'has-error' : ''; ?>>
-                            <label class="ml-3">Treatment Descritpion</label>
-                            <input type="text" name="treatmentDescription" class="form-control ml-3">
-                            <span class="help-block"><?php echo $treatmentDescription_err; ?></span>
-                        </div>
-                        <div class="form-group" class="text-center">
-                            <input type="submit" class="btn btn-primary" value="Submit">
-                        </div>
-                    </form>
+    <div class="modal fade" id="createTreatment" tabindex="-1" role="dialog" aria-labelledby="createAppointmentLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="createAppointmentLabel">Create Treatment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="container">
+                        <div class="row"> 
+                            <div class="col-12 text-center">              
+                                <form action="treatmentsDoctor.php" method="post">
+                                    <div class = "">
+                                        <div>
+                                            <label class="ml-3">Patient Name</label>
+                                            <select name="patientName">
+                                            <?php
+                                            if ($link->connect_error) {
+                                                die("Connection failed: " . $link->connect_error);
+                                            }
+                                                $sqlpatient = "SELECT accountID,firstName FROM account WHERE accountStatus='Active'";
+                                                $results = $link->query($sqlpatient);
+                                                if ($results->num_rows > 0) {
+                                                // output data of each row
+                                                while ($row = $results->fetch_assoc()){
+                                                    echo "<option value='".$row['accountID']."'>".$row['firstName']."</option>";
+                                                    }
+                                                } else {
+                                                    echo "0 results";
+                                                    }
+                                                ?>
+                                            </select>
+                                            <input type="text" name="patientName" class="form-control ml-3">
+                                            <span class="help-block"><?php echo $patientName_err; ?></span>
+                                        </div>    
+                                        <div <?php echo (!empty($treatmentDescription_err)) ? 'has-error' : ''; ?>>
+                                            <label class="ml-3">Treatment Descritpion</label>
+                                            <input type="text" name="treatmentDescription" class="form-control ml-3">
+                                            <span class="help-block"><?php echo $treatmentDescription_err; ?></span>
+                                        </div>
+                                        <div class="text-center">
+                                            <input type="submit" class="btn btn-primary" value="Submit">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>  
+                        </div> 
+                    </div>
+                </div>
+
+                
                 </div>
             </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
 <!-- modal end -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>

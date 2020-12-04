@@ -84,9 +84,11 @@ require_once "config.php";
             if ($link->connect_error) {
               die("Connection failed: " . $link->connect_error);
             }
-            $sql = "SELECT appointment.appointmentID AS aID,  treatment.treatmentID AS atID, appointment.appointmentComments AS aComments, appointment.appointmentDate AS aDate, appointment.appointmentTime AS aTime, appointment.appointmentStatus as aStatus 
+            $sql = "SELECT appointment.appointmentID AS aID,  concat(account.firstName, ' ',account.lastname) AS fullname, appointment.appointmentComments AS aComments, appointment.appointmentDate AS aDate, appointment.appointmentTime AS aTime, appointment.appointmentStatus as aStatus 
             FROM appointment 
-            LEFT JOIN treatment ON treatment.ID=appointment.treatmentID 
+            LEFT JOIN treatment ON treatment.treatmentID=appointment.treatmentID
+            LEFT JOIN patient ON patient.patientID=treatment.patientID
+            LEFT JOIN account ON account.accountID=patient.accountID
             WHERE appointment.appointmentStatus = 'Open'";
             $result = $link->query($sql);
             if ($result->num_rows > 0) {
@@ -94,7 +96,7 @@ require_once "config.php";
               while ($row = $result->fetch_assoc()) {
                 echo "<tr>" .
                   "<td>" . $row["aID"] . "</td>" .
-                  "<td>" . $row["atID"] . "</td>" .
+                  "<td>" . $row["fullname"] . "</td>" .
                   "<td>"  . $row["aComments"] . "</td>" .
                   "<td>"  . $row["aDate"] . "</td>" .
                   "<td>"  . $row["aTime"] . "</td>" .

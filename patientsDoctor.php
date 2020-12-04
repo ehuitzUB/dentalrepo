@@ -50,13 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $patientDOB = mysqli_real_escape_string($link, $_REQUEST['patientDOB']);
     $password = mysqli_real_escape_string($link, $_REQUEST['userpasswd']);
     $patient_password = password_hash($password, PASSWORD_DEFAULT);
-<<<<<<< HEAD
-    //$patientUserName=strtolower($patientFName[0,2].$patientLName[0,2]);
-=======
-    $fName=substr($patientFName, 0, 2);
-    $lName=substr($patientLName, 0, 2);
+    $fName=substr($patientFName, 0, 3);
+    $lName=substr($patientLName, 0, 3);
     $patientUserName=strtolower($fName.$lName);
->>>>>>> 81fbbb72f490d50030a02b9a9c1d484b25ddcde9
  
 // Attempt insert query execution
     $sql = "INSERT INTO account (firstname, lastname, telephone, accountType, DOB) VALUES ('$patientFName', '$patientLName', '$patientPhone', 3, '$patientDOB');SELECT @last := LAST_INSERT_ID();INSERT INTO patient (accountID) VALUES (@last); INSERT INTO users (username, password) VALUES ('$patientUserName', '$patient_password'); SELECT @userid := LAST_INSERT_ID(); UPDATE account SET loginID=@userid WHERE accountID=@last;";

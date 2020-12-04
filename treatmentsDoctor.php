@@ -130,7 +130,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     <theader>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Descritpion</th>
+                                            <th>Description</th>
                                             <th>Name</th>
                                             <th>Date Begin</th>
                                             <th>Date End</th>

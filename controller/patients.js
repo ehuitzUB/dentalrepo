@@ -17,14 +17,12 @@ function deletePatient(id) {
       if (results.state = "success") {
         $("#delete_patient_success").html("<strong>Success</strong>  " + results.message);
         $("#delete_patient_success").show();
-        alert("ff");
         setTimeout(function () {
           location.reload();
         }, 2000);
       } else {
         $("#delete_patient_failure").html("<strong>Failure</strong>  " + results.message);
         $("#delete_patient_failure").show();
-        alert("aa");
         setTimeout(function () {
           location.reload();
         }, 2000);

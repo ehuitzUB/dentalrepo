@@ -858,9 +858,9 @@ ul.list-default li {
 }
 }
 @media only screen and (max-width: 580px) {
-.banner{
-		min-height: 350px;
-}
+	.banner{
+			min-height: 350px;
+	}
 }
 
 .customers {

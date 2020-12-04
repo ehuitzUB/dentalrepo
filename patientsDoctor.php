@@ -118,15 +118,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     </div>
   </nav>
-  <div class="container row-content">
+  <div class="container">
     <!--welcome header bar-->
-    <div class="row">
-      <div class="col-md-4 col-sm-4">
-        <h5>Patients</h5>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#createPatients">Create Patient</button>
-      </div>
-      <div class="col-md-12">
-        <table class="table">
+    <div class="row row-content d-flex justify-content-center">
+      <h5>Patients</h5>
+      <div class="col-md-12 table-responsive">
+      <button class="btn btn-primary" data-toggle="modal" data-target="#createPatients">Create Patient</button>
+        <table class="table text-center">
+          <caption></caption>
           <theader>
             <tr>
               <th>Patient ID</th>
@@ -175,7 +174,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
   </div>
   <!-- Create Patients Modal -->
-  <div class="modal fade" id="createPatients" tabindex="-1" role="dialog" aria-labelledby="createPatientsLabel" aria-hidden="true">
+<div class="modal fade" id="createPatients" tabindex="-1" role="dialog" aria-labelledby="createPatientsLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -185,23 +184,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </button>
       </div>
       <div class="modal-body">
-        <form action="patientsDoctor.php" method="post">
-            <div>
+        <form class="form" action="patientsDoctor.php" method="post">
+            <div class="form-group">
               <label class="ml-3">Patient First Name</label>
               <input type="text" name="patientFName" class="form-control ml-3">
               <span class="help-block"><?php echo $patientFName_err; ?></span>
             </div>
-            <div <?php echo (!empty($patientLName_err)) ? 'has-error' : ''; ?>>
+            <div class="form-group" <?php echo (!empty($patientLName_err)) ? 'has-error' : ''; ?>>
               <label class="ml-3">Patient Last Name</label>
               <input type="text" name="patientLName" class="form-control">
               <span class="help-block"><?php echo $patientLName_err; ?></span>
             </div>
-            <div <?php echo (!empty($patientPhone_err)) ? 'has-error' : ''; ?>>
+            <div class="form-group"<?php echo (!empty($patientPhone_err)) ? 'has-error' : ''; ?>>
               <label class="ml-3">Patient Phone</label>
               <input type="text" name="patientPhone" class="form-control">
               <span class="help-block"><?php echo $patientPhone_err; ?></span>
             </div>
-            <div <?php echo (!empty($patientDOB_err)) ? 'has-error' : ''; ?>>
+            <div class="form-group"<?php echo (!empty($patientDOB_err)) ? 'has-error' : ''; ?>>
               <label class="ml-3">Patient DOB</label>
               <input type="text" name="patientDOB" class="form-control">
               <span class="help-block"><?php echo $patientDOB_err; ?></span>
@@ -225,15 +224,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
   </div>
 </div>
-  <!-- Footer section -->
-  <footer class="footer" style="position: absolute; bottom: 0px; width: 100%;">
-    <div class="container">
-      <div class="row justify-content-center mt-5">
-        <p>Copyright &copy 2020 Twinkly Smiles Dentistry </p>
-      </div>
-    </div>
-  </footer>
-  <!-- Footer section -->
+<!-- modal end -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="controller/patients.js"></script>

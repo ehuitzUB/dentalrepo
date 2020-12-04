@@ -7,6 +7,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
+require_once "config.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -62,6 +63,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </nav>
 <div class="container">
     <div class="row row-content text-center"> 
+    <button class="btn btn-primary" data-toggle="modal" data-target="#createAppointment">Create Appointment</button>
         <div class="col-md-12 table-responsive">
             <table class="table">
                 <thead>
@@ -70,7 +72,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         <th>Patient Name</th>
                         <th>Procedure</th>
                         <th>Date</th>
+                        <th>Time</th>
                         <th>Status</th>
+                        <th>Edit</th>
+                        <th>Cancel</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,18 +85,25 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             if ($link->connect_error) {
               die("Connection failed: " . $link->connect_error);
             }
-            $sql = "SELECT patient.accountID as accID, concat(account.firstName, ' ',account.lastname) AS fullname, account.telephone AS tp, account.DOB as dateb FROM account LEFT JOIN patient ON patient.accountID=account.accountID WHERE account.accountType=3 AND account.accountStatus= 'Active'";
+            $sql = "SELECT appointment.appointmentID AS aID,  concat(account.firstName, ' ',account.lastname) AS fullname, appointment.appointmentComments AS aComments, appointment.appointmentDate AS aDate, appointment.appointmentTime AS aTime, appointment.appointmentStatus as aStatus 
+            FROM appointment 
+            LEFT JOIN treatment ON treatment.treatmentID=appointment.treatmentID
+            LEFT JOIN patient ON patient.patientID=treatment.patientID
+            LEFT JOIN account ON account.accountID=patient.accountID
+            WHERE appointment.appointmentStatus = 'Open'";
             $result = $link->query($sql);
             if ($result->num_rows > 0) {
               // output data of each row
               while ($row = $result->fetch_assoc()) {
                 echo "<tr>" .
-                  "<td>" . $row["accID"] . "</td>" .
+                  "<td>" . $row["aID"] . "</td>" .
                   "<td>" . $row["fullname"] . "</td>" .
-                  "<td>"  . $row["tp"] . "</td>" .
-                  "<td>"  . $row["dateb"] . "</td>" .
-                  "<td><a href = 'editPatientsDoctor.php?GetID=" . $row["accID"] . "'>Edit</a></td>" .
-                  "<td><a class=\"btn btn-danger\" onclick=\"deletePatient(" . $row["accID"] . ")\">Delete</a></td>" .
+                  "<td>"  . $row["aComments"] . "</td>" .
+                  "<td>"  . $row["aDate"] . "</td>" .
+                  "<td>"  . $row["aTime"] . "</td>" .
+                  "<td>"  . $row["aStatus"] . "</td>" .
+                  "<td><a href = '.php?GetID=" . $row["accID"] . "'>Edit</a></td>" .
+                  "<td><a class=\"btn btn-danger\" >Cancel</a></td>" .
                   "</tr>";
               }
             } else {
@@ -104,7 +116,53 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         </div>
     </div>
 </div>
+<<<<<<< HEAD
+  <!-- Create Patients Modal -->
+  <div class="modal fade" id="createAppointment" tabindex="-1" role="dialog" aria-labelledby="createAppointmentLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createAppointmentLabel">Create Appointment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form" action=".php" method="post">
+            <div class="form-group">
+              <label class="ml-3">Treatment</label>
+              <input type="text" name="TreatmentID" class="form-control ml-3">
+              <span class="help-block"></span>
+            </div>
+            <div class="form-group">
+              <label class="ml-3">AppointmentDate</label>
+              <input type="text" name="appointmentDate" class="form-control ml-3">
+              <span class="help-block"></span>
+            </div>
+            <div class="form-group">
+              <label class="ml-3">Appointment Time</label>
+              <input type="text" name="appointmentTime" class="form-control ml-3">
+              <span class="help-block"></span>
+            </div>
+            <div class="form-group">
+              <label class="ml-3">Appointment Comments</label>
+              <input type="text" name="appComments" class="form-control ml-3">
+              <span class="help-block"></span>
+            </div>           
+            <div class="modal-footer text-center">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal end -->
 <footer class="footer" style="position: absolute; bottom: 0px; width: 100%;">
+=======
+<footer class="footer">
+>>>>>>> e27a949106ca0325c4df2781148c96e573e76fdc
     <div class="container">
         <div class="row justify-content-center">
             <p>Copyright &copy; 2020 Twinkly Smiles Dentistry </p>

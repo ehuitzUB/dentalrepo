@@ -9,7 +9,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 }
 require_once "config.php";
 
-$patientFName = $patientLName = $patientPhone = $patientDOB = "";
+$patientFName = $patientLName = $patientPhone = $patientDOB =$password= "";
 $patientFName_err = $patientLName_err = $patientPhone_err = $patientDOB_err = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
   // Check if phone is empty
   if (empty(trim($_POST["patientDOB"]))) {
-    $patientDOB_err = "Please enter Phone.";
+    $patientDOB_err = "Please enter DOB.";
   } else {
     $patientDOB = trim($_POST["patientDOB"]);
   }
@@ -48,9 +48,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $patientLName = mysqli_real_escape_string($link, $_REQUEST['patientLName']);
     $patientPhone = mysqli_real_escape_string($link, $_REQUEST['patientPhone']);
     $patientDOB = mysqli_real_escape_string($link, $_REQUEST['patientDOB']);
+    $password = mysqli_real_escape_string($link, $_REQUEST['userpasswd']);
+    $patient_password = password_hash($password, PASSWORD_DEFAULT);
+    $fName=substr($patientFName, 0, 3);
+    $lName=substr($patientLName, 0, 3);
+    $patientUserName=strtolower($fName.$lName);
  
 // Attempt insert query execution
-    $sql = "INSERT INTO account (firstname, lastname, telephone, accountType, DOB) VALUES ('$patientFName', '$patientLName', '$patientPhone', 3, '$patientDOB');SELECT @last := LAST_INSERT_ID();INSERT INTO patient (accountID) VALUES (@last); ";
+    $sql = "INSERT INTO account (firstname, lastname, telephone, accountType, DOB) VALUES ('$patientFName', '$patientLName', '$patientPhone', 3, '$patientDOB');SELECT @last := LAST_INSERT_ID();INSERT INTO patient (accountID) VALUES (@last); INSERT INTO users (username, password) VALUES ('$patientUserName', '$patient_password'); SELECT @userid := LAST_INSERT_ID(); UPDATE account SET loginID=@userid WHERE accountID=@last;";
     if(mysqli_multi_query($link, $sql)){
         header("location:patientsDoctor.php");
     } else{
@@ -113,15 +118,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     </div>
   </nav>
-  <div class="container row-content">
+  <div class="container">
     <!--welcome header bar-->
-    <div class="row">
-      <div class="col-md-4 col-sm-4">
-        <h5>Patients</h5>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#createPatients">Create Patient</button>
-      </div>
-      <div class="col-md-12">
-        <table class="table">
+    <div class="row row-content d-flex justify-content-center">
+      <h5>Patients</h5>
+      <div class="col-md-12 table-responsive">
+      <button class="btn btn-primary" data-toggle="modal" data-target="#createPatients">Create Patient</button>
+        <table class="table text-center">
+          <caption></caption>
           <theader>
             <tr>
               <th>Patient ID</th>
@@ -170,7 +174,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
   </div>
   <!-- Create Patients Modal -->
-  <div class="modal fade" id="createPatients" tabindex="-1" role="dialog" aria-labelledby="createPatientsLabel" aria-hidden="true">
+<div class="modal fade" id="createPatients" tabindex="-1" role="dialog" aria-labelledby="createPatientsLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -180,35 +184,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </button>
       </div>
       <div class="modal-body">
-        <form action="patientsDoctor.php" method="post">
-            <div>
+        <form class="form" action="patientsDoctor.php" method="post">
+            <div class="form-group">
               <label class="ml-3">Patient First Name</label>
               <input type="text" name="patientFName" class="form-control ml-3">
               <span class="help-block"><?php echo $patientFName_err; ?></span>
             </div>
-            <div <?php echo (!empty($patientLName_err)) ? 'has-error' : ''; ?>>
+            <div class="form-group" <?php echo (!empty($patientLName_err)) ? 'has-error' : ''; ?>>
               <label class="ml-3">Patient Last Name</label>
-              <input type="text" name="patientLName" class="form-control">
+              <input type="text" name="patientLName" class="form-control ml-3">
               <span class="help-block"><?php echo $patientLName_err; ?></span>
             </div>
-            <div <?php echo (!empty($patientPhone_err)) ? 'has-error' : ''; ?>>
+            <div class="form-group"<?php echo (!empty($patientPhone_err)) ? 'has-error' : ''; ?>>
               <label class="ml-3">Patient Phone</label>
-              <input type="text" name="patientPhone" class="form-control">
+              <input type="text" name="patientPhone" class="form-control ml-3">
               <span class="help-block"><?php echo $patientPhone_err; ?></span>
             </div>
-            <div <?php echo (!empty($patientDOB_err)) ? 'has-error' : ''; ?>>
+            <div class="form-group"<?php echo (!empty($patientDOB_err)) ? 'has-error' : ''; ?>>
               <label class="ml-3">Patient DOB</label>
-              <input type="text" name="patientDOB" class="form-control">
+              <input type="text" name="patientDOB" class="form-control ml-3">
               <span class="help-block"><?php echo $patientDOB_err; ?></span>
             </div>
             <div>
               <label class="ml-3">User Password</label>
-              <input type="text" name="userpasswd" class="form-control">
+              <input type="text" name="userpasswd" class="form-control ml-3">
               <span class="help-block"></span>
             </div>
             <div>
               <label class="ml-3">Confirm Password</label>
-              <input type="text" name="confirmuserpasswd" class="form-control">
+              <input type="text" name="confirmuserpasswd" class="form-control ml-3">
               <span class="help-block"></span>
             </div>
             <div class="modal-footer text-center">
@@ -220,15 +224,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
   </div>
 </div>
-  <!-- Footer section -->
-  <footer class="footer" style="position: absolute; bottom: 0px; width: 100%;">
-    <div class="container">
-      <div class="row justify-content-center mt-5">
+<!-- modal end -->
+<footer class="footer">
+  <div class="container">
+      <div class="row justify-content-center mt-5" >
         <p>Copyright &copy 2020 Twinkly Smiles Dentistry </p>
       </div>
-    </div>
-  </footer>
-  <!-- Footer section -->
+  </div> 
+</footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="controller/patients.js"></script>

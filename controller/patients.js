@@ -30,3 +30,51 @@ function deletePatient(id) {
     });
   }
 }
+
+function validateAddPatientForm() {
+  let bucket = document.forms["addPatientForm"];
+  let flag = true;
+
+  $("#errorPatientPassword").hide();
+  $("#errorPatientConfirm").hide();
+  $("#errorPatientFName").hide();
+  $("#errorPatientLName").hide();
+
+  var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+  
+  if (bucket.userpasswd.value.match(passw)) {
+    if (bucket.userpasswd.value !== bucket.confirmuserpasswd.value) {
+      $("#errorPatientConfirm").show();
+      $("#errorPatientConfirm").text("The two passwords do not match.");
+      flag = false;
+    }
+  } else {
+    $("#errorPatientPassword").show();
+    $("#errorPatientPassword").text("Use 6-20 numbers and letters (capital and small).");
+    flag = false;
+  }
+  
+  var letters = /^[A-Za-z]+$/;
+  
+  if (bucket.patientLName.value.length > 32) {
+
+    $("#errorPatientLName").show();
+    $("#errorPatientLName").text("Last name must be smaller than 32 characters.");
+    flag = false;
+  } else if (!bucket.patientLName.value.match(letters)) {
+    $("#errorPatientLName").show();
+    $("#errorPatientLName").text("Last name can only be letters.");
+    flag = false;
+  }
+
+  if (bucket.patientFName.value.length > 32) {
+    $("#errorPatientFName").show();
+    $("#errorPatientFName").text("First name must be smaller than 32 characters.");
+    flag = false;
+  } else if (!bucket.patientFName.value.match(letters)) {
+    $("#errorPatientFName").show();
+    $("#errorPatientFName").text("First name can only be letters.");
+    flag = false;
+  }
+  return flag;
+}

@@ -20,4 +20,9 @@ function deletePatient($link, $id) {
   }
   echo json_encode($data);
 }
+
+function addPatient($link, $patient){
+
+}
+
 ?>

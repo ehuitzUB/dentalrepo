@@ -13,8 +13,6 @@ $patientFName = $patientLName = $patientPhone = $patientDOB = "";
 $patientFName_err = $patientLName_err = $patientPhone_err = $patientDOB_err = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-
   // Check if FName is empty
 
   if (empty(trim($_POST["patientFName"]))) {
@@ -59,11 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //mysqli_close($link);
     }
     //mysqli_close($link);
-<<<<<<< HEAD
-  // }
-
-=======
->>>>>>> 7b99e2c370d9ac9236144f2111c76c4e535cba6c
 
   // Close connection
   //mysqli_close($link);
@@ -185,36 +178,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </button>
       </div>
       <div class="modal-body">
-        <form action="patientsDoctor.php" method="post">
+        <form name="addPatientForm" onsubmit="return validateAddPatientForm()" method="post">
             <div>
               <label class="ml-3">Patient First Name</label>
-              <input type="text" name="patientFName" class="form-control ml-3">
-              <span class="help-block"><?php echo $patientFName_err; ?></span>
+              <input type="text" name="patientFName" class="form-control" required>
+              <span id="errorPatientFName" class="help-block text-danger"><?php echo $patientFName_err; ?></span>
             </div>
             <div <?php echo (!empty($patientLName_err)) ? 'has-error' : ''; ?>>
               <label class="ml-3">Patient Last Name</label>
-              <input type="text" name="patientLName" class="form-control">
-              <span class="help-block"><?php echo $patientLName_err; ?></span>
+              <input type="text" name="patientLName" class="form-control" required>
+              <span id="errorPatientLName" class="help-block text-danger"><?php echo $patientLName_err; ?></span>
             </div>
             <div <?php echo (!empty($patientPhone_err)) ? 'has-error' : ''; ?>>
               <label class="ml-3">Patient Phone</label>
-              <input type="text" name="patientPhone" class="form-control">
-              <span class="help-block"><?php echo $patientPhone_err; ?></span>
+              <input type="text" name="patientPhone" class="form-control" required>
+              <span id="errorPatientPhone" class="help-block text-danger"><?php echo $patientPhone_err; ?></span>
             </div>
             <div <?php echo (!empty($patientDOB_err)) ? 'has-error' : ''; ?>>
               <label class="ml-3">Patient DOB</label>
-              <input type="text" name="patientDOB" class="form-control">
-              <span class="help-block"><?php echo $patientDOB_err; ?></span>
+              <input type="date" name="patientDOB" class="form-control" required>
+              <span id="errorPatientDOB" class="help-block text-danger"><?php echo $patientDOB_err; ?></span>
             </div>
             <div>
               <label class="ml-3">User Password</label>
-              <input type="text" name="userpasswd" class="form-control">
-              <span class="help-block"></span>
+              <input type="password" name="userpasswd" class="form-control" required>
+              <span id="errorPatientPassword" class="help-block text-danger"></span>
             </div>
             <div>
               <label class="ml-3">Confirm Password</label>
-              <input type="text" name="confirmuserpasswd" class="form-control">
-              <span class="help-block"></span>
+              <input type="password" name="confirmuserpasswd" class="form-control" required>
+              <span id="errorPatientConfirm" class="help-block text-danger"></span>
             </div>
             <div class="modal-footer text-center">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

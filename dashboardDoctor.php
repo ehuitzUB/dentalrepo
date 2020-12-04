@@ -128,8 +128,8 @@ require_once "config.php";
       <div class="modal-body text-center">
         <form class="form" action=".php" method="post">
             <div class="form-group">
-              <label class="ml-3">Treatment</label>
-              <select name="treatment" id="">
+              <label class="ml-3">Patient - Treatment</label>
+              <select name="patienttreatment" id="treatmentIDvalue">
               <option></option>
               <?php
                   if ($link->connect_error) {
@@ -140,7 +140,7 @@ require_once "config.php";
                        if ($results->num_rows > 0) {
                          // output data of each row
                              while ($row = $results->fetch_assoc()){
-                              echo "<option value='".$row['treatmentID']."'>".$row['fullname']." ".$row['treatmentDesc']."</option>";
+                              echo "<option value='".$row['treatmentID']."'>".$row['fullname']." - ".$row['treatmentDesc']."</option>";
                               }
                             } else {
                               echo "0 results";                                         }
@@ -154,7 +154,7 @@ require_once "config.php";
             </div>
             <div class="form-group">
               <label class="ml-3">Appointment Time</label>
-              <input type="text" name="appointmentTime" class="form-control ml-3">
+              <input type="time" name="appointmentTime" class="form-control ml-3 " step="2" min="8:00" max="17:00">
               <span class="help-block"></span>
             </div>
             <div class="form-group">

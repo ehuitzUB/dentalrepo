@@ -82,9 +82,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   </nav>
   <div class="container">
     <div class="row row-content d-flex justify-content-center">
-      <h4>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></h4> <br>
-      <h3>Appointments for Today</h3>
-
+      <div class="col-md-12"><h4 class="d-block">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></h4> <br></div>
+      <h3 class="d-block">Appointments for Today</h3>
       <div class="col-md-12 table-responsive">
         <button class="btn btn-primary" data-toggle="modal" data-target="#createAppointment">Create Appointment</button>
         <table class="table text-center">
@@ -205,13 +204,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
   </div>
     <!-- modal end -->
-    <footer class="footer" style="position: relative; bottom: 0px; width: 125%;">
-      <div class="container">
-        <div class="row justify-content-center">
-          <p>Copyright &copy; 2020 Twinkly Smiles Dentistry </p>
-        </div>
-      </div>
-    </footer>
     <!--footer ends-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -199,12 +199,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                             <label class="ml-3">Patient Name</label>
                                             <select name="patientName" id="cars">
                                             <?php
-                                              $queryForpatients = "SELECT accountID,firstName,lastName FROM account WHERE accountStatus='Active'";
-                                              $sql = sqlsrv_query($db, $queryForpatients);
-                                              $row = sqlsrv_fetch_array($sql, SQLSRV_FETCH_ASSOC);
-                                              while ($row = sqlsrv_fetch_array($sql, SQLSRV_FETCH_ASSOC)) {
-                                              echo "<option value=\"accountID\">" . $row['firstName'] . "</option>";
-                                              }
+                                            if ($link->connect_error) {
+                                                die("Connection failed: " . $link->connect_error);
+                                            }
+                                              $sql = "SELECT accountID,firstName FROM account WHERE accountStatus='Active'";
+                                              $result = $link->query($sql);
+                                              if ($result->num_rows > 0) {
+                                                // output data of each row
+                                                  while ($row = $result->fetch_assoc()){
+                                                  echo "<option value='{$row['accountID']}'>{$row['firstName']}</option>";
+                                                   }
+                                               } 
+                                               else {
+                                                echo "0 results". mysqli_error($link);
+                                            }
+                                            $link->close();
                                               ?>
                                             </select>
                                             <input type="text" name="patientName" class="form-control ml-3">

@@ -60,7 +60,9 @@ require_once "config.php";
 </nav>
 <div class="container">
     <div class="row row-content d-flex justify-content-center"> 
-      <h3>Create Appointment</h3>
+    <h4>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></h4> <br>
+      <h3>Appointments for Today</h3>
+      
         <div class="col-md-12 table-responsive">
           <button class="btn btn-primary" data-toggle="modal" data-target="#createAppointment">Create Appointment</button>
             <table class="table text-center">

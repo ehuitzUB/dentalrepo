@@ -202,15 +202,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                             if ($link->connect_error) {
                                                 die("Connection failed: " . $link->connect_error);
                                             }
-                                              $sql = "SELECT accountID FROM account WHERE accountStatus='Active'";
+                                              $sql = "SELECT accountID FROM account WHERE accountStatus='Active' AND accountType = 3";
                                               $result = $link->query($sql);
-                        
-                                        
-                                              while ($row = $result->fetch_assoc()){
+                                              if ($result->num_rows > 0) {
+                                                // output data of each row
+                                                while ($row = $result->fetch_assoc()){
                                                   echo "<option value='".$row['accountID']."'>".$row['firstName']."</option>";
                                                    }
-    
-                                            $link->close();
+                                                } else {
+                                                    echo "0 results";
+                                                  }
                                               ?>
                                             </select>
                                             <input type="text" name="patientName" class="form-control ml-3">

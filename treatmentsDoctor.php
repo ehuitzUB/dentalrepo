@@ -197,16 +197,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     <div class = "">
                                         <div>
                                             <label class="ml-3">Patient Name</label>
-                                            <select name="patientName" id="cars">
+                                            <select name="patientName">
                                             <?php
                                             if ($link->connect_error) {
                                                 die("Connection failed: " . $link->connect_error);
                                             }
-                                              $sql = "SELECT accountID,firstName FROM account WHERE accountStatus='Active'";
-                                              $result = $link->query($sql);
-                                              if ($result->num_rows > 0) {
+                                              $sqlpatient = "SELECT accountID,firstName FROM account WHERE accountStatus='Active'";
+                                              $results = $link->query($sqlpatient);
+                                              if ($results->num_rows > 0) {
                                                 // output data of each row
-                                                while ($row = $result->fetch_assoc()){
+                                                while ($row = $results->fetch_assoc()){
                                                   echo "<option value='".$row['accountID']."'>".$row['firstName']."</option>";
                                                    }
                                                 } else {

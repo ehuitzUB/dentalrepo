@@ -102,7 +102,7 @@ require_once "config.php";
                   "<td>"  . $row["aDate"] . "</td>" .
                   "<td>"  . $row["aTime"] . "</td>" .
                   "<td>"  . $row["aStatus"] . "</td>" .
-                  "<td><a href = '.php?GetID=" . $row["accID"] . "'>Edit</a></td>" .
+                  "<td><a href = '.php?GetID=" . $row["aID"] . "'>Edit</a></td>" .
                   "<td><a class=\"btn btn-danger\" >Cancel</a></td>" .
                   "</tr>";
               }
